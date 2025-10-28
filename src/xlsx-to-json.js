@@ -12,7 +12,7 @@ program
   .option("-d, --delimiter <char>", "Delimiter used inside cells", "|")
   .option("-i, --input <file>", "Input Excel file", "some-input-dir/somefile.xlsx")
   .option("-o, --outdir <dir>", "Output directory", "some-output-dir")
-  .option("-s, --schema", "Generate JSON Schema files", false);
+
 
 program.parse(process.argv);
 
@@ -26,122 +26,71 @@ const generateSchema = options.schema;
 const baseName = path.basename(inputFile, path.extname(inputFile));
 
 // Load Excel file
-const workbook = XLSX.readFile(inputFile);
+const totalXlsx = XLSX.readFile(inputFile);
 
-workbook.SheetNames.forEach(sheetName => {
+// To hold all sheets' data
+const allSheetsData = {};
+
+// Process each sheet
+totalXlsx.SheetNames.forEach(sheetName => {
   if (sheetName.startsWith('_')) {
     console.log(`⚠️  Sheet "${sheetName}" is ignored (starts with '_')`);
     return;
   }
-  const sheet = workbook.Sheets[sheetName];
-  const jsonData = XLSX.utils.sheet_to_json(sheet, { defval: "" });
+  const sheet = totalXlsx.Sheets[sheetName];
+  const sheetData = XLSX.utils.sheet_to_json(sheet, { defval: "" });
 
-  if (jsonData.length === 0) {
+  if (sheetData.length === 0) {
     console.log(`⚠️  Sheet "${sheetName}" is empty, skipping.`);
     return;
   }
-
-  // Step 0: Remove spaces from keys
-  jsonData.forEach(row => {
-    Object.keys(row).forEach(key => {
-      const niceKey = key.replaceAll(' ', '');
-      if (niceKey !== key) {
-        row[niceKey] = row[key];
-        delete row[key];
-      }
-    });
-  });
-
-  // Step 1: Find keys that ever have a delimited value
-  const arrayKeys = new Set();
-  jsonData.forEach(row => {
-    Object.entries(row).forEach(([key, value]) => {
-      if (typeof value === "string" && value.includes(delimiter)) {
-        arrayKeys.add(key);
-      }
-    });
-  });
-
-  // Step 2: Convert delimited cells to arrays, and for arrayKeys always output an array
-  const processedRows = jsonData.map(row => {
+  // We convert the values of all keys to array (easier to make mappings later)
+  const processedRows = sheetData.map(row => {
     let newRow = {};
     Object.entries(row).forEach(([key, value]) => {
-      if (arrayKeys.has(key)) {
-        if (typeof value === "string" && value.includes(delimiter)) {
-          newRow[key] = value.split(delimiter).map(v => v.trim());
-        } else if (value !== "" && value !== undefined) {
-          newRow[key] = [value];
-        } // else: skip key if empty
-      } else {
-        if (value !== "" && value !== undefined) {
-          newRow[key] = value;
-        } // else: skip key if empty
-      }
+      if (typeof value === "string" && value.includes(delimiter)) {
+        newRow[key] = value.split(delimiter).map(v => v.trim());
+      } else if (value !== "" && value !== undefined) {
+        newRow[key] = [value];
+      } // else: skip key if empty
     });
     return newRow;
   });
+  allSheetsData[sheetName] = processedRows;
+  });
 
-  // Save as JSON
-  const outputFile = path.join(outputDir, `${baseName}-${sheetName}.json`);
-  if (!fs.existsSync(outputDir)){
-      fs.mkdirSync(outputDir, { recursive: true });
-  }
-  fs.writeFileSync(outputFile, JSON.stringify(processedRows, null, 2), "utf8");
-  console.log(`✅ JSON written to ${outputFile}`);
-
-  // Optional: Generate JSON Schema
-  if (generateSchema) {
-    // Collect all keys
-    const allKeys = new Set();
-    processedRows.forEach(row => {
-      Object.keys(row).forEach(key => allKeys.add(key));
-    });
-
-    // Infer types
-    const properties = {};
-    allKeys.forEach(key => {
-      let type = "string";
-      let isArray = arrayKeys.has(key);
-      let foundType = null;
-
-      for (const row of processedRows) {
-        if (row[key] !== undefined) {
-          if (isArray) {
-            if (row[key].length > 0) {
-              foundType = typeof row[key][0];
-              break;
-            }
-          } else {
-            foundType = typeof row[key];
-            break;
-          }
-        }
-      }
-
-      if (isArray) {
-        properties[key] = {
-          type: "array",
-          items: { type: foundType === "number" ? "number" : "string" }
-        };
-      } else {
-        properties[key] = {
-          type: foundType === "number" ? "number" : "string"
-        };
-      }
-    });
-
-    const schema = {
-      $schema: "http://json-schema.org/draft-07/schema#",
-      type: "array",
-      items: {
-        type: "object",
-        properties,
-        additionalProperties: false
-      }
+// Get schema data
+const xlsxSchema = XLSX.utils.sheet_to_json(totalXlsx.Sheets['_schema']);
+// Group schema by domain
+const schemaByDomain = {};
+xlsxSchema.forEach(row => {
+  const domainLabel = row['domainLabel'];
+  if (!schemaByDomain[domainLabel]) {
+    schemaByDomain[domainLabel] = {
+      domainLabel: domainLabel,
+      domainIri: row['domainIri'],
+      properties: []
     };
-
-    const schemaFile = path.join(outputDir, `${baseName}-${sheetName}.schema.json`);
-    fs.writeFileSync(schemaFile, JSON.stringify(schema, null, 2), "utf8");
-    console.log(`✅ JSON Schema written to ${schemaFile}`);
   }
-});
+  if (row['propertyLabel']){  
+    schemaByDomain[domainLabel].properties.push({
+      propertyLabel: row['propertyLabel'],    
+      propertyIri: row['propertyIri'],
+      rangeIri: row['rangeIri'],
+      rangeDatatype: row['rangeDatatype'],
+      rangeMinCount: row['rangeMinCount'],
+      rangeMaxCount: row['rangeMaxCount']
+    });
+    }
+  });
+const schemaArray = Object.values(schemaByDomain);
+let totalFileContent = {'data': allSheetsData, 'schema': schemaArray};
+
+// Save as mapping data as JSON
+const jsonFile = path.join(outputDir, `${baseName}.json`);
+
+if (!fs.existsSync(outputDir)){
+    fs.mkdirSync(outputDir, { recursive: true });
+}
+fs.writeFileSync(jsonFile, JSON.stringify(totalFileContent, null, 2), "utf8");
+console.log(`✅ JSON written to ${jsonFile}`);

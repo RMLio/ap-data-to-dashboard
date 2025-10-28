@@ -10,17 +10,16 @@ shopt -s nullglob
 # Constants
 in_dir="in"
 out_dir="out"
-yarrrml_file="$out_dir/all.yarrrml.yaml"
-rml_file="$out_dir/all.rml.ttl"
-queries_combined_file="$out_dir/queries/generated-queries.rq"
-queries_split_dir="$out_dir/queries/generated-queries"
+template_schema_json="$out_dir/template.schema.json"
+queries_dir="$out_dir/queries"
+queries_combined_file="$queries_dir/generated-queries.rq"
+queries_split_dir="$queries_dir/generated-queries"
 rdf_dir="$out_dir/serve-me"
-rdf_file="$out_dir/serve-me/output.ttl"
 miravi_main_dir="subprojects/miravi-a-linked-data-viewer/main"
 miravi_initial_config_dir="miravi-initial-config"
 
 # Default argument values
-dataUrl="http://localhost:5500/output.ttl"
+dataUrl="http://localhost:5500/"
 delimiter="|"
 buildMiravi=true
 
@@ -41,7 +40,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -h|--help)
       echo "Usage: $0 -u <dataUrl> -d <delimiter> [-n | --noMiraviBuild]"
-      echo "  <dataUrl>:     default='http://localhost:5500'"
+      echo "  <dataUrl>:     default='http://localhost:5500/'"
       echo "  <delimiter>:   default='|'"
       echo "  noMiraviBuild: do not build Miravi and delete previous build"
       exit 1
@@ -68,31 +67,40 @@ fi
 
 if [[ "$noInputFiles" == false ]]; then
   for input in "$in_dir"/*.xlsx; do
+    base=$(basename "$input")
+    echo "Processing file: $base"
+    fileName="${base%.xlsx}"        # removes extension → file.xlsx → file
+
     echo "ℹ️  Processing file: $input"
-    node ./src/xlsx-to-csv.js  -i $input -o $out_dir -d $delimiter
-    node ./src/xlsx-to-json.js -i $input -o $out_dir -d $delimiter -s
+    node ./src/xlsx-to-json.js -i $input -o $out_dir -d $delimiter
+
+    echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
+    node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName.json" -o "$out_dir/$fileName.mapping.yml"
+
+    echo "ℹ️  Generating file: $out_dir/$fileName.mapping.rml.ttl"
+    npx @rmlio/yarrrml-parser -i "$out_dir/$fileName.mapping.yml" -o "$out_dir/$fileName.mapping.rml.ttl" -p
+
+    echo "ℹ️  Generating file: $rdf_dir/$fileName.ttl"
+    mkdir -p $rdf_dir
+    java -jar ./rmlmapper-7.3.3-r374-all.jar -m $out_dir/$fileName.mapping.rml.ttl -o $rdf_dir/$fileName.ttl -s turtle
   done
 
-  echo "ℹ️  Generating file: $yarrrml_file"
-  node ./src/schema-to-yarrrml.js -g "$out_dir/*.schema.json" -o "$yarrrml_file"
-
+  # Use the first input file to generate the combined and split queries, temporary solution until I have a separate schema file
+  first_file=$(ls "$out_dir"/*.json | head -n 1)
   echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
-  node ./src/yarrrml-to-sparql.js -i "$yarrrml_file" -o "$queries_combined_file" -s "$queries_split_dir"
-
-  echo "ℹ️  Generating file: $rml_file"
-  npx @rmlio/yarrrml-parser -i "$yarrrml_file" -o "$rml_file" -p
-
-  echo "ℹ️  Generating file: $rdf_file"
-  mkdir -p $rdf_dir
-  java -jar ./rmlmapper-7.3.3-r374-all.jar -m $rml_file -o $rdf_file -s turtle
+  node ./src/schema-to-sparql.js -i "$first_file" -o "$queries_combined_file" -s "$queries_split_dir"
 else
-  echo "ℹ️  Generating an empty $rdf_file."
+  echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."
   mkdir -p $rdf_dir
-  echo "" > $rdf_file
+  echo "" > $rdf_dir/empty.ttl
+  echo "ℹ️  Generating (empty) combined queries file $queries_combined_file and (no) split queries in $queries_split_dir"
+  mkdir -p "$queries_dir"
+  echo "" > "$queries_combined_file"
+  mkdir -p "$queries_split_dir"
 fi
 
 echo "ℹ️  Preparing Miravi configuration in $miravi_main_dir"
-node ./src/prepare-miravi-config.js -i "$miravi_initial_config_dir" -s "$queries_split_dir" -o "$miravi_main_dir" -u "$dataUrl"
+node ./src/prepare-miravi-config.js -i "$miravi_initial_config_dir" -s "$queries_split_dir" -o "$miravi_main_dir" -u "$dataUrl" -d "$rdf_dir"
 
 if [[ "$buildMiravi" == true ]]; then
   echo "ℹ️  Building Miravi in $miravi_main_dir into $miravi_main_dir/dist; see $miravi_main_dir/build.log for details..."
