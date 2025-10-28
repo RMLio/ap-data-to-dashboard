@@ -75,7 +75,7 @@ If `shacl:minCount >= 1`, the corresponding column header in the Excel sheet is 
 
 This information is also recorded in the `_schema sheet` to facilitate the automated generation of YARRRML mappings and SPARQL queries.
 
-### Produce input data Using the template Excel workbook
+### Produce input data using the template Excel workbook
 
 To produce input data:
 
@@ -98,7 +98,18 @@ To process the input data `in/*.xlsx` as promised in [purpose](#purpose) above, 
 # ./run.sh -u 'https://www.example.com/'
 ```
 
-To do by you:
+### Add application-specific Miravi queries
+
+If you want to add application-specific queries to the Miravi instance, proceed as follows.
+
+* Extend the array `"queries"` in [miravi-initial-config/config.json)](miravi-initial-config/config.json).
+Note that you don't have to add a `"comunicaContext"`: `./run.sh` does that for you.
+* Add your corresponding SPARQL queries to [miravi-initial-config/public/queries/](miravi-initial-config/public/queries/).
+* Re-run the `run.sh` command explained in above [Process the input data](#process-the-input-data) section.
+
+Further information on Miravi configuration can be found [here](https://github.com/SolidLabResearch/miravi-a-linked-data-viewer).
+
+### To do by you
 
 * Serve the RDF output in directory `out/serve-me` at `<base URL where the RDF output will be served>`.
 * Serve the Miravi build result in `subprojects/miravi-a-linked-data-viewer/main/dist` at a URL of your choice.
