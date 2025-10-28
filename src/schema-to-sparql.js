@@ -30,7 +30,7 @@ function capitalize(str) {
 
 function toIriName(str) {
   if (!str) return str;
-  return str + "IRI";
+  return str + "_url";
 }
 
 function toCamelCase(str) {
