@@ -68,48 +68,65 @@ async function generateExcel(store) {
   // Create a new Excel workbook
   const wb = new ExcelJS.Workbook();
 
-  // sheet for Shema data 
-  const wsSchemaData = [["domainLabel", "domainIri", "propertyLabel", "propertyIri", "rangeIri", "rangeDatatype", "rangeMinCount", "rangeMaxCount", "rangeForeignKeySheet"]];
+  // sheet for Schema data 
+  const wsSchemaData = [["sheetName", "sheetIri", "columnLabel", "columnIri", "valueIri", "valueDatatype", "valueMinCount", "valueMaxCount", "valueForeignKeySheet"]];
+  // collect data for foreign key mapping
   const iriToLabelMap = {};
+  // collect sheet data as json
+  const schemaJson = {}
   // collect cells with mincount >=1
   const requiredData = {}
 
   // Iterate through each NodeShape in the SHACL file
   for (const nodeShape of store.match(null, null, namedNode('http://www.w3.org/ns/shacl#NodeShape'))) {
-    
+
     // Only create a worksheet the domain has properties  (otherwise too many sheets with only code column)  
     if (store.countQuads(nodeShape.subject, namedNode('http://www.w3.org/ns/shacl#property'), null) != 0) {
 
       // Get the label of the NodeShape to use as worksheet name
-      let domainLabel = store.getObjects(nodeShape.subject, namedNode('http://www.w3.org/2000/01/rdf-schema#label'))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
-      domainLabel = saveLabel(domainLabel); // replace spaces with underscores for sheet names
-      let domainIri = store.getObjects(nodeShape.subject, namedNode('http://www.w3.org/ns/shacl#targetClass'))[0].value;
-      iriToLabelMap[domainIri] = domainLabel;
+      let sheetName = store.getObjects(nodeShape.subject, namedNode('http://www.w3.org/2000/01/rdf-schema#label'))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
+      sheetName = saveLabel(sheetName); // replace spaces with underscores for sheet names
+      let sheetIri = store.getObjects(nodeShape.subject, namedNode('http://www.w3.org/ns/shacl#targetClass'))[0].value;
+      iriToLabelMap[sheetIri] = sheetName;
+      schemaJson[sheetName] = {
+        'sheetName': sheetName,
+        'sheetIri': sheetIri,
+        'columns': []
+      };
+    
       // Collect all property labels for this NodeShape
       let wsColumns = ["code"];
-      requiredData[domainLabel] = [1]
+      requiredData[sheetName] = [1]
       let countColumns = 2;
       for (const property of store.match(nodeShape.subject, namedNode('http://www.w3.org/ns/shacl#property'), null)) {
         // Get the label of each property to use as column headers
-        let propertyLabel = store.getObjects(property.object, namedNode('http://www.w3.org/2000/01/rdf-schema#label'))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
-        propertyLabel = saveLabel(propertyLabel); // replace spaces with underscores for column names
-        let propertyIri = store.getObjects(property.object, namedNode('http://www.w3.org/ns/shacl#path'))[0].value;
-        let rangeIri = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#class'));
-        let rangeDatatype = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#datatype'));
-        let rangeMinCount = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#minCount'));
-        let rangeMaxCount = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#maxCount'));
-        wsColumns.push(propertyLabel);
+        let columnLabel = store.getObjects(property.object, namedNode('http://www.w3.org/2000/01/rdf-schema#label'))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
+        columnLabel = saveLabel(columnLabel); // replace spaces with underscores for column names
+        let columnIri = store.getObjects(property.object, namedNode('http://www.w3.org/ns/shacl#path'))[0].value;
+        let valueIri = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#class'));
+        let valueDatatype = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#datatype'));
+        let valueMinCount = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#minCount'));
+        let valueMaxCount = getObjectValueIfExists(store, property.object, namedNode('http://www.w3.org/ns/shacl#maxCount'));
+        wsColumns.push(columnLabel);
 
-        wsSchemaData.push([domainLabel, domainIri, propertyLabel, propertyIri, rangeIri, rangeDatatype, rangeMinCount, rangeMaxCount, null]);
-    
+        wsSchemaData.push([sheetName, sheetIri, columnLabel, columnIri, valueIri, valueDatatype, valueMinCount, valueMaxCount, null]);
+        
+        schemaJson[sheetName]['columns'][columnLabel] = {
+          'columnLabel': columnLabel,    
+          'columnIri': columnIri,
+          'valueIri': valueIri,
+          'valueDatatype': valueDatatype,
+          'valueMinCount': valueMinCount,
+          'valueMaxCount': valueMaxCount
+        }
         // Collect required fields
-        if (rangeMinCount !== null && parseInt(rangeMinCount) >= 1) {
-          requiredData[domainLabel].push(countColumns);
+        if (valueMinCount !== null && parseInt(valueMinCount) >= 1) {
+          requiredData[sheetName].push(countColumns);
         }
         countColumns += 1;
       }
       // Create sheet data with headers in the first row
-      const ws = wb.addWorksheet(domainLabel);
+      const ws = wb.addWorksheet(sheetName);
       // Add the headers
       ws.addRow(wsColumns);
     }
@@ -117,9 +134,17 @@ async function generateExcel(store) {
 
   // Add foreign key sheet names
   for (const row of wsSchemaData.slice(1)) {
-    const rangeIri = row[4];
-    if (rangeIri !== 'http://www.w3.org/2004/02/skos/core#Concept'){
-      row[8] = iriToLabelMap[rangeIri]; 
+    const valueIri = row[4];
+    if (valueIri !== 'http://www.w3.org/2004/02/skos/core#Concept') {
+      row[8] = iriToLabelMap[valueIri];
+    }
+  }
+  for (const sheet in schemaJson){
+    for (const property in schemaJson[sheet]['columns']){
+      if (property.valueIri !== 'http://www.w3.org/2004/02/skos/core#Concept') {
+        const valueIri = schemaJson[sheet]['columns'][property]['valueIri']
+        schemaJson[sheet]['columns'][property]['valueForeignKeySheet'] = iriToLabelMap[valueIri]
+      }
     }
   }
 
@@ -164,6 +189,55 @@ async function generateExcel(store) {
     console.error(`❌ Error writing Excel file: ${error.message}`);
     process.exit(1);
   }
+
+  // Create dummy data for x actors
+  const numberOfActors = 3
+  for (let i = 1; i <= numberOfActors; i++) {
+    const prefix = 'a' + i
+    wb.eachSheet(sheet => {
+      const columnNames = sheet.getRow(1);
+      if (sheet.name !== '_schema') {
+        for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
+          const dummyRow = [];
+          // Add the primary key per row: code column
+          dummyRow.push(`${prefix}_code_${sheet.name}_${i}`);
+          // Add values for the other columns
+          for (let j = 2; j <= columnNames.cellCount; j++) {
+            const columnName = columnNames.getCell(j).value
+            const columnDetails = schemaJson[sheet.name]['columns'][columnName]
+            //check if the column is a foreign key
+            if (columnDetails['valueForeignKeySheet']) {
+              dummyRow.push(`${prefix}_code_${columnDetails['valueForeignKeySheet']}_${getRandomInteger(1, 5)}`);
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#integer' ){
+              dummyRow.push(`${getRandomInteger()}`)
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#decimal' ){
+              dummyRow.push(`${getRandomDecimal()}`)
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#date' ){
+              dummyRow.push(`${getRandomDate()}`)
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#time' ){
+              dummyRow.push(`${getRandomTime()}`)
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#dateTime' ){
+              dummyRow.push(`${getRandomDateTime()}`)
+            } else{
+              dummyRow.push(`${prefix}_value_${columnName}_${i}`);
+            }
+          }
+          sheet.addRow(dummyRow);
+        }
+      }
+    }
+    ); 
+
+    // Save the workbook with dummy data
+    const outputFileFilled = outputFile.replace('.xlsx', '-' + prefix +'-filled.xlsx');
+    try {
+      await wb.xlsx.writeFile(outputFileFilled);
+      console.log(`✅ EXCEL file with dummy data written to ${outputFileFilled}`);
+    } catch (error) {
+      console.error(`❌ Error writing Excel file with dummy data: ${error.message}`);
+      process.exit(1);
+    }
+  }
 }
 
 // Helper function to get the value of an object for a given subject and predicate, or null if it doesn't exist
@@ -187,3 +261,46 @@ function saveLabel(label) {
     // Remove trailing underscores
     .replace(/_+$/, '');
 }
+
+function getRandomInteger(min = -1000, max = 1000) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function getRandomDecimal(min = -1000, max = 1000, decimals = 2) {
+  const factor = Math.pow(10, decimals);
+  return (Math.random() * (max - min) + min).toFixed(decimals);
+}
+
+
+function getRandomDate(startYear = 2000, endYear = 2030) {
+  const start = new Date(`${startYear}-01-01`);
+  const end = new Date(`${endYear}-12-31`);
+  const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  return randomDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+}
+
+function getRandomTime() {
+  const msInDay = 24 * 60 * 60 * 1000;
+  const randomMs = Math.floor(Math.random() * msInDay);
+  const date = new Date(0);
+  date.setMilliseconds(randomMs);
+
+  const hours = String(date.getUTCHours()).padStart(2, '0');
+  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+
+  return `${hours}:${minutes}:${seconds}`; // Format: HH:MM:SS
+}
+
+
+function getRandomDateTime(startYear = 2000, endYear = 2030) {
+  const start = new Date(`${startYear}-01-01T00:00:00`);
+  const end = new Date(`${endYear}-12-31T23:59:59`);
+  const randomDateTime = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  return randomDateTime.toISOString(); // Format: YYYY-MM-DDTHH:MM:SS.sssZ
+}
+
+
+
+

@@ -13,6 +13,9 @@ How can I wait until the excel is really saved?
 ## SPARQL
 - Skos:concept with properties leads to strange query results. See Doelgroep query
 
+## MIRAVI 
+very slow for long queries in combination with multiple sources due to many optionals
+
 
 ## DESIGN CHOICES: 
 - We made all langStrings @nl
@@ -33,3 +36,4 @@ How can I wait until the excel is really saved?
 
 - voeg url van subject toe aan queries
 
+- wat als 'code' ook een label is in het applicatieprofiel!!! We moeten 'Code' uniek maken

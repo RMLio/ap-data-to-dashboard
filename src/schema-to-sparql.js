@@ -47,7 +47,7 @@ function toCamelCase(str) {
 function converLabeltoVarName(label, isIri) {
   let varName = toCamelCase(label);
   if (isIri) {
-    varName = toIriName(capitalize(varName));
+    varName = toIriName(varName);
   } 
   return '?' + varName;
 } 
@@ -83,10 +83,10 @@ function domainToSelect(domainName, domain, prefixes) {
   let vars = [];
   const sVar = `?${toIriName(domainName)}`;
   vars.push(sVar);
-  triples.push(`${sVar} a <${domain.domainIri}> .`);
+  triples.push(`${sVar} a <${domain.sheetIri}> .`);
   domain.properties.forEach(property => {
-    const v = converLabeltoVarName(property.propertyLabel, property.rangeIri);
-    triples.push(`OPTIONAL { ${sVar} <${property.propertyIri}> ${v} . }`);
+    const v = converLabeltoVarName(property.columnLabel, property.valueIri);
+    triples.push(`OPTIONAL { ${sVar} <${property.columnIri}> ${v} . }`);
     vars.push(v);
     });
   const queryTitle = `${domainName}`;
@@ -103,10 +103,10 @@ SELECT DISTINCT ${vars.join(" ")} WHERE {
 
 function domainToCrossMappingQuery(domain, property, iriToLabelMap) {
   let triples = [];
-  const domainName = domain.domainLabel;
-  const rangeName = iriToLabelMap[property.rangeIri]; 
+  const domainName = domain.sheetName;
+  const rangeName = iriToLabelMap[property.valueIri]; 
   if (!rangeName) {
-    console.log(`⚠️  No label found for IRI ${property.rangeIri}, skipping cross-mapping query.`);
+    console.log(`⚠️  No label found for IRI ${property.valueIri}, skipping cross-mapping query.`);
     return '';
   } 
   const domainVar = converLabeltoVarName(domainName, true);
@@ -115,16 +115,16 @@ function domainToCrossMappingQuery(domain, property, iriToLabelMap) {
   if (domainVar === rangeVar) { 
     rangeVar += "2";
   }
-  triples.push(`${domainVar} a <${domain.domainIri}> .`);
-  triples.push(`${rangeVar} a <${property.rangeIri}> .`);
+  triples.push(`${domainVar} a <${domain.sheetIri}> .`);
+  triples.push(`${rangeVar} a <${property.valueIri}> .`);
 
   
-  const queryTitle = `Join ${domainName} → ${property.propertyLabel} → ${rangeName}`; 
+  const queryTitle = `Join ${domainName} → ${property.columnLabel} → ${rangeName}`; 
   const query = `# ${queryTitle}
 SELECT DISTINCT ${domainVar} ${rangeVar} WHERE {
-  ${domainVar} a <${domain.domainIri}> .
-  ${rangeVar} a <${property.rangeIri}> .
-  ${domainVar} <${property.propertyIri}> ${rangeVar} .
+  ${domainVar} a <${domain.sheetIri}> .
+  ${rangeVar} a <${property.valueIri}> .
+  ${domainVar} <${property.columnIri}> ${rangeVar} .
 }
 `;
   const filename = path.join(splitDir, toValidFilename(queryTitle) + ".rq");
@@ -144,25 +144,25 @@ let output = `# SPARQL queries generated from ${path.basename(mappingDataFile)}\
 for (const domain of schema) {
   //skip if domain has no properties
   if (domain.properties.length === 0) {
-    console.log(`⚠️  ${domain.domainLabel} has no properties, skipping query generation.`);
+    console.log(`⚠️  ${domain.sheetName} has no properties, skipping query generation.`);
   } 
   //skip if domain is skos:Concept
-  else if (domain.domainIri === "http://www.w3.org/2004/02/skos/core#Concept") {
-    console.log(`⚠️  ${domain.domainLabel} is skos:Concept, skipping query generation.`);
+  else if (domain.sheetIri === "http://www.w3.org/2004/02/skos/core#Concept") {
+    console.log(`⚠️  ${domain.sheetName} is skos:Concept, skipping query generation.`);
   } 
   else {
-    output += domainToSelect(domain.domainLabel, domain) + "\n";
+    output += domainToSelect(domain.sheetName, domain) + "\n";
   }
 }
 output += "# Example cross-mapping queries\n\n";
 iriToLabelMap = {};
 for (const domain of schema) {
-  iriToLabelMap[domain.domainIri] = domain.domainLabel;
+  iriToLabelMap[domain.sheetIri] = domain.sheetName;
 }
 
 for (const domain of schema) {
   domain.properties.forEach(property => {
-    if (property.rangeIri) {
+    if (property.valueIri) {
       output += domainToCrossMappingQuery(domain, property, iriToLabelMap) + "\n";
     } 
   });

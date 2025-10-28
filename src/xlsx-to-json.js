@@ -64,22 +64,22 @@ const xlsxSchema = XLSX.utils.sheet_to_json(totalXlsx.Sheets['_schema']);
 // Group schema by domain
 const schemaByDomain = {};
 xlsxSchema.forEach(row => {
-  const domainLabel = row['domainLabel'];
-  if (!schemaByDomain[domainLabel]) {
-    schemaByDomain[domainLabel] = {
-      domainLabel: domainLabel,
-      domainIri: row['domainIri'],
+  const sheetName = row['sheetName'];
+  if (!schemaByDomain[sheetName]) {
+    schemaByDomain[sheetName] = {
+      sheetName: sheetName,
+      sheetIri: row['sheetIri'],
       properties: []
     };
   }
-  if (row['propertyLabel']){  
-    schemaByDomain[domainLabel].properties.push({
-      propertyLabel: row['propertyLabel'],    
-      propertyIri: row['propertyIri'],
-      rangeIri: row['rangeIri'],
-      rangeDatatype: row['rangeDatatype'],
-      rangeMinCount: row['rangeMinCount'],
-      rangeMaxCount: row['rangeMaxCount']
+  if (row['columnLabel']){  
+    schemaByDomain[sheetName].properties.push({
+      columnLabel: row['columnLabel'],    
+      columnIri: row['columnIri'],
+      valueIri: row['valueIri'],
+      valueDatatype: row['valueDatatype'],
+      valueMinCount: row['valueMinCount'],
+      valueMaxCount: row['valueMaxCount']
     });
     }
   });

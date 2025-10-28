@@ -34,27 +34,27 @@ for (const domain of data.schema) {
 
     yarrrml += `  m_${mappingCounter}:\n`;
     yarrrml += `    sources:\n`;
-    yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.domainLabel}[*]" ]\n`;
+    yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.sheetName}[*]" ]\n`;
     yarrrml += `    s: $(code[*])\n`; // base IRI with code if no valid iri
     yarrrml += `    po:\n`;
-    yarrrml += `      - [rdf:type, ${domain.domainIri}~iri]\n`;
+    yarrrml += `      - [rdf:type, ${domain.sheetIri}~iri]\n`;
 
     // collect properties with iri as range, to additional mapping later
     const iriAsRange = [];
 
     for (const property of domain.properties) {
-        yarrrml += `      - p: '${property.propertyIri}'\n`;
+        yarrrml += `      - p: '${property.columnIri}'\n`;
         yarrrml += `        o: \n`;
-        yarrrml += `          value:  "$(${property.propertyLabel}[*])"\n`;
-        if (property.rangeDatatype === "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString") {
+        yarrrml += `          value:  "$(${property.columnLabel}[*])"\n`;
+        if (property.valueDatatype === "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString") {
             yarrrml += `          language: nl\n`; // TODO refine now we only support Dutch
         }
-        else if (property.rangeDatatype) {
-            yarrrml += `          datatype: ${property.rangeDatatype}\n`;
+        else if (property.valueDatatype) {
+            yarrrml += `          datatype: ${property.valueDatatype}\n`;
         }
-        else if (property.rangeIri) {
+        else if (property.valueIri) {
             yarrrml += `          type: iri\n`;
-            iriAsRange.push({ 'propertyLabel': property.propertyLabel, 'rangeIri': property.rangeIri });
+            iriAsRange.push({ 'columnLabel': property.columnLabel, 'valueIri': property.valueIri });
         }
         mappingCounter += 1;
     }
@@ -64,10 +64,10 @@ for (const domain of data.schema) {
     for (const item of iriAsRange) {
         yarrrml += `  m_${mappingCounter}:\n`;
         yarrrml += `    sources:\n`;
-        yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.domainLabel}[*]" ]\n`;
-        yarrrml += `    s: $(${item.propertyLabel}[*])\n`; // base IRI with code if no valid iri
+        yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.sheetName}[*]" ]\n`;
+        yarrrml += `    s: $(${item.columnLabel}[*])\n`; // base IRI with code if no valid iri
         yarrrml += `    po:\n`;
-        yarrrml += `      - [rdf:type, ${item.rangeIri}~iri]\n`
+        yarrrml += `      - [rdf:type, ${item.valueIri}~iri]\n`
         yarrrml += `\n`;
         mappingCounter += 1;
     }

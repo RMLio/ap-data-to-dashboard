@@ -1,0 +1,1321 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix schemas: <https://schema.org/> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#> rdfs:member <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#AgentShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteittypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TaalShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoelgroepShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitspecificatieShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CreatiefwerkShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddeltypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoelShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelverzamelingShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#VerzamelingShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#FormaattypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoeltypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LicentietypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OpleidingsniveautypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LicentieShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OnderwerptypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#BrontypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CompetentietypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeftijdstypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#InteractietypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ResultaattypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ToegankelijkheidstypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitspecificatietypeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#EenheidShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ValutaShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeerclaimShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeerspecificatieShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelelementShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CompetentieShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LangstringShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DateShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DatetimeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#KwantitatievewaardeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LiteralShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OpeningsurenspecificatieShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TimeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#UriShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#AdresvoorstellingShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#StringShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#IdentificatorShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TijdsduurShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#GeldbedragShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#PeriodeShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TemporeleentiteitShape>,
+    <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LocatieShape> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#AdresvoorstellingShape> a shacl:NodeShape;
+  rdfs:label "Adresvoorstelling"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Bv als attribuut ve persoon of gebouw. De adresvoorstelling heeft niet enkel betrekking op Belgische adressen, ze kan gebruikt worden om buitenlandse adressen weer te geven (waar mogelijk andere adresaanduidingen dan huisnummer of busnummer worden gebruikt of waar adrescomponenten zoals adresgebieden voorkomen)."@nl;
+  rdfs:comment "Meer leesbare voorstelling met enkel de basisgegevens van het adres,bedoeld voor het gebruik van een adres als attribuut van een ander object."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "busnummer"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Specialisatie van Adresvoorstelling.locatieaanduiding tbv Belgische adressen."@nl;
+    rdfs:comment "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Busnummer>;
+    shacl:datatype xsd:string;
+    shacl:description "Officieel toegekende alfanumerieke code die wordt toegevoegd aan het huisnummer om meerdere gebouweenheden, standplaatsen, ligplaatsen of percelen te onderscheiden die eenzelfde huisnummer hebben."@nl;
+    shacl:maxCount "1";
+    shacl:name "busnummer"@nl;
+    shacl:path <https://vocab.belgif.be/ns/address#AddressRepresentation.boxNumber>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "locatienaam"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Naam of omschrijving van het het geografisch object dat de adreslocator aanduidt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Locatienaam>;
+    shacl:datatype rdf:langString;
+    shacl:description "Naam of omschrijving van het het geografisch object dat de adreslocator aanduidt."@nl;
+    shacl:name "locatienaam"@nl;
+    shacl:path <http://www.w3.org/ns/locn#locatorName>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "adresgebied"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Bvb de naam van het gehucht waarin het adres ligt."@nl;
+    rdfs:comment "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is"@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Adresgebied>;
+    shacl:datatype rdf:langString;
+    shacl:description "Naam ve geografisch gebied of plaats die een aantal adresseerbare objecten groepeert om deze te adresseren zonder dat het gebied of de plaats een administratieve eenheid is"@nl;
+    shacl:maxCount "1";
+    shacl:name "adresgebied"@nl;
+    shacl:path <http://www.w3.org/ns/locn#addressArea>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "postnaam"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Postnaam>;
+    shacl:datatype rdf:langString;
+    shacl:description "Naam waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid."@nl;
+    shacl:maxCount "1";
+    shacl:name "postnaam"@nl;
+    shacl:path <http://www.w3.org/ns/locn#postName>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "gemeentenaam"@nl;
+    rdfs:comment "Gemeentenaam van het adres."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Gemeentenaam>;
+    shacl:datatype rdf:langString;
+    shacl:description "Gemeentenaam van het adres."@nl;
+    shacl:maxCount "1";
+    shacl:name "gemeentenaam"@nl;
+    shacl:path <https://vocab.belgif.be/ns/address#municipalityName>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "administratieve eenheid niveau 2"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "De regio van het adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.AdministratieveEenheidNiveau2>;
+    shacl:datatype rdf:langString;
+    shacl:description "De regio van het adres, doorgaans een provincie of deelstaat of gelijkaardig gebied dat typisch meerdere plaatsen omvat."@nl;
+    shacl:maxCount "1";
+    shacl:name "administratieve eenheid niveau 2"@nl;
+    shacl:path <http://www.w3.org/ns/locn#adminUnitL2>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "administratieve eenheid niveau 1"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Hoogste Administratieve eenheid van het adres, doorgaans een land."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.AdministratieveEenheidNiveau1>;
+    shacl:datatype rdf:langString;
+    shacl:description "Hoogste Administratieve eenheid van het adres, doorgaans een land."@nl;
+    shacl:maxCount "1";
+    shacl:name "administratieve eenheid niveau 1"@nl;
+    shacl:path <http://www.w3.org/ns/locn#adminUnitL1>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "land"@nl;
+    rdfs:comment "Land waarin het adres gelegen is."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Land>;
+    shacl:datatype rdf:langString;
+    shacl:description "Land waarin het adres gelegen is."@nl;
+    shacl:maxCount "1";
+    shacl:name "land"@nl;
+    shacl:path <https://vocab.belgif.be/ns/address#country>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "postcode"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Postcode>;
+    shacl:datatype xsd:string;
+    shacl:description "Code waarmee het geografisch gebied dat adressen voor postale doeleinden groepeert wordt aangeduid."@nl;
+    shacl:maxCount "1";
+    shacl:name "postcode"@nl;
+    shacl:path <http://www.w3.org/ns/locn#postCode>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "volledig Adres"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Vermijdt fouten tgv het opsplitsen ve adres in zijn onderdelen. Geeft de voorgeschreven volgorde vd verschillende onderdelen weer."@nl;
+    rdfs:comment "Het complete adres in één string, al dan niet geformatteerd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.VolledigAdres>;
+    shacl:datatype rdf:langString;
+    shacl:description "Het complete adres in één string, al dan niet geformatteerd."@nl;
+    shacl:maxCount "1";
+    shacl:name "volledig Adres"@nl;
+    shacl:path <http://www.w3.org/ns/locn#fullAddress>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "postbus"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Postbusnummer in een postkantoor."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Postbus>;
+    shacl:datatype xsd:string;
+    shacl:description "Postbusnummer in een postkantoor."@nl;
+    shacl:maxCount "1";
+    shacl:name "postbus"@nl;
+    shacl:path <http://www.w3.org/ns/locn#poBox>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "straatnaam"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Straatnaam van het adres."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Straatnaam>;
+    shacl:datatype rdf:langString;
+    shacl:description "Straatnaam van het adres."@nl;
+    shacl:maxCount "1";
+    shacl:name "straatnaam"@nl;
+    shacl:path <http://www.w3.org/ns/locn#thoroughfare>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "locatieaanduiding"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Locatieaanduiding>;
+    shacl:datatype xsd:string;
+    shacl:description "Alfanumerieke code die de adreslocator uniek identificeert binnen de straat, administratieve eenheid etc."@nl;
+    shacl:name "locatieaanduiding"@nl;
+    shacl:path <http://www.w3.org/ns/locn#locatorDesignator>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "huisnummer"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Specialisatie van Adresvoorstelling:locatieaanduiding tbv Belgische adressen."@nl;
+    rdfs:comment "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Adresvoorstelling.Huisnummer>;
+    shacl:datatype xsd:string;
+    shacl:description "Alfanumerieke code officieel toegekend aan gebouweenheden, ligplaatsen, standplaatsen of percelen."@nl;
+    shacl:maxCount "1";
+    shacl:name "huisnummer"@nl;
+    shacl:path <https://vocab.belgif.be/ns/address#AddressRepresentation.houseNumber>
+  ];
+  shacl:targetClass <http://www.w3.org/ns/locn#Address> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#AgentShape> a shacl:NodeShape;
+  rdfs:label "Agent"@nl;
+  rdfs:comment "Iemand die of iets dat kan handelen of een effect kan teweeg brengen."@nl;
+  shacl:closed false;
+  shacl:targetClass dc:Agent .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#BrontypeShape> a shacl:NodeShape;
+  rdfs:label "BronType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CompetentieShape> a shacl:NodeShape;
+  rdfs:label "Competentie"@nl;
+  <http://purl.org/vocab/vann/usageNote> "In deze context gaat het om sleutelcompetenties, wetenschapsdomeinen en beroepskwalificaties."@nl;
+  rdfs:comment "Een specifiek geheel van kennis, vaardigheden en attitudes die door een lerende moet worden beheerst."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "beschrijving"@nl;
+    rdfs:comment "Een textuele beschrijving die de inhoud weergeeft van een Competentie."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Competentie.Beschrijving>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een textuele beschrijving die de inhoud weergeeft van een Competentie."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "beschrijving"@nl;
+    shacl:path dc:description
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "naam"@nl;
+    rdfs:comment "De aanduiding of titel waarmee een Competentie wordt geïdentificeerd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Competentie.Naam>;
+    shacl:datatype rdf:langString;
+    shacl:description "De aanduiding of titel waarmee een Competentie wordt geïdentificeerd."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "naam"@nl;
+    shacl:path dc:title
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    rdfs:comment "Een classificatie die de aard en het niveau van een specifieke vaardigheid of kennisgebied beschrijft, zoals basis-, geavanceerde of expertcompetenties."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Competentie.Type>;
+    shacl:class skos:Concept;
+    shacl:description "Een classificatie die de aard en het niveau van een specifieke vaardigheid of kennisgebied beschrijft, zoals basis-, geavanceerde of expertcompetenties."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ];
+  shacl:targetClass <https://ec.europa.eu/esco/lod/static/model.html#Skill> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CompetentietypeShape> a shacl:NodeShape;
+  rdfs:label "CompetentieType";
+  <http://purl.org/vocab/vann/usageNote> "In deze context gaat het om de specifieke sleutelcompetentie, wetenschapsdomein of beroepskwalificatie dat van toepassing is."@nl;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CreatiefwerkShape> a shacl:NodeShape;
+  rdfs:label "CreatiefWerk"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Je kan ook DCTerms en DCAT gebruiken, zie <a href=\"https://www.w3.org/TR/vocab-dcat-3/#dcat-sdo\">W3C DCAT specificatie sectie over de alignering tussen DCAT en Schema.org<a/>."@nl;
+  rdfs:comment "Een intellectueel of artistiek resultaat dat voorkomt uit originele inspanning of verbeelding."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "auteursrechtJaar"@nl;
+    rdfs:comment "Het jaar waarin het geclaimde auteursrecht voor het CreatiefWerk voor het eerst werd geclaimd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteursrechtjaar>;
+    shacl:datatype xsd:date;
+    shacl:description "Het jaar waarin het geclaimde auteursrecht voor het CreatiefWerk voor het eerst werd geclaimd."@nl;
+    shacl:maxCount "1";
+    shacl:name "auteursrechtJaar"@nl;
+    shacl:path schemas:copyrightYear
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "versie"@nl;
+    rdfs:comment "De versie van het CreatiefWerk."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Versie>;
+    shacl:datatype rdf:langString;
+    shacl:description "De versie van het CreatiefWerk."@nl;
+    shacl:maxCount "1";
+    shacl:name "versie"@nl;
+    shacl:path schemas:version
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "publicatiedatum"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Dit kan bijvoorbeeld de datum zijn waarop een CreatiefWerk werd uitgezonden of een Certification werd uitgegeven."@nl;
+    rdfs:comment "Datum van eerste publicatie of uitzending."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Publicatiedatum>;
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum van eerste publicatie of uitzending."@nl;
+    shacl:maxCount "1";
+    shacl:name "publicatiedatum"@nl;
+    shacl:path schemas:datePublished
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "auteur"@nl;
+    rdfs:comment "De naam van de auteur van het Creatief Werk."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteur>;
+    shacl:class dc:Agent;
+    shacl:description "De naam van de auteur van het Creatief Werk."@nl;
+    shacl:name "auteur"@nl;
+    shacl:path schemas:author
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "auteursrechtHouder"@nl;
+    rdfs:comment "De partij die het wettelijke auteursrecht op het CreatiefWerk bezit."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteursrechthouder>;
+    shacl:class dc:Agent;
+    shacl:description "De partij die het wettelijke auteursrecht op het CreatiefWerk bezit."@nl;
+    shacl:name "auteursrechtHouder"@nl;
+    shacl:path schemas:copyrightHolder
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "taal"@nl;
+    rdfs:comment "De taal waarin het CreatiefWerk ontwikkeld werd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Taal>;
+    shacl:class skos:Concept;
+    shacl:description "De taal waarin het CreatiefWerk ontwikkeld werd."@nl;
+    shacl:name "taal"@nl;
+    shacl:path schemas:inLanguage
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "vereisteTijd";
+    rdfs:comment "De tijd die nodig is om het Leermiddel te begrijpen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Vereistetijd>;
+    shacl:class <http://www.w3.org/2006/time#Duration>;
+    shacl:description "De tijd die nodig is om het Leermiddel te begrijpen."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "vereisteTijd";
+    shacl:path schemas:timeRequired
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "licentie"@nl;
+    rdfs:comment "De licentie die rust op het gebruik van de Interactieve Resource."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Licentie>;
+    shacl:class dc:LicenseDocument;
+    shacl:description "De licentie die rust op het gebruik van de Interactieve Resource."@nl;
+    shacl:name "licentie"@nl;
+    shacl:path schemas:license
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "producent"@nl;
+    rdfs:comment "De Agent die het CreatiefWerk geproduceert heeft."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Producent>;
+    shacl:class dc:Agent;
+    shacl:description "De Agent die het CreatiefWerk geproduceert heeft."@nl;
+    shacl:minCount "1";
+    shacl:name "producent"@nl;
+    shacl:path schemas:author
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "uitgever"@nl;
+    rdfs:comment "De Agent die het CreatiefWerk uitgeeft."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Uitgever>;
+    shacl:class dc:Agent;
+    shacl:description "De Agent die het CreatiefWerk uitgeeft."@nl;
+    shacl:name "uitgever"@nl;
+    shacl:path schemas:publisher
+  ];
+  shacl:targetClass schemas:CreativeWork .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DateShape> a shacl:NodeShape;
+  rdfs:label "Date";
+  shacl:closed false;
+  shacl:targetClass xsd:date .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DatetimeShape> a shacl:NodeShape;
+  rdfs:label "DateTime";
+  shacl:closed false;
+  shacl:targetClass xsd:dateTime .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoelShape> a shacl:NodeShape;
+  rdfs:label "Doel"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Een Doel is hier gebruikt in de context van een Leerdoel of Onderwijsdoel."@nl;
+  rdfs:comment "Beschrijving van wat een lerende moet weten, kunnen of welke houding deze moet hebben na het voltooien van een leeractiviteit of opleiding."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "beschrijving"@nl;
+    rdfs:comment "Een duidelijke formulering van het Doel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Beschrijving>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een duidelijke formulering van het Doel."@nl;
+    shacl:maxCount "1";
+    shacl:name "beschrijving"@nl;
+    shacl:path dc11:description
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "geldigheid"@nl;
+    rdfs:comment "De periode waarin het Doel als actueel en toepasbaar wordt beschouwd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Geldigheid>;
+    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    shacl:description "De periode waarin het Doel als actueel en toepasbaar wordt beschouwd."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "geldigheid"@nl;
+    shacl:path dc:valid
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "identificator"@nl;
+    rdfs:comment "Een unieke aanduiding die wordt gebruikt om het Doel te onderscheiden."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Identificator>;
+    shacl:class <http://www.w3.org/ns/adms#Identifier>;
+    shacl:description "Een unieke aanduiding die wordt gebruikt om het Doel te onderscheiden."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "identificator"@nl;
+    shacl:path <http://www.w3.org/ns/adms#identifier>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "niveau"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Dit verwijst bijvoorbeeld naar Leerlabel."@nl;
+    rdfs:comment "Het (Opleiding)sniveau waartoe het Doel betrekking heeft."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Niveau>;
+    shacl:class skos:Concept;
+    shacl:description "Het (Opleiding)sniveau waartoe het Doel betrekking heeft."@nl;
+    shacl:name "niveau"@nl;
+    shacl:path dc:educationLevel
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "gedefinieerdDoor"@nl;
+    rdfs:comment "De entiteit die verantwoordelijk is voor het vaststellen van het Doel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Gedefinieerddoor>;
+    shacl:class dc:Agent;
+    shacl:description "De entiteit die verantwoordelijk is voor het vaststellen van het Doel."@nl;
+    shacl:minCount "1";
+    shacl:name "gedefinieerdDoor"@nl;
+    shacl:path dc11:creator
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "onderwerp"@nl;
+    <http://purl.org/vocab/vann/usageNote> "In het onderwijslandschap kan dit bijvoorbeeld verwijzen naar het vak, module of leergebied."@nl;
+    rdfs:comment "Een onderdeel waarin het Doel aangeboden wordt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Onderwerp>;
+    shacl:class skos:Concept;
+    shacl:description "Een onderdeel waarin het Doel aangeboden wordt."@nl;
+    shacl:name "onderwerp"@nl;
+    shacl:path dc11:subject
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Bijvoorbeeld: Onderwijsdoel, Leerdoel, etc."@nl;
+    rdfs:comment "De categorie waartoe het Doel behoort."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Type>;
+    shacl:class skos:Concept;
+    shacl:description "De categorie waartoe het Doel behoort."@nl;
+    shacl:minCount "1";
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "bron"@nl;
+    rdfs:comment "De herkomst of referentie naar de oorsprong van een Leermiddel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Bron>;
+    shacl:class skos:Concept;
+    shacl:description "De herkomst of referentie naar de oorsprong van een Leermiddel."@nl;
+    shacl:name "bron"@nl;
+    shacl:path dc11:source
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "doelgroep"@nl;
+    rdfs:comment "De groep van individuen waarop het Doel is gericht."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Doelgroep>;
+    shacl:class schemas:Audience;
+    shacl:description "De groep van individuen waarop het Doel is gericht."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "doelgroep"@nl;
+    shacl:path dc:audience
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "competentie"@nl;
+    rdfs:comment "Een specifiek geheel van kennis, vaardigheden en attitudes die door een lerende moet worden beheerst."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Competentie>;
+    shacl:class <https://ec.europa.eu/esco/lod/static/model.html#Skill>;
+    shacl:description "Een specifiek geheel van kennis, vaardigheden en attitudes die door een lerende moet worden beheerst."@nl;
+    shacl:name "competentie"@nl;
+    shacl:path schemas:assesses
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "gerelateerdAan"@nl;
+    rdfs:comment "Specificeerd of dit Leerdoel verwant of gekoppeld is aan andere Leerdoelen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Gerelateerdaan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Specificeerd of dit Leerdoel verwant of gekoppeld is aan andere Leerdoelen."@nl;
+    shacl:name "gerelateerdAan"@nl;
+    shacl:path skos:related
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "isSpecialisatieVan"@nl;
+    rdfs:comment "Specifieerd of een Leerdoel een specialisatie is van een ander Leerdoel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Isspecialisatievan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Specifieerd of een Leerdoel een specialisatie is van een ander Leerdoel."@nl;
+    shacl:name "isSpecialisatieVan"@nl;
+    shacl:path skos:narrower
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "isBrederDan"@nl;
+    rdfs:comment "Specificeerd of een Leerdoel een bredere variant is van een ander Leerdoel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Isbrederdan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Specificeerd of een Leerdoel een bredere variant is van een ander Leerdoel."@nl;
+    shacl:name "isBrederDan"@nl;
+    shacl:path skos:broader
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "bestaatUit"@nl;
+    rdfs:comment "Subleerdoelen van een Leerdoel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doel.Bestaatuit>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Subleerdoelen van een Leerdoel."@nl;
+    shacl:name "bestaatUit"@nl;
+    shacl:path dc:hasPart
+  ];
+  shacl:targetClass <http://data.europa.eu/snb/model/elm/LearningAchievement> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoelgroepShape> a shacl:NodeShape;
+  rdfs:label "Doelgroep",
+    "Doelgroep"@nl;
+  rdfs:comment "Een groep van individuen met gezamenlijke kenmerken, behoeften of interesses, waarop een Doel is gericht om effectief in te spelen op hun verwachtingen."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "leeftijdstype"@nl;
+    rdfs:comment "Een classificatie die de specifieke leeftijdsgroep van de individuen binnen de doelgroep aangeeft, en helpt bij het afstemmen van de Leeractiviteit van die leeftijdsgroep."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doelgroep.Leeftijdstype>;
+    shacl:class skos:Concept;
+    shacl:description "Een classificatie die de specifieke leeftijdsgroep van de individuen binnen de doelgroep aangeeft, en helpt bij het afstemmen van de Leeractiviteit van die leeftijdsgroep."@nl;
+    shacl:name "leeftijdstype"@nl;
+    shacl:path dc:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "doelgroep"@nl;
+    rdfs:comment "Een groep van individuen met gezamenlijke kenmerken, behoeften of interesses, waarop een Leermiddel of Doel is gericht om effectief in te spelen op hun verwachtingen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doelgroep.Doelgroep>;
+    shacl:class skos:Concept;
+    shacl:description "Een groep van individuen met gezamenlijke kenmerken, behoeften of interesses, waarop een Leermiddel of Doel is gericht om effectief in te spelen op hun verwachtingen."@nl;
+    shacl:name "doelgroep"@nl;
+    shacl:path dc11:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "onderwijsniveau"@nl;
+    rdfs:comment "Het Onderwijsniveau waarmee een Doelgroep verbonden is."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Doelgroep.Onderwijsniveau>;
+    shacl:class skos:Concept;
+    shacl:description "Het Onderwijsniveau waarmee een Doelgroep verbonden is."@nl;
+    shacl:name "onderwijsniveau"@nl;
+    shacl:path dc:educationLevel
+  ];
+  shacl:targetClass skos:Concept,
+    schemas:Audience .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#DoeltypeShape> a shacl:NodeShape;
+  rdfs:label "DoelType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#EenheidShape> a shacl:NodeShape;
+  rdfs:label "Eenheid"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Te gebruiken ipv Concept als een voorgedefinieerde eenheid van QUDT beschikbaar is, bvb <a href=\"http://qudt.org/vocab/unit/M\">meter</a>. Zie <a href=\"https://www.qudt.org/doc/DOC_VOCAB-UNITS.html\">QUDT-units</a> voor meer info."@nl;
+  rdfs:comment "Maat waarin een hoeveelheid van een bepaalde grootheid wordt uitgedrukt."@nl;
+  shacl:closed false;
+  shacl:targetClass <https://qudt.org/schema/qudt/Unit> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#FormaattypeShape> a shacl:NodeShape;
+  rdfs:label "FormaatType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#GeldbedragShape> a shacl:NodeShape;
+  rdfs:label "Geldbedrag"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Uitdrukking van de waarde in valuta zoals Euro."@nl;
+  rdfs:comment "Geldwaarde."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "valuta"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Gebruik Concept of de subklasse Valuta."@nl;
+    rdfs:comment "Munteenheid waarin een bedrag uitgedrukt is."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Geldbedrag.Valuta>;
+    shacl:class <http://qudt.org/schema/qudt/CurrencyUnit>;
+    shacl:description "Munteenheid waarin een bedrag uitgedrukt is."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "valuta"@nl;
+    shacl:path crm:P180_has_currency
+  ];
+  shacl:targetClass schemas:MonetaryAmount .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#IdentificatorShape> a shacl:NodeShape;
+  rdfs:label "Identificator"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Uitgangspunt hier is dat deze string door een organisatie wordt toegekend en dat dit gebeurt volgens een welbepaald systeem."@nl;
+  rdfs:comment "Informatie gebruikt om een object uniek te identificeren."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "toegekend door"@nl;
+    rdfs:comment "Link naar de agent die de identificator heeft uitgegeven."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Identificator.ToegekendDoor>;
+    shacl:class dc:Agent;
+    shacl:description "Link naar de agent die de identificator heeft uitgegeven."@nl;
+    shacl:maxCount "1";
+    shacl:name "toegekend door"@nl;
+    shacl:path dc:creator
+  ];
+  shacl:targetClass <http://www.w3.org/ns/adms#Identifier> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#InteractietypeShape> a shacl:NodeShape;
+  rdfs:label "InteractieType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#KwantitatievewaardeShape> a shacl:NodeShape;
+  rdfs:label "KwantitatieveWaarde"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Bv de hoogte van een object,het gewicht,de temperatuur etc. Het gaat om een kenmerk dat numeriek uitgedrukt kan worden en in een bepaalde eenheid. Kwalitatieve aanduidingen zoals hoog,laag ed vallen hier dus niet onder."@nl;
+  rdfs:comment "Aanduiding van de kwantiteit van een bepaald kenmerk van een object."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "waarde"@nl;
+    rdfs:comment "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Kwantitatievewaarde.Waarde>;
+    shacl:datatype rdfs:Literal;
+    shacl:description "Getal waarmee de kwantiteit van het kenmerk kan worden uitgedrukt."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "waarde"@nl;
+    shacl:path schemas:value
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "eenheid"@nl;
+    rdfs:comment "De eenheid waarin de waarde is uitgedrukt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Kwantitatievewaarde.Eenheid>;
+    shacl:class <https://qudt.org/schema/qudt/Unit>;
+    shacl:description "De eenheid waarin de waarde is uitgedrukt."@nl;
+    shacl:maxCount "1";
+    shacl:name "eenheid"@nl;
+    shacl:path schemas:unitCode
+  ];
+  shacl:targetClass schemas:QuantitativeValue .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LangstringShape> a shacl:NodeShape;
+  rdfs:label "LangString";
+  shacl:closed false;
+  shacl:targetClass rdf:langString .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeftijdstypeShape> a shacl:NodeShape;
+  rdfs:label "LeeftijdsType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitShape> a shacl:NodeShape;
+  rdfs:label "Leeractiviteit"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Deze entitieit bevat de datapunten die te maken hebben met de deelname van een lerende aan een welbepaalde Leeropportuniteit."@nl;
+  rdfs:comment "Elk proces dat leidt tot het verwerven van kennis,vaardigheden of verantwoordelijkheid en zelfstandigheid."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "heeft deel"@nl;
+    rdfs:comment "Kleinere activiteitseenheden, die bij combinatie deze activiteit vormen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.HeeftDeel>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivity>;
+    shacl:description "Kleinere activiteitseenheden, die bij combinatie deze activiteit vormen."@nl;
+    shacl:name "heeft deel"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/hasPart>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "ingericht door"@nl;
+    rdfs:comment "De organisatie, of een deel van een organisatie zoals een afdeling of faculteit, die de leeractiviteit heeft geleid."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.IngerichtDoor>;
+    shacl:class dc:Agent;
+    shacl:description "De organisatie, of een deel van een organisatie zoals een afdeling of faculteit, die de leeractiviteit heeft geleid."@nl;
+    shacl:name "ingericht door"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/directedBy>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "isDeelVan"@nl;
+    rdfs:comment "Een Leeractiviteit waar deze Leeractiviteit onderdeel van uitmaakt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Isdeelvan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivity>;
+    shacl:description "Een Leeractiviteit waar deze Leeractiviteit onderdeel van uitmaakt."@nl;
+    shacl:name "isDeelVan"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/isPartOf>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "locatie"@nl;
+    rdfs:comment "De locatie waar de activiteit plaatsvindt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Locatie>;
+    shacl:class <http://www.w3.org/ns/locn#Address>;
+    shacl:description "De locatie waar de activiteit plaatsvindt."@nl;
+    shacl:name "locatie"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/location>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "periode"@nl;
+    rdfs:comment "De tijdelijke duur, geassocieerd met een periode van tijd waarin een Leeractiviteit plaatsvindt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Periode>;
+    shacl:class <http://data.europa.eu/m8g/PeriodOfTime>;
+    shacl:description "De tijdelijke duur, geassocieerd met een periode van tijd waarin een Leeractiviteit plaatsvindt."@nl;
+    shacl:name "periode"@nl;
+    shacl:path dc:temporal
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "specificatie"@nl;
+    rdfs:comment "De specificatie die gebruikt is om de Leeractiviteit te specifiëren volgens een bepaalde standaard of patroon."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Specificatie>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivitySpecification>;
+    shacl:description "De specificatie die gebruikt is om de Leeractiviteit te specifiëren volgens een bepaalde standaard of patroon."@nl;
+    shacl:maxCount "1";
+    shacl:name "specificatie"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/specifiedBy>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "werklast"@nl;
+    rdfs:comment "De feitelijke werklast in aantal uren dat de lerende aan de activiteit heeft besteed. Dit omvat het aantal uren in de klas, in groepsverband, in practica, alsook het aantal uren dat de lerende aan zelfstudie heeft besteed."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Werklast>;
+    shacl:class <http://www.w3.org/2006/time#Duration>;
+    shacl:description "De feitelijke werklast in aantal uren dat de lerende aan de activiteit heeft besteed. Dit omvat het aantal uren in de klas, in groepsverband, in practica, alsook het aantal uren dat de lerende aan zelfstudie heeft besteed."@nl;
+    shacl:maxCount "1";
+    shacl:name "werklast"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/workload>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    rdfs:comment "Een classificatie die het soort Leeractiviteit beschrijft, zoals zelfstandig leren, groepswerk, praktijkoefeningen of klassikale instructie, en die bijdraagt aan het afstemmen van onderwijsmethoden op leerdoelen en de voorkeuren van lerenden."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Type>;
+    shacl:class skos:Concept;
+    shacl:description "Een classificatie die het soort Leeractiviteit beschrijft, zoals zelfstandig leren, groepswerk, praktijkoefeningen of klassikale instructie, en die bijdraagt aan het afstemmen van onderwijsmethoden op leerdoelen en de voorkeuren van lerenden."@nl;
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "leermiddel"@nl;
+    rdfs:comment "Het Leermiddel dat gebruikt tijdens de Leeractiviteit."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Leermiddel>;
+    shacl:class schemas:LearningResource;
+    shacl:description "Het Leermiddel dat gebruikt tijdens de Leeractiviteit."@nl;
+    shacl:name "leermiddel"@nl;
+    shacl:path dc:references
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "draagtBijAanHetBehalenVan"@nl;
+    rdfs:comment "De bijdrage van een Leeractiviteit om een Doel te behalen"@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteit.Draagtbijaanhetbehalenvan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "De bijdrage van een Leeractiviteit om een Doel te behalen"@nl;
+    shacl:name "draagtBijAanHetBehalenVan"@nl;
+    shacl:path dc:contributor
+  ];
+  shacl:targetClass <http://data.europa.eu/snb/model/elm/LearningActivity> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitspecificatieShape> a shacl:NodeShape;
+  rdfs:label "Leeractiviteitspecificatie"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Het opleidingsaanbod geformaliseerd volgens een bepaalde specificatie,zoals de ECTS. Zowel een opleidingsonderdeel als een programma kunnen op deze manier gespecifieerd worden."@nl;
+  rdfs:comment "De specificatie van een proces dat leidt tot het verwerven van kennis, vaardigheden of verantwoordelijkheid en autonomie."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "contacturen"@nl;
+    rdfs:comment "De contacturen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Contacturen>;
+    shacl:class schema:OpeningHoursSpecification;
+    shacl:description "De contacturen."@nl;
+    shacl:name "contacturen"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/contactHour>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "generalisatie van"@nl;
+    rdfs:comment "Een activiteitspecificatie (bijvoorbeeld een standaard) waarvan deze specificatie een generalisatie is."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.GeneralisatieVan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivitySpecification>;
+    shacl:description "Een activiteitspecificatie (bijvoorbeeld een standaard) waarvan deze specificatie een generalisatie is."@nl;
+    shacl:name "generalisatie van"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/generalisationOf>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "heeftDeel"@nl;
+    rdfs:comment "Een Leeractiviteitsspecificatie van Leeractiviteit kan worden samengesteld uit kleinere Leeractiviteitspecificaties, die bij combinatie deze specificatie van deze Leeractiviteit verzinnen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Heeftdeel>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivitySpecification>;
+    shacl:description "Een Leeractiviteitsspecificatie van Leeractiviteit kan worden samengesteld uit kleinere Leeractiviteitspecificaties, die bij combinatie deze specificatie van deze Leeractiviteit verzinnen."@nl;
+    shacl:name "heeftDeel"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/hasPart>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "instructietaal"@nl;
+    rdfs:comment "De gebruikte instructietaal."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Instructietaal>;
+    shacl:class skos:Concept;
+    shacl:description "De gebruikte instructietaal."@nl;
+    shacl:name "instructietaal"@nl;
+    shacl:path dc:language
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "isDeelVan"@nl;
+    rdfs:comment "Een Leeractiviteitsspecificatie, waar deze leeractiviteitsspecificatie onderdeel van uitmaakt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Isdeelvan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivitySpecification>;
+    shacl:description "Een Leeractiviteitsspecificatie, waar deze leeractiviteitsspecificatie onderdeel van uitmaakt."@nl;
+    shacl:name "isDeelVan"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/isPartOf>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "specialisatieVan"@nl;
+    rdfs:comment "Een Leeractiviteitspecificatie (bijvoorbeeld een standaard) waarvan deze specificatie een specialisatie is."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Specialisatievan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningActivitySpecification>;
+    shacl:description "Een Leeractiviteitspecificatie (bijvoorbeeld een standaard) waarvan deze specificatie een specialisatie is."@nl;
+    shacl:name "specialisatieVan"@nl;
+    shacl:path <http://data.europa.eu/snb/model/elm/specialisationOf>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    rdfs:comment "Het type van Leeractiviteitspecificatie."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Type>;
+    shacl:class skos:Concept;
+    shacl:description "Het type van Leeractiviteitspecificatie."@nl;
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "draagtBijAanHetBehalenVan"@nl;
+    rdfs:comment "Een Leeractiviteitspecificatie draagt bij aan het behalen van een Doel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Draagtbijaanhetbehalenvan>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Een Leeractiviteitspecificatie draagt bij aan het behalen van een Doel."@nl;
+    shacl:name "draagtBijAanHetBehalenVan"@nl;
+    shacl:path dc:contributor
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "schrijftVoor"@nl;
+    rdfs:comment "Een Leeractiviteitspecificatie schrijft een bepaald Leermiddel voor."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leeractiviteitspecificatie.Schrijftvoor>;
+    shacl:class schemas:LearningResource;
+    shacl:description "Een Leeractiviteitspecificatie schrijft een bepaald Leermiddel voor."@nl;
+    shacl:name "schrijftVoor"@nl;
+    shacl:path dc:references
+  ];
+  shacl:targetClass <http://data.europa.eu/snb/model/elm/LearningActivitySpecification> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteitspecificatietypeShape> a shacl:NodeShape;
+  rdfs:label "Leeractiviteitspecificatietype";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeeractiviteittypeShape> a shacl:NodeShape;
+  rdfs:label "Leeractiviteittype";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeerclaimShape> a shacl:NodeShape;
+  rdfs:label "Leerclaim"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Zie <a href=\"https://data.vlaanderen.be/doc/applicatieprofiel/leerinschrijfcredential/\">OSLO-Leercredentials</a> voor het gebruik, attributen, en details van deze klasse."@nl;
+  rdfs:comment "Een claim gemaakt door een uitgever."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://data.europa.eu/snb/model/elm/Claim> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelShape> a shacl:NodeShape;
+  rdfs:label "Leermiddel"@nl;
+  <http://purl.org/vocab/vann/usageNote> """Deze definitie is een specificatie gebaseerd op de definitie van de kwaliteitsalliantie, i.e.: Het overkoepelende begrip voor zowel papieren als digitale producten, al dan niet in combinatie, ongeacht wie ze ontwikkelt: leraren, niet-commerciële en commerciële aanbieders.
+
+Te substitueren door een meer specifiekere klasse van <a href=\"https://schema.org/CreativeWork\">Schema.org CreativeWork</a>. Bijvoorbeeld: Book in het geval van een boek dat bestaat uit verschillende hoofdstukken."""@nl;
+  rdfs:comment "Elk hulpmiddel dat wordt ingezet om het leerproces te ondersteunen, doelen te bereiken en zo kennis, vaardigheden en attitudes bij te brengen."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "beschrijving"@nl;
+    rdfs:comment "Een textuele beschrijving die de inhoud of het doel van een Leermiddel verklaart."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Beschrijving>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een textuele beschrijving die de inhoud of het doel van een Leermiddel verklaart."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "beschrijving"@nl;
+    shacl:path dc11:description
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "instructie"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Dit kan bijvoorbeeld ook een URL zijn die verwijst naar een bepaalde handleiding."@nl;
+    rdfs:comment "Een reeks aanwijzingen die nodig zijn om een Leermiddel correct uit te voeren of te gebruiken."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Instructie>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een reeks aanwijzingen die nodig zijn om een Leermiddel correct uit te voeren of te gebruiken."@nl;
+    shacl:maxCount "1";
+    shacl:name "instructie"@nl;
+    shacl:path dc:instructionalMethod
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "naam"@nl;
+    rdfs:comment "De aanduiding of titel waarmee een Leermiddel wordt geïdentificeerd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Naam>;
+    shacl:datatype rdf:langString;
+    shacl:description "De aanduiding of titel waarmee een Leermiddel wordt geïdentificeerd."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "naam"@nl;
+    shacl:path dc:title
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "vereiste"@nl;
+    rdfs:comment "Voorwaarde die moet worden vervuld om toegang of gebruik mogelijk te maken, zonder gewag te maken van een vergoeding."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Vereiste>;
+    shacl:datatype rdf:langString;
+    shacl:description "Voorwaarde die moet worden vervuld om toegang of gebruik mogelijk te maken, zonder gewag te maken van een vergoeding."@nl;
+    shacl:name "vereiste"@nl;
+    shacl:path dc:requires
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "benodigdMateriaal"@nl;
+    rdfs:comment "Een overzicht van de fysieke of digitale elementen die nodig zijn om een Leermiddel uit te kunnen voeren of te gebruiken."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Benodigdmateriaal>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een overzicht van de fysieke of digitale elementen die nodig zijn om een Leermiddel uit te kunnen voeren of te gebruiken."@nl;
+    shacl:name "benodigdMateriaal"@nl;
+    shacl:path schemas:material
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "sleutelwoord"@nl;
+    rdfs:comment "Een kernbegrip dat wordt gebruikt om de inhoud van een Leermiddel te beschrijven."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Sleutelwoord>;
+    shacl:datatype rdf:langString;
+    shacl:description "Een kernbegrip dat wordt gebruikt om de inhoud van een Leermiddel te beschrijven."@nl;
+    shacl:name "sleutelwoord"@nl;
+    shacl:path schemas:keywords
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "onderwerp"@nl;
+    <http://purl.org/vocab/vann/usageNote> "In het onderwijslandschap kan dit verwijzen naar het vak, module, leergebied, ...."@nl;
+    rdfs:comment "Het onderwerp waarin het Leermiddel aangeboden wordt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Onderwerp>;
+    shacl:class skos:Concept;
+    shacl:description "Het onderwerp waarin het Leermiddel aangeboden wordt."@nl;
+    shacl:name "onderwerp"@nl;
+    shacl:path dc11:subject
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "toegankelijkheid"@nl;
+    rdfs:comment "De mate waarin een Leermiddel bruikbaar is voor personen met verschillende behoeften of beperkingen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Toegankelijkheid>;
+    shacl:class skos:Concept;
+    shacl:description "De mate waarin een Leermiddel bruikbaar is voor personen met verschillende behoeften of beperkingen."@nl;
+    shacl:maxCount "1";
+    shacl:name "toegankelijkheid"@nl;
+    shacl:path schemas:accessibilityFeature
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    rdfs:comment "De algemene categorie of classificatie waartoe een Leermiddel behoort."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Type>;
+    shacl:class skos:Concept;
+    shacl:description "De algemene categorie of classificatie waartoe een Leermiddel behoort."@nl;
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "interactieType"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Dit kan bijvoorbeeld interactief of niet-interactief zijn."@nl;
+    rdfs:comment "De aard van de wederzijdse actie of communicatie tussen gebruiker en systeem."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Interactietype>;
+    shacl:class skos:Concept;
+    shacl:description "De aard van de wederzijdse actie of communicatie tussen gebruiker en systeem."@nl;
+    shacl:name "interactieType"@nl;
+    shacl:path schemas:interactivityType
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "instructietaal"@nl;
+    rdfs:comment "Taal waarin het Leermiddel wordt gegeven."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Instructietaal>;
+    shacl:class skos:Concept;
+    shacl:description "Taal waarin het Leermiddel wordt gegeven."@nl;
+    shacl:minCount "1";
+    shacl:name "instructietaal"@nl;
+    shacl:path dc:language
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "resultaat"@nl;
+    rdfs:comment "De algemene categorie of classificatie waarin een resultaat van het doorlopen van een Leermiddel kan worden ingedeeld."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Resultaat>;
+    shacl:class skos:Concept;
+    shacl:description "De algemene categorie of classificatie waarin een resultaat van het doorlopen van een Leermiddel kan worden ingedeeld."@nl;
+    shacl:name "resultaat"@nl;
+    shacl:path schemas:result
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "niveau"@nl;
+    rdfs:comment "Het (Opleidings)niveau waarvoor een Leermiddel ontwikkeld werd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Niveau>;
+    shacl:class skos:Concept;
+    shacl:description "Het (Opleidings)niveau waarvoor een Leermiddel ontwikkeld werd."@nl;
+    shacl:minCount "1";
+    shacl:name "niveau"@nl;
+    shacl:path dc:educationLevel
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "kost"@nl;
+    rdfs:comment "Het bedrag aan middelen, vaak uitgedrukt in geld, dat nodig is voor het gebruik van het Leermiddel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Kost>;
+    shacl:class schemas:MonetaryAmount;
+    shacl:description "Het bedrag aan middelen, vaak uitgedrukt in geld, dat nodig is voor het gebruik van het Leermiddel."@nl;
+    shacl:maxCount "1";
+    shacl:name "kost"@nl;
+    shacl:path schemas:estimatedCost
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "formaat"@nl;
+    rdfs:comment "De fysieke of digitale structuur waarin een Leermiddel wordt gepresenteerd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Formaat>;
+    shacl:class skos:Concept;
+    shacl:description "De fysieke of digitale structuur waarin een Leermiddel wordt gepresenteerd."@nl;
+    shacl:name "formaat"@nl;
+    shacl:path dc:format
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "competentie"@nl;
+    rdfs:comment "Een specifiek geheel van kennis, vaardigheden en attitudes die door een lerende moet worden beheerst."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Competentie>;
+    shacl:class <https://ec.europa.eu/esco/lod/static/model.html#Skill>;
+    shacl:description "Een specifiek geheel van kennis, vaardigheden en attitudes die door een lerende moet worden beheerst."@nl;
+    shacl:name "competentie"@nl;
+    shacl:path schemas:assesses
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "bron"@nl;
+    rdfs:comment "De herkomst of referentie waaruit het Leermiddel is afgeleid."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Bron>;
+    shacl:class skos:Concept;
+    shacl:description "De herkomst of referentie waaruit het Leermiddel is afgeleid."@nl;
+    shacl:name "bron"@nl;
+    shacl:path dc11:source
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "dient"@nl;
+    rdfs:comment "Welk Leerdoel het Leermiddel ondersteunt of aan bijdraagt."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Dient>;
+    shacl:class <http://data.europa.eu/snb/model/elm/LearningAchievement>;
+    shacl:description "Welk Leerdoel het Leermiddel ondersteunt of aan bijdraagt."@nl;
+    shacl:name "dient"@nl;
+    shacl:path schemas:educationalUse
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "isLidVan"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Leermiddelen kunnen verzameld worden per categorie, vak, etc. afhankelijk van de gebruiker. Hiervoor kan een LeermiddelVerzameling gebruikt worden. Onderdelen van een Leermiddel worden enkel met LeermiddelElementen aangeven."@nl;
+    rdfs:comment "Een Leermiddel is een onderdeel van een LeermiddelVerzameling."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Islidvan>;
+    shacl:class schemas:CreativeWorkSeries;
+    shacl:description "Een Leermiddel is een onderdeel van een LeermiddelVerzameling."@nl;
+    shacl:name "isLidVan"@nl;
+    shacl:path schemas:isPartOf
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "bestaatUit";
+    <http://purl.org/vocab/vann/usageNote> "Een Leermiddel zoals een boek kan bestaan uit verschillende LeermiddelElementen zoals hoofdstukken, externe filmpjes, etc. Een verzameling van Leermiddelen worden aangeven met een LeermiddelVerzameling."@nl;
+    rdfs:comment "LeermiddelenElementen waaruit dit Leermiddel bestaat."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddel.Bestaatuit>;
+    shacl:class schemas:CreativeWork;
+    shacl:description "LeermiddelenElementen waaruit dit Leermiddel bestaat."@nl;
+    shacl:name "bestaatUit";
+    shacl:path schemas:hasPart
+  ];
+  shacl:targetClass schemas:LearningResource .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelelementShape> a shacl:NodeShape;
+  rdfs:label "LeermiddelElement"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Te substitueren door een meer specifiekere klasse van <a href=\"https://schema.org/CreativeWork\">Schema.org CreativeWork</a>. Bijvoorbeeld: Chapter voor hoofdstukken van een boek."@nl;
+  rdfs:comment "Een element waaruit een Leermiddel bestaat"@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "onderdeelVan";
+    <http://purl.org/vocab/vann/usageNote> "Je kan ook dcterms:"@nl;
+    rdfs:comment "LeermiddelenElement is een onderdeel van een Leermiddel."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddelelement.Onderdeelvan>;
+    shacl:class schemas:LearningResource;
+    shacl:description "LeermiddelenElement is een onderdeel van een Leermiddel."@nl;
+    shacl:maxCount "1";
+    shacl:name "onderdeelVan";
+    shacl:path schemas:isPartOf
+  ];
+  shacl:targetClass schemas:CreativeWork .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddeltypeShape> a shacl:NodeShape;
+  rdfs:label "LeermiddelType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeermiddelverzamelingShape> a shacl:NodeShape;
+  rdfs:label "LeermiddelVerzameling"@nl;
+  rdfs:comment "Collectie van Leermiddelen met dezelfde kenmerken."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "heeftLid"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Leermiddelen kunnen verzameld worden per categorie, vak, etc. afhankelijk van de gebruiker. Hiervoor kan een LeermiddelVerzameling gebruikt worden. Onderdelen van een Leermiddel worden enkel met LeermiddelElementen aangeven."@nl;
+    rdfs:comment "Een Leermiddelverzameling bestaat uit 0 tot oneindig aantal Leermiddelen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Leermiddelverzameling.Heeftlid>;
+    shacl:class schemas:LearningResource;
+    shacl:description "Een Leermiddelverzameling bestaat uit 0 tot oneindig aantal Leermiddelen."@nl;
+    shacl:name "heeftLid"@nl;
+    shacl:path schemas:hasPart
+  ];
+  shacl:targetClass schemas:CreativeWorkSeries .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LeerspecificatieShape> a shacl:NodeShape;
+  rdfs:label "Leerspecificatie"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Zie <a href=\"https://data.vlaanderen.be/doc/applicatieprofiel/leerinschrijfcredential/\">OSLO-Leercredentials</a> voor het gebruik, attributen, en details van deze klasse."@nl;
+  rdfs:comment "Een beschrijving van wat een persoon kan leren door gebruik te maken van de opportuniteit,uitgedrukt als leeruitkomsten. Een specificatie van het leren."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://data.europa.eu/snb/model/elm/Specification> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LicentieShape> a shacl:NodeShape;
+  rdfs:label "Licentie"@nl;
+  rdfs:comment "Een formele toestemming of recht om iets te gebruiken, te reproduceren, of te verspreiden volgens bepaalde voorwaarden."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Voorbeelden zijn Creative Commons BY, Creative Commons BY-NC, publieke domein, gesloten licentie."@nl;
+    rdfs:comment "Een classificatie die aangeeft onder welke juridische voorwaarden een leermiddel mag worden gebruikt, gedeeld of aangepast."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Licentie.Type>;
+    shacl:class skos:Concept;
+    shacl:description "Een classificatie die aangeeft onder welke juridische voorwaarden een leermiddel mag worden gebruikt, gedeeld of aangepast."@nl;
+    shacl:minCount "1";
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ];
+  shacl:targetClass dc:LicenseDocument .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LicentietypeShape> a shacl:NodeShape;
+  rdfs:label "LicentieType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LiteralShape> a shacl:NodeShape;
+  rdfs:label "Literal";
+  shacl:closed false;
+  shacl:targetClass rdfs:Literal .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LocatieShape> a shacl:NodeShape;
+  rdfs:label "Locatie"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Te gebruiken als de manier waarop de geografische positie wordt aangeduid pas zal worden vastgelegd bij implementatie. Is deze manier nu al gekend dan moet dit datatype gesubstitueerd worden door klassen of datatypes zoals Geometrie, GeografischeNaam, Adres etc. OPMERKING: Meer info over deze klassen/datatypes in het applicatieprofiel <a href=\"https://data.vlaanderen.be/doc/applicatieprofiel/generiek-basis/\">OSLO Generiek - basis</a>."@nl;
+  rdfs:comment "Aanduiding van een geografische positie, dmv coördinaten, een toponiem, een adreslabel, een verwijzing naar een plaats/regio of verwijzing naar een adres."@nl;
+  shacl:closed false;
+  shacl:targetClass prov:Location .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OnderwerptypeShape> a shacl:NodeShape;
+  rdfs:label "OnderwerpType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OpeningsurenspecificatieShape> a shacl:NodeShape;
+  rdfs:label "Openingsurenspecificatie"@nl;
+  rdfs:comment "Informatie over de openingsuren ve plaats of dienst."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "open"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Openingsuur vd plaats of dienst op de opgegeven dag vd week."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Openingsurenspecificatie.Open>;
+    shacl:datatype xsd:time;
+    shacl:description "Openingsuur vd plaats of dienst op de opgegeven dag vd week."@nl;
+    shacl:maxCount "1";
+    shacl:name "open"@nl;
+    shacl:path schema:opens
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "gesloten"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Sluitingsuur vd plaats of dienst op de opgegeven dag vd week."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Openingsurenspecificatie.Gesloten>;
+    shacl:datatype xsd:time;
+    shacl:description "Sluitingsuur vd plaats of dienst op de opgegeven dag vd week."@nl;
+    shacl:maxCount "1";
+    shacl:name "gesloten"@nl;
+    shacl:path schema:closes
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "dag van de week"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Zie https://schema.org/DayOfWeek voor lijst van mogelijke waarden."@nl;
+    rdfs:comment "Dag van de week waarvoor de openingsuren geldig zijn."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Openingsurenspecificatie.DagVanDeWeek>;
+    shacl:datatype xsd:anyURI;
+    shacl:description "Dag van de week waarvoor de openingsuren geldig zijn."@nl;
+    shacl:maxCount "1";
+    shacl:name "dag van de week"@nl;
+    shacl:path schema:dayOfWeek
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "geldig van"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Datum vanaf wanneer de opgegeven openingsuren gelden."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Openingsurenspecificatie.GeldigVan>;
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum vanaf wanneer de opgegeven openingsuren gelden."@nl;
+    shacl:maxCount "1";
+    shacl:name "geldig van"@nl;
+    shacl:path schema:validFrom
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "geldig tot"@nl;
+    <http://purl.org/vocab/vann/usageNote> ""@nl;
+    rdfs:comment "Datum tot wanneer de opgegeven openingsuren gelden."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Openingsurenspecificatie.GeldigTot>;
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum tot wanneer de opgegeven openingsuren gelden."@nl;
+    shacl:maxCount "1";
+    shacl:name "geldig tot"@nl;
+    shacl:path schema:validThrough
+  ];
+  shacl:targetClass schema:OpeningHoursSpecification .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#OpleidingsniveautypeShape> a shacl:NodeShape;
+  rdfs:label "OpleidingsniveauType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#PeriodeShape> a shacl:NodeShape;
+  rdfs:label "Periode"@nl;
+  rdfs:comment "Temporele Entiteit waarvan de omvang en duurtijd verschilt van nul, ttz waarvoor de begin- en eindtijd verschillend zijn."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "tot"@nl;
+    rdfs:comment "Einde ve Temporele Entiteit."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Periode.Tot>;
+    shacl:class <http://www.w3.org/2006/time#Instant>;
+    shacl:description "Einde ve Temporele Entiteit."@nl;
+    shacl:maxCount "1";
+    shacl:name "tot"@nl;
+    shacl:path <http://www.w3.org/2006/time#hasEnd>
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "van"@nl;
+    rdfs:comment "Start ve Temporele Entiteit."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Periode.Van>;
+    shacl:class <http://www.w3.org/2006/time#Instant>;
+    shacl:description "Start ve Temporele Entiteit."@nl;
+    shacl:maxCount "1";
+    shacl:name "van"@nl;
+    shacl:path <http://www.w3.org/2006/time#hasBeginning>
+  ];
+  shacl:targetClass <http://www.w3.org/2006/time#ProperInterval> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ResultaattypeShape> a shacl:NodeShape;
+  rdfs:label "ResultaatType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#StringShape> a shacl:NodeShape;
+  rdfs:label "String";
+  shacl:closed false;
+  shacl:targetClass xsd:string .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TaalShape> a shacl:NodeShape;
+  rdfs:label "Taal";
+  <http://purl.org/vocab/vann/usageNote> "Zie het EU vocabularium voor een lijst van alle talen: <a href=\"https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/language\">https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/language</a>."@nl;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TemporeleentiteitShape> a shacl:NodeShape;
+  rdfs:label "TemporeleEntiteit"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Die temporele objecten zijn temporele geometrische primitieven zoals Moment of Periode. OPMERKING: Dit datatype is Abstract, gebruik een van de subklassen."@nl;
+  rdfs:comment "Abstracte klasse voor temporele objecten."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://www.w3.org/2006/time#TemporalEntity> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TijdsduurShape> a shacl:NodeShape;
+  rdfs:label "Tijdsduur"@nl;
+  rdfs:comment "Een maat voor de tijd die nodig is om een specifieke taak of activiteit te voltooien, doorgaans uitgedrukt in eenheden zoals seconden, minuten of uren."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://www.w3.org/2006/time#Duration> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TimeShape> a shacl:NodeShape;
+  rdfs:label "Time";
+  shacl:closed false;
+  shacl:targetClass xsd:time .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ToegankelijkheidstypeShape> a shacl:NodeShape;
+  rdfs:label "ToegankelijkheidsType";
+  shacl:closed false;
+  shacl:targetClass skos:Concept .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#UriShape> a shacl:NodeShape;
+  rdfs:label "URI";
+  shacl:closed false;
+  shacl:targetClass xsd:anyURI .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#ValutaShape> a shacl:NodeShape;
+  rdfs:label "Valuta"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Te gebruiken ipv Concept als een voorgedefinieerde eenheid van QUDT beschikbaar is, bvb <a href=\"http://qudt.org/vocab/currency/EUR\">Euro</a>. Zie <a href=\"https://www.qudt.org/doc/DOC_VOCAB-UNITS-CURRENCY.html\">QUDT-currency-units</a> voor meer info."@nl;
+  rdfs:comment "Gebruikt voor elke eenheid die een munteenheid uitdrukt."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://qudt.org/schema/qudt/CurrencyUnit> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#VerzamelingShape> a shacl:NodeShape;
+  rdfs:label "Verzameling"@nl;
+  rdfs:comment "Een verzameling van resources."@nl;
+  shacl:closed false;
+  shacl:targetClass dcmitype:Collection .
