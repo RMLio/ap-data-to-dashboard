@@ -200,14 +200,13 @@ async function generateExcel(store) {
         for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
           const dummyRow = [];
           // Add the primary key per row: code column
-          dummyRow.push(`${prefix}_code_${sheet.name}_${i}`);
+          dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
           // Add values for the other columns
           for (let j = 2; j <= columnNames.cellCount; j++) {
             const columnName = columnNames.getCell(j).value
             const columnDetails = schemaJson[sheet.name]['columns'][columnName]
-            //check if the column is a foreign key
             if (columnDetails['valueForeignKeySheet']) {
-              dummyRow.push(`${prefix}_code_${columnDetails['valueForeignKeySheet']}_${getRandomInteger(1, 5)}`);
+              dummyRow.push(`${prefix}/code/${columnDetails['valueForeignKeySheet']}_${getRandomInteger(1, 5)}`);
             } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#integer' ){
               dummyRow.push(`${getRandomInteger()}`)
             } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#decimal' ){
@@ -218,8 +217,10 @@ async function generateExcel(store) {
               dummyRow.push(`${getRandomTime()}`)
             } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#dateTime' ){
               dummyRow.push(`${getRandomDateTime()}`)
+            } else if(columnDetails['valueDatatype'] === 'http://www.w3.org/2001/XMLSchema#anyURI' ){
+              dummyRow.push(`http://example.com/au/${columnName}_${i}`)
             } else{
-              dummyRow.push(`${prefix}_value_${columnName}_${i}`);
+              dummyRow.push(`${prefix}_${columnName}_${i}`);
             }
           }
           sheet.addRow(dummyRow);

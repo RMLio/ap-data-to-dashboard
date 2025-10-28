@@ -14,7 +14,7 @@ const options = program.opts();
 const inputFile = options.input;
 const outputFile = options.output;
 
-const base = "http://example.com/"; // Base IRI
+const base = "http://base.example.com/"; // Base IRI
 
 let yarrrml = `
 prefixes:
