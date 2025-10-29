@@ -5,5 +5,4 @@ node_modules/
 out/
 subprojects/
 rmlmapper-*
-in/
 in-shacl/

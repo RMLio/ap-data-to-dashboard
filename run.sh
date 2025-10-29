@@ -9,8 +9,9 @@ shopt -s nullglob
 
 # Constants
 in_dir="in"
+in_shacl_dir="in-shacl"
 out_dir="out"
-template_schema_json="$in_dir/template.schema.json"
+template_schema_json="$in_shacl_dir/template.schema.json"
 queries_dir="$out_dir/queries"
 queries_combined_file="$queries_dir/generated-queries.rq"
 queries_split_dir="$queries_dir/generated-queries"
