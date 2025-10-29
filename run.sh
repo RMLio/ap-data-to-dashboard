@@ -95,10 +95,9 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     java -jar ./rmlmapper-7.3.3-r374-all.jar -m $out_dir/$fileName.mapping.rml.ttl -o $rdf_dir/$fileName.ttl -s turtle
   done
 
-  # Use the first input file to generate the combined and split queries, temporary solution until I have a separate schema file
-  first_file=$(ls "$out_dir"/*.json | head -n 1)
   echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
   node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
+  
 else
   echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."
   mkdir -p $rdf_dir
