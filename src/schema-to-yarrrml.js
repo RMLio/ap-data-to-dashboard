@@ -5,14 +5,16 @@ const path = require("path");
 const program = new Command();
 
 program
-    .option("-i, --input <file>", "Input json", "some-input-dir/file.json")
-    .option("-o, --output <dir>", "Output YARRRML file", "some-output-dir/all.yarrrml.yaml")
+    .option("-i, --input <file>", "Input schema json", "in-shacl/template.schema.json")
+    .option("-o, --output <dir>", "Output YARRRML file", "out/some-yarrrml.yml")
+    .option("-s, --source <file>", "Input source data json", "out/some-data.json")
 
 program.parse(process.argv);
 
 const options = program.opts();
 const inputFile = options.input;
 const outputFile = options.output;
+const sourceFile = options.source;
 
 const base = "http://base.example.com/"; // Base IRI
 
@@ -24,50 +26,50 @@ prefixes:
   dcterms: "http://purl.org/dc/terms/"
   rdfs: "http://www.w3.org/2000/01/rdf-schema#"
 
-base: "${base}"
+base: "${base}" 
 
 mappings:\n`;
 
-const data = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputFile), "utf8"));
+const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputFile), "utf8"));
 let mappingCounter = 1;
-for (const domain of data.schema) {
+for (const sheet of Object.values(schema)) {
 
     yarrrml += `  m_${mappingCounter}:\n`;
     yarrrml += `    sources:\n`;
-    yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.sheetName}[*]" ]\n`;
-    yarrrml += `    s: $(code[*])\n`; // base IRI with code if no valid iri
+    yarrrml += `      - [ ${sourceFile}~jsonpath, "$.data.${sheet.sheetLabel}[*]" ]\n`;
+    yarrrml += `    s: $(CODE[*])\n`; // base IRI with code if no valid iri
     yarrrml += `    po:\n`;
-    yarrrml += `      - [rdf:type, ${domain.sheetIri}~iri]\n`;
+    yarrrml += `      - [rdf:type, ${sheet.sheetClass}~iri]\n`;
 
-    // collect properties with iri as range, to additional mapping later
-    const iriAsRange = [];
+    // collect columns with class values, for additional mapping later
+    const iriAsObject = [];
 
-    for (const property of domain.properties) {
-        yarrrml += `      - p: '${property.columnIri}'\n`;
+    for (const column of Object.values(sheet.columns) ) {
+        yarrrml += `      - p: "${column.columnProperty}"\n`;
         yarrrml += `        o: \n`;
-        yarrrml += `          value:  "$(${property.columnLabel}[*])"\n`;
-        if (property.valueDatatype === "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString") {
+        yarrrml += `          value:  "$(${column.columnLabel}[*])"\n`;
+        if (column.valueDatatype === "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString") {
             yarrrml += `          language: nl\n`; // TODO refine now we only support Dutch
         }
-        else if (property.valueDatatype) {
-            yarrrml += `          datatype: ${property.valueDatatype}\n`;
+        else if (column.valueDatatype) {
+            yarrrml += `          datatype: ${column.valueDatatype}\n`;
         }
-        else if (property.valueIri) {
+        else if (column.valueClass) {
             yarrrml += `          type: iri\n`;
-            iriAsRange.push({ 'columnLabel': property.columnLabel, 'valueIri': property.valueIri });
+            iriAsObject.push({ "columnLabel": column.columnLabel, "valueClass": column.valueClass });
         }
         mappingCounter += 1;
     }
     yarrrml += `\n`;
 
-    // additional mappings for properties with iri as range
-    for (const item of iriAsRange) {
+    // additional mappings for columns with value class
+    for (const item of iriAsObject) {
         yarrrml += `  m_${mappingCounter}:\n`;
         yarrrml += `    sources:\n`;
-        yarrrml += `      - [ ${inputFile}~jsonpath, "$.data.${domain.sheetName}[*]" ]\n`;
+        yarrrml += `      - [ ${sourceFile}~jsonpath, "$.data.${sheet.sheetLabel}[*]" ]\n`;
         yarrrml += `    s: $(${item.columnLabel}[*])\n`; // base IRI with code if no valid iri
         yarrrml += `    po:\n`;
-        yarrrml += `      - [rdf:type, ${item.valueIri}~iri]\n`
+        yarrrml += `      - [rdf:type, ${item.valueClass}~iri]\n`
         yarrrml += `\n`;
         mappingCounter += 1;
     }

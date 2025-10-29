@@ -59,38 +59,11 @@ totalXlsx.SheetNames.forEach(sheetName => {
   allSheetsData[sheetName] = processedRows;
   });
 
-// Get schema data
-const xlsxSchema = XLSX.utils.sheet_to_json(totalXlsx.Sheets['_schema']);
-// Group schema by domain
-const schemaByDomain = {};
-xlsxSchema.forEach(row => {
-  const sheetName = row['sheetName'];
-  if (!schemaByDomain[sheetName]) {
-    schemaByDomain[sheetName] = {
-      sheetName: sheetName,
-      sheetIri: row['sheetIri'],
-      properties: []
-    };
-  }
-  if (row['columnLabel']){  
-    schemaByDomain[sheetName].properties.push({
-      columnLabel: row['columnLabel'],    
-      columnIri: row['columnIri'],
-      valueIri: row['valueIri'],
-      valueDatatype: row['valueDatatype'],
-      valueMinCount: row['valueMinCount'],
-      valueMaxCount: row['valueMaxCount']
-    });
-    }
-  });
-const schemaArray = Object.values(schemaByDomain);
-let totalFileContent = {'data': allSheetsData, 'schema': schemaArray};
-
 // Save as mapping data as JSON
 const jsonFile = path.join(outputDir, `${baseName}.json`);
 
 if (!fs.existsSync(outputDir)){
     fs.mkdirSync(outputDir, { recursive: true });
 }
-fs.writeFileSync(jsonFile, JSON.stringify(totalFileContent, null, 2), "utf8");
+fs.writeFileSync(jsonFile, JSON.stringify(allSheetsData, null, 2), "utf8");
 console.log(`✅ JSON written to ${jsonFile}`);

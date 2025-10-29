@@ -4,19 +4,19 @@ const path = require("path");
 
 const program = new Command();
 program
-  .option("-i, --input <file>", "Input mapping data json file", "some-dir/file.json")
+  .option("-i, --input <file>", "Input template schema json file", "in/template.schema.json")
   .option("-o, --outfile <file>", "Output file for combined queries", "some-output-dir/generated-queries.rq")
   .option("-s, --splitdir <dir>", "Output directory for split queries", "some-output-dir/generated-queries");
 
 program.parse(process.argv);
 
 const options = program.opts();
-const mappingDataFile = options.input;
+const inputFile = options.input;
 const outputFile = options.outfile;
 const splitDir = options.splitdir;
 
-if(!fs.existsSync(path.dirname(outputFile))){
-    fs.mkdirSync(path.dirname(outputFile), { recursive: true });
+if (!fs.existsSync(path.dirname(outputFile))) {
+  fs.mkdirSync(path.dirname(outputFile), { recursive: true });
 }
 if (!fs.existsSync(splitDir)) {
   fs.mkdirSync(splitDir, { recursive: true });
@@ -36,21 +36,21 @@ function toIriName(str) {
 function toCamelCase(str) {
   return str
     .toLowerCase()
-    .replace(/[^a-zA-Z0-9 ]/g, '') // verwijder speciale tekens
-    .split(' ')
+    .replace(/[^a-zA-Z0-9 ]/g, "") // verwijder speciale tekens
+    .split(" ")
     .map((word, index) =>
       index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
     )
-    .join('');
+    .join("");
 }
 
 function converLabeltoVarName(label, isIri) {
   let varName = toCamelCase(label);
   if (isIri) {
     varName = toIriName(varName);
-  } 
-  return '?' + varName;
-} 
+  }
+  return "?" + varName;
+}
 
 function toValidFilename(str, maxLength = 255) {
   // Replace invalid characters with underscores
@@ -58,11 +58,11 @@ function toValidFilename(str, maxLength = 255) {
     // replace non-ASCII characters with underscore
     .replace(/[^\x00-\x7F]/g, "_")
     // replace control characters and invalid filename chars with underscore
-    .replace(/[<>:"/\\|?*\x00-\x1F]/g, '_')
+    .replace(/[<>:"/\\|?*\x00-\x1F]/g, "_")
     // replace multiple spaces or underscores with a single underscore
-    .replace(/[\s_]+/g, '_')
+    .replace(/[\s_]+/g, "_")
     // remove leading/trailing dots or underscores
-    .replace(/^[_\.]+|[_\.]+$/g, '');
+    .replace(/^[_\.]+|[_\.]+$/g, "");
 
   // Limit length (most file systems limit filenames to 255 bytes)
   if (filename.length > maxLength) {
@@ -71,25 +71,25 @@ function toValidFilename(str, maxLength = 255) {
 
   // Fallback if result is empty
   if (!filename) {
-    filename = 'untitled';
+    filename = "untitled";
   }
 
   return filename;
 }
 
 
-function domainToSelect(domainName, domain, prefixes) {
+function sheetToSelect(sheetLabel, sheet) {
   let triples = [];
   let vars = [];
-  const sVar = `?${toIriName(domainName)}`;
+  const sVar = `?${toIriName(sheetLabel)}`;
   vars.push(sVar);
-  triples.push(`${sVar} a <${domain.sheetIri}> .`);
-  domain.properties.forEach(property => {
-    const v = converLabeltoVarName(property.columnLabel, property.valueIri);
-    triples.push(`OPTIONAL { ${sVar} <${property.columnIri}> ${v} . }`);
+  triples.push(`${sVar} a <${sheet.sheetClass}> .`);
+  for (const column of Object.values(sheet.columns)) {
+    const v = converLabeltoVarName(column.columnLabel, column.valueClass);
+    triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${v} . }`);
     vars.push(v);
-    });
-  const queryTitle = `${domainName}`;
+  }
+  const queryTitle = `${sheetLabel}`;
   const query = `# ${queryTitle} 
 SELECT DISTINCT ${vars.join(" ")} WHERE {
   ${triples.join("\n  ")}
@@ -97,75 +97,74 @@ SELECT DISTINCT ${vars.join(" ")} WHERE {
 `;
   const filename = path.join(splitDir, toValidFilename(queryTitle) + ".rq");
   fs.writeFileSync(filename, query, "utf8");
-  console.log(`✅ Query for mapping ${domainName} written to ${filename}`);
+  console.log(`✅ Query for mapping ${sheetLabel} written to ${filename}`);
   return query;
 }
 
-function domainToCrossMappingQuery(domain, property, iriToLabelMap) {
+function sheetToCrossMappingQuery(sheet, column, iriToLabelMap) {
   let triples = [];
-  const domainName = domain.sheetName;
-  const rangeName = iriToLabelMap[property.valueIri]; 
-  if (!rangeName) {
-    console.log(`⚠️  No label found for IRI ${property.valueIri}, skipping cross-mapping query.`);
-    return '';
-  } 
-  const domainVar = converLabeltoVarName(domainName, true);
-  let rangeVar = converLabeltoVarName(rangeName, true);
-  //avoid duplicate variables
-  if (domainVar === rangeVar) { 
-    rangeVar += "2";
+  const sheetLabel = sheet.sheetLabel;
+  const valueLabel = iriToLabelMap[column.valueClass];
+  if (!valueLabel) {
+    console.log(`⚠️  No label found for IRI ${column.valueClass}, skipping cross-mapping query.`);
+    return "";
   }
-  triples.push(`${domainVar} a <${domain.sheetIri}> .`);
-  triples.push(`${rangeVar} a <${property.valueIri}> .`);
+  const sheetVar = converLabeltoVarName(sheetLabel, true);
+  let valueVar = converLabeltoVarName(valueLabel, true);
+  //avoid duplicate variables
+  if (sheetVar === valueVar) {
+    valueVar += "2";
+  }
+  triples.push(`${sheetVar} a <${sheet.sheetClass}> .`);
+  triples.push(`${valueVar} a <${column.valueClass}> .`);
 
-  
-  const queryTitle = `Join ${domainName} → ${property.columnLabel} → ${rangeName}`; 
+
+  const queryTitle = `Join ${sheetLabel} → ${column.columnLabel} → ${valueLabel}`;
   const query = `# ${queryTitle}
-SELECT DISTINCT ${domainVar} ${rangeVar} WHERE {
-  ${domainVar} a <${domain.sheetIri}> .
-  ${rangeVar} a <${property.valueIri}> .
-  ${domainVar} <${property.columnIri}> ${rangeVar} .
+SELECT DISTINCT ${sheetVar} ${valueVar} WHERE {
+  ${sheetVar} a <${sheet.sheetClass}> .
+  ${valueVar} a <${column.valueClass}> .
+  ${sheetVar} <${column.columnProperty}> ${valueVar} .
 }
 `;
   const filename = path.join(splitDir, toValidFilename(queryTitle) + ".rq");
   fs.writeFileSync(filename, query, "utf8");
-  console.log(`✅ Query for cross-mapping ${domainName} to ${rangeName} written to ${filename}`);
+  console.log(`✅ Query for cross-mapping ${sheetLabel} to ${valueLabel} written to ${filename}`);
   return query
 }
 
 // Main
-const data = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), mappingDataFile), "utf8"));
-const schema = data.schema;
-if (schema.length === 0) {
-  console.error("❌ No mapping data found in the mapping data file.");
+const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), inputFile), "utf8"));
+if (Object.values(schema).length === 0) {
+  console.error("❌ No schema data found in the schema file.");
   process.exit(1);
 }
-let output = `# SPARQL queries generated from ${path.basename(mappingDataFile)}\n\n`;
-for (const domain of schema) {
-  //skip if domain has no properties
-  if (domain.properties.length === 0) {
-    console.log(`⚠️  ${domain.sheetName} has no properties, skipping query generation.`);
-  } 
-  //skip if domain is skos:Concept
-  else if (domain.sheetIri === "http://www.w3.org/2004/02/skos/core#Concept") {
-    console.log(`⚠️  ${domain.sheetName} is skos:Concept, skipping query generation.`);
-  } 
+let output = `# SPARQL queries generated from ${path.basename(inputFile)}\n\n`;
+for (const sheet of Object.values(schema)) {
+  //skip if sheet has no columns
+  if (sheet.columns.length === 0) {
+    console.log(`⚠️  ${sheet.sheetLabel} has no columns, skipping query generation.`);
+  }
+  //skip if sheet class is skos:Concept
+  else if (sheet.sheetClass === "http://www.w3.org/2004/02/skos/core#Concept") {
+    console.log(`⚠️  ${sheet.sheetLabel} is skos:Concept, skipping query generation.`);
+  }
   else {
-    output += domainToSelect(domain.sheetName, domain) + "\n";
+    output += sheetToSelect(sheet.sheetLabel, sheet) + "\n";
   }
 }
 output += "# Example cross-mapping queries\n\n";
 iriToLabelMap = {};
-for (const domain of schema) {
-  iriToLabelMap[domain.sheetIri] = domain.sheetName;
+for (const sheet of Object.values(schema)) {
+  iriToLabelMap[sheet.sheetClass] = sheet.sheetLabel;
 }
 
-for (const domain of schema) {
-  domain.properties.forEach(property => {
-    if (property.valueIri) {
-      output += domainToCrossMappingQuery(domain, property, iriToLabelMap) + "\n";
-    } 
-  });
+for (const sheet of Object.values(schema)) {
+  for (const column of Object.values(sheet.columns)){
+    if (column.valueClass) {
+      output += sheetToCrossMappingQuery(sheet, column, iriToLabelMap) + "\n";
+    }
+  }
 }
 
 fs.writeFileSync(outputFile, output, "utf8");
