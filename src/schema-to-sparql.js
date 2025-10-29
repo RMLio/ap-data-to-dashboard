@@ -86,7 +86,11 @@ function sheetToSelect(sheetLabel, sheet) {
   triples.push(`${sVar} a <${sheet.sheetClass}> .`);
   for (const column of Object.values(sheet.columns)) {
     const v = converLabeltoVarName(column.columnLabel, column.valueClass);
-    triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${v} . }`);
+    if (column.valueMinCount >= 1){
+      triples.push(`${sVar} <${column.columnProperty}> ${v} . `); // To reduce the number of OPTIONALS per query
+    } else {
+      triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${v} . }`);
+    }
     vars.push(v);
   }
   const queryTitle = `${sheetLabel}`;
