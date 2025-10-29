@@ -10,7 +10,7 @@ shopt -s nullglob
 # Constants
 in_dir="in"
 out_dir="out"
-template_schema_json="$out_dir/template.schema.json"
+template_schema_json="$in_dir/template.schema.json"
 queries_dir="$out_dir/queries"
 queries_combined_file="$queries_dir/generated-queries.rq"
 queries_split_dir="$queries_dir/generated-queries"
@@ -65,17 +65,24 @@ if [ ${#inputs[@]} -eq 0 ]; then
   noInputFiles=true
 fi
 
-if [[ "$noInputFiles" == false ]]; then
+noSchemaFile=false
+schema=("$in_dir"/*.json)
+if [ ${#inputs[@]} -eq 0 ]; then
+  echo "❌ No schema file found."
+  noSchemaFile=true
+fi
+
+if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
   for input in "$in_dir"/*.xlsx; do
     base=$(basename "$input")
     echo "Processing file: $base"
     fileName="${base%.xlsx}"        # removes extension → file.xlsx → file
 
     echo "ℹ️  Processing file: $input"
-    node ./src/xlsx-to-json.js -i $input -o $out_dir -d $delimiter
+    node ./src/dataxlsx-to-datajson.js -i $input -o $out_dir -d $delimiter
 
     echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
-    node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName.json" -o "$out_dir/$fileName.mapping.yml"
+    node ./src/schema-to-yarrrml.js -i "$template_schema_json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
 
     echo "ℹ️  Generating file: $out_dir/$fileName.mapping.rml.ttl"
     npx @rmlio/yarrrml-parser -i "$out_dir/$fileName.mapping.yml" -o "$out_dir/$fileName.mapping.rml.ttl" -p
@@ -91,7 +98,7 @@ if [[ "$noInputFiles" == false ]]; then
   # Use the first input file to generate the combined and split queries, temporary solution until I have a separate schema file
   first_file=$(ls "$out_dir"/*.json | head -n 1)
   echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
-  node ./src/schema-to-sparql.js -i "$first_file" -o "$queries_combined_file" -s "$queries_split_dir"
+  node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
 else
   echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."
   mkdir -p $rdf_dir

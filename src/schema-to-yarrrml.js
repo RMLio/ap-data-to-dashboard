@@ -36,7 +36,7 @@ for (const sheet of Object.values(schema)) {
 
     yarrrml += `  m_${mappingCounter}:\n`;
     yarrrml += `    sources:\n`;
-    yarrrml += `      - [ ${sourceFile}~jsonpath, "$.data.${sheet.sheetLabel}[*]" ]\n`;
+    yarrrml += `      - [ "${sourceFile}~jsonpath", "$.${sheet.sheetLabel}[*]" ]\n`;
     yarrrml += `    s: $(CODE[*])\n`; // base IRI with code if no valid iri
     yarrrml += `    po:\n`;
     yarrrml += `      - [rdf:type, ${sheet.sheetClass}~iri]\n`;
@@ -66,7 +66,7 @@ for (const sheet of Object.values(schema)) {
     for (const item of iriAsObject) {
         yarrrml += `  m_${mappingCounter}:\n`;
         yarrrml += `    sources:\n`;
-        yarrrml += `      - [ ${sourceFile}~jsonpath, "$.data.${sheet.sheetLabel}[*]" ]\n`;
+        yarrrml += `      - [ ${sourceFile}~jsonpath, "$.${sheet.sheetLabel}[*]" ]\n`;
         yarrrml += `    s: $(${item.columnLabel}[*])\n`; // base IRI with code if no valid iri
         yarrrml += `    po:\n`;
         yarrrml += `      - [rdf:type, ${item.valueClass}~iri]\n`

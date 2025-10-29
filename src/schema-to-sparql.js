@@ -47,7 +47,7 @@ function toCamelCase(str) {
 function converLabeltoVarName(label, isIri) {
   let varName = toCamelCase(label);
   if (isIri) {
-    varName = toIriName(varName);
+    varName = toIriName(capitalize(varName));
   }
   return "?" + varName;
 }
@@ -160,7 +160,7 @@ for (const sheet of Object.values(schema)) {
 }
 
 for (const sheet of Object.values(schema)) {
-  for (const column of Object.values(sheet.columns)){
+  for (const column of Object.values(sheet.columns)) {
     if (column.valueClass) {
       output += sheetToCrossMappingQuery(sheet, column, iriToLabelMap) + "\n";
     }

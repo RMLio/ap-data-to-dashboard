@@ -26,4 +26,3 @@ very slow for long queries in combination with multiple sources due to many opti
 
 ## TODO
 - skos-concept solution
-- wat als 'code' ook een label is in het applicatieprofiel!!! We moeten 'Code' uniek maken
