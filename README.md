@@ -153,3 +153,4 @@ Visit Miravi at <http://localhost:5173>.
 - NodeShapes with `skos:Concept` as `shacl:targetClass` are not converted to sheets in `template.xlsx`. As there is no one-on-one relation between a label and an iri, this leads to strange query results. Depending the SHACL shape, other classes or properties may lead to similar problems, e.g. https://schema.org/author is connected with 'CreatiefWerk.auteur' and `CreatiefWerk.producent`. Those other cases are not omitted in this tool chain. 
 - All values with datatype `rdf:langString` are converted to RDF with language code `@nl` 
 - Adding more than one data EXCEL file to the `in`-folder may impact the query processing time as the default queries contain several OPTIONALs. 
+- The generated dummy data does not contain examples of multiple values per cell (yet).
