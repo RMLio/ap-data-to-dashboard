@@ -47,7 +47,7 @@ npm i
 npm run setup
 # make a Miravi clone in subprojects/miravi-a-linked-data-viewer/ (-b selects the Miravi version)
 rm -rf subprojects && mkdir subprojects && pushd subprojects
-git clone -b v2.1.1 https://github.com/SolidLabResearch/miravi-a-linked-data-viewer.git
+git clone -b v2.2.0 https://github.com/SolidLabResearch/miravi-a-linked-data-viewer.git
 (cd miravi-a-linked-data-viewer/main && npm i)
 popd
 ```
