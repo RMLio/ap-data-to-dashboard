@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
+const { compileFunction } = require("vm");
 
 const program = new Command();
 program
@@ -84,12 +85,36 @@ function sheetToSelect(sheetLabel, sheet) {
   const sVar = `?${toIriName(sheetLabel)}`;
   vars.push(sVar);
   triples.push(`${sVar} a <${sheet.sheetClass}> .`);
-  for (const column of Object.values(sheet.columns)) {
-    const v = converLabeltoVarName(column.columnLabel, column.valueClass);
-    if (column.valueMinCount >= 1){
-      triples.push(`${sVar} <${column.columnProperty}> ${v} . `); // To reduce the number of OPTIONALS per query
+  
+  // Solution for same column property with multiple column labels in on sheet
+  // TODO This feels like a design mistake. It would be good to flag this in some evaluation report  
+  const propertyLabelMap = {}
+  for (const column of Object.values(sheet.columns)){
+    if (!propertyLabelMap[column.columnProperty]){
+      propertyLabelMap[column.columnProperty] = []
+    } 
+    propertyLabelMap[column.columnProperty].push(column.columnLabel) 
+  }
+  for (const [columnProperty, columnLabels] of Object.entries(propertyLabelMap)){
+    const firstColumn = sheet['columns'][columnLabels[0]]
+    let columnValueMinCount = firstColumn.valueMinCount
+    let v = columnLabels[0];
+    if (columnLabels.length > 1){
+      console.log(`⚠️ ${columnProperty} has multiple labels for ${sheet.sheetClass}`);
+      for (const columnLabel of columnLabels) {
+        if (sheet['columns'][columnLabel]['valueMinCount'] > columnValueMinCount){
+          columnValueMinCount = sheet['columns'][columnLabel]['valueMinCount']
+        }
+      }
+    } 
+    for (let i = 1; i < columnLabels.length; i++){
+      v += "Of" +  columnLabels[i];
+    }
+    v = converLabeltoVarName(v, firstColumn.valueClass);
+    if (columnValueMinCount >= 1){
+      triples.push(`${sVar} <${firstColumn.columnProperty}> ${v} . `); // To reduce the number of OPTIONALS per query
     } else {
-      triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${v} . }`);
+      triples.push(`OPTIONAL { ${sVar} <${firstColumn.columnProperty}> ${v} . }`);
     }
     vars.push(v);
   }
