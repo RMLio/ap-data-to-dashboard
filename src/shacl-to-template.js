@@ -226,9 +226,8 @@ async function generateTemplates(store) {
           } else {
             dummyRow.push(`${prefix}_${columnName}_${i}`);
           }
-
-          sheet.addRow(dummyRow);
         }
+        sheet.addRow(dummyRow);
       }
     }
     );
