@@ -35,7 +35,7 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
 
 Make sure you have installed:
 
-* A Linux platform with a bash shell
+* A platform with a bash shell
 * Node >= 22 with npm
 * Java version 17, e.g. 17.0.10-tem
 
