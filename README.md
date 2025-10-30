@@ -29,7 +29,7 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
 * Split this one file into separate query files in dir `out/queries/generated-queries`.
 * Build a Miravi instance using the initial configuration in `miravi-initial-config`,
   extended with queries for all the separated query files generated above,
-  into `subprojects/miravi-a-linked-data-viewer/main/dist`.
+  into `node_modules/miravi/main/dist`.
 
 ## Prerequisites
 
@@ -45,11 +45,6 @@ Make sure you have installed:
 # make node_modules/
 npm i
 npm run setup
-# make a Miravi clone in subprojects/miravi-a-linked-data-viewer/ (-b selects the Miravi version)
-rm -rf subprojects && mkdir subprojects && pushd subprojects
-git clone -b v2.2.0 https://github.com/SolidLabResearch/miravi-a-linked-data-viewer.git
-(cd miravi-a-linked-data-viewer/main && npm i)
-popd
 ```
 
 ## Usage
@@ -139,7 +134,7 @@ Further information on Miravi configuration can be found [here](https://github.c
 ### To do by you
 
 * Serve the RDF output in directory `out/serve-me` at `<base URL where the RDF output will be served>`.
-* Serve the Miravi build result in `subprojects/miravi-a-linked-data-viewer/main/dist` at a URL of your choice.
+* Serve the Miravi build result in `node_modules/miravi/main/dist` at a URL of your choice.
 
 ## Development
 
@@ -148,7 +143,7 @@ Further information on Miravi configuration can be found [here](https://github.c
 Execute:
 
 ```sh
-./run.sh --noMiraviBuild
+./run.sh
 ```
 
 In a separate shell, host the RDF output on a web server:
@@ -157,7 +152,7 @@ In a separate shell, host the RDF output on a web server:
 npm run serve
 ```
 
-In a separate shell, run Miravi in development mode
+In a separate shell, run the Miravi build result
 
 ```sh
 npm run miravi
