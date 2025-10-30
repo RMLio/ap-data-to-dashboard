@@ -197,10 +197,10 @@ async function generateTemplates(store) {
 
   // Create dummy data files
   for (const [index, dummyFile] of dummyFiles.entries()) {
-    const prefix = "a" + index
+    actor = index + 1
+    const prefix = "a" + actor
     wb.eachSheet(sheet => {
       const columnNames = sheet.getRow(1);
-
       for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
         const dummyRow = [];
         // Add the primary key per row: code column
@@ -209,23 +209,33 @@ async function generateTemplates(store) {
         for (let j = 2; j <= columnNames.cellCount; j++) {
           const columnName = columnNames.getCell(j).value
           const columnDetails = schema[sheet.name]["columns"][columnName]
-          if (columnDetails["valueForeignKeySheet"]) {
-            dummyRow.push(`${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
-            dummyRow.push(`${getRandomInteger()}`)
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
-            dummyRow.push(`${getRandomDecimal()}`)
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
-            dummyRow.push(`${getRandomDate()}`)
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
-            dummyRow.push(`${getRandomTime()}`)
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
-            dummyRow.push(`${getRandomDateTime()}`)
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
-            dummyRow.push(`http://example.com/au/${columnName}_${i}`)
-          } else {
-            dummyRow.push(`${prefix}_${columnName}_${i}`);
+          const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
+          let v = `${prefix}_${columnName}_${i}`; 
+          if (addArray){
+            v += "|" + v + "b";
           }
+          if (columnDetails["valueForeignKeySheet"]) {
+            v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+            if (addArray){
+              v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+            }
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
+            v = randomArray(() => getRandomInteger(), addArray);
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
+            v = randomArray(() => getRandomDecimal(), addArray);
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
+            v = randomArray(() => getRandomDate(), addArray);
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
+            v = randomArray(() => getRandomTime(), addArray);
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
+            v = randomArray(() => getRandomDateTime(), addArray);
+          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
+            v = `http://example.com/au/${columnName}_${i}`;
+            if (addArray){
+              v += "|" + v + "b"
+            }
+          } 
+          dummyRow.push(v) 
         }
         sheet.addRow(dummyRow);
       }
@@ -240,6 +250,13 @@ async function generateTemplates(store) {
       console.error(`❌ Error writing Excel file with dummy data: ${error.message}`);
       process.exit(1);
     }
+    // remove added lines before making next dummy data file
+    wb.eachSheet(sheet => {
+      // Remove all rows except the header row (row 1) 
+      for (let i = 0; i < 6; i++) {
+        sheet.spliceRows(2, 1); 
+      }
+    });
   }
 }
 
@@ -304,6 +321,15 @@ function getRandomDateTime(startYear = 2000, endYear = 2030) {
   return randomDateTime.toISOString(); // Format: YYYY-MM-DDTHH:MM:SS.sssZ
 }
 
+function randomArray(randomValueFn, isArray) {
+  if (isArray) {
+    const v1 = randomValueFn();
+    const v2 = randomValueFn();
+    return v1 + "|" + v2
+  } else {
+    return randomValueFn();
+  }
+}
 
 
 
