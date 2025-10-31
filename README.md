@@ -60,11 +60,21 @@ Make sure you have installed:
 To generate a template Excel workbook `in-shacl/template.xslx`,
 a template schema JSON file `in-shacl/template.schema.json` and
 2 Excel workbooks with dummy data `in-shacl/dummydata-a1.xsls` and `in-shacl/dummydata-a2.xsls`
-based on a SHACL shapes file in `in-shacl/shacl.ttl`, execute:
+based on a SHACL shapes file in `in-shacl/shacl.ttl`, execute the following steps:
 
-```bash
-node src/shacl-to-template.js
-```
+1. Add a Turtle file with SHACL shapes called `shacl.ttl` to the directory `in-shacl`.
+   You can use, for example,
+   [this SHACL file](https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01/shacl/leermiddelen-SHACL.ttl):
+
+   ```shell
+   curl -L "https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01/shacl/leermiddelen-SHACL.ttl" -o in-shacl/shacl.ttl
+   ```
+
+2. Generate the aforementioned files via
+
+   ```bash
+   node src/shacl-to-template.js
+   ```
 
 #### Output
 
@@ -93,7 +103,7 @@ Per `shac:PropertyShape`:
 - `rdfs:label` – used as column headers
 - `shacl:path`
 
-Additionally, the following properties of `PropertyShape`s are processed and added to the `_schema` sheet:
+Additionally, the script processes the following properties of a `PropertyShape` and adds them to the `_schema` sheet:
 
 - `shacl:class`
 - `shacl:datatype`
@@ -101,10 +111,10 @@ Additionally, the following properties of `PropertyShape`s are processed and add
 - `shacl:maxCount`
 
 If `shacl:minCount >= 1`,
-the corresponding column header in the Excel sheet is **bold and underlined**,
+the corresponding column header in the Excel sheet is bold and underlined,
 indicating it is a required field.
 
-This information is recorded in `template.schema.json` sheet` to facilitate
+The script records this information in `template.schema.json` sheet to facilitate
 the automated generation of YARRRML mappings and SPARQL queries.
 
 ### Produce input data using the template Excel workbook
@@ -113,7 +123,7 @@ To produce input data:
 
 1. **Copy and rename** the generated `in-shacl/template.xlsx` to a new working file and save it in the `in`-folder.
 2. **Fill in all relevant tabs** with appropriate data entries.
-3. Per sheet columns with a <u>**bold and underlined header**</u> are required.
+3. Per sheet columns with a **bold and underlined header** are required.
    Other columns are optional.
 4. When adding more than one value to a cell,
    use `|` as separator.
@@ -142,12 +152,12 @@ To process the input data `in/*.xlsx` as promised in [purpose](#purpose) above, 
 If you want to add application-specific queries to the Miravi instance, proceed as follows:
 
 1. Extend the array `"queries"` in [miravi-initial-config/config.json)](miravi-initial-config/config.json).
-Note that you don't have to add a `"comunicaContext"`: `./run.sh` does that for you.
+   Note that you don't have to add a `"comunicaContext"`: `./run.sh` does that for you.
 2. Add your corresponding SPARQL queries to
    [miravi-initial-config/public/queries/](miravi-initial-config/public/queries/).
 3. Re-run the `run.sh` command explained in above [Process the input data](#process-the-input-data) section.
 
-Further information on Miravi configuration can be found
+You can find further information on Miravi configuration
 [in this repository](https://github.com/SolidLabResearch/miravi-a-linked-data-viewer).
 
 ### To do by you
