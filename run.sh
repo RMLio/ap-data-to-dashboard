@@ -16,7 +16,7 @@ queries_dir="$out_dir/queries"
 queries_combined_file="$queries_dir/generated-queries.rq"
 queries_split_dir="$queries_dir/generated-queries"
 rdf_dir="$out_dir/serve-me"
-miravi_main_dir="subprojects/miravi-a-linked-data-viewer/main"
+miravi_main_dir="node_modules/miravi/main"
 miravi_initial_config_dir="miravi-initial-config"
 
 # Default argument values

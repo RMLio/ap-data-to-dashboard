@@ -5,7 +5,7 @@
     "setup:mapper": "npx @rmlio/fetch-rmlmapper-java -g v7.3.3",
     "setup": "npm run setup:mapper",
     "serve": "npx http-server out/serve-me -p 5500 --cors",
-    "miravi": "cd subprojects/miravi-a-linked-data-viewer/main && npm run dev"
+    "miravi": "npx http-server node_modules/miravi/main/dist -p 5173"
   },
   "dependencies": {
     "@rmlio/fetch-rmlmapper-java": "^0.1.0",
@@ -15,6 +15,7 @@
     "glob": "^11.0.3",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
+    "miravi": "github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1",
     "xlsx": "^0.18.5"
   }
 }

@@ -8,7 +8,7 @@ const program = new Command();
 program
   .option("-i, --indir <dir>", "Input directory containing initial Miravi configuration", "some-miravi-initial-config-dir")
   .option("-s, --splitdir <dir>", "Input directory containing automatically generated queries", "some-output-dir/generated-queries")
-  .option("-o, --outdir <dir>", "Output directory; subdirectory 'main' of a Miravi clone", "subprojects/miravi-a-linked-data-viewer/main")
+  .option("-o, --outdir <dir>", "Output directory; subdirectory 'main' of a miravi", "node_modules/miravi/main")
   .option("-u, --dataurl <url>", "Base URL where the RDF output will be served", "https://www.example.com/")  // all ttl files are served from here
   .option("-d, --datadir <dir>", "Directory holding the RDF output that will be served", "some-out/serve-me-dir"); // all ttl files are stored here
 
