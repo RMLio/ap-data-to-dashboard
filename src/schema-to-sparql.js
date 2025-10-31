@@ -50,6 +50,10 @@ function converLabeltoVarName(label, isIri) {
   if (isIri) {
     varName = toIriName(capitalize(varName));
   }
+  // "id" is reserved for internal use in Miravi
+  if (varName === "id"){
+    varName = "ID";
+  }
   return "?" + varName;
 }
 
