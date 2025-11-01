@@ -1,6 +1,3 @@
-// Install dependencies first:
-//   npm install xlsx fs commander
-
 const XLSX = require("xlsx");
 const fs = require("fs");
 const { Command } = require("commander");
