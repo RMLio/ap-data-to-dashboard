@@ -1,7 +1,6 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
-const { compileFunction } = require("vm");
 
 const program = new Command();
 program
@@ -81,7 +80,7 @@ function sheetToSelect(sheetLabel, sheet) {
     }
     vars.push(oVar);
   }
-  
+
   const queryTitle = sheetLabel;
   const query = `# ${queryTitle} 
 SELECT DISTINCT ${vars.join(" ")} WHERE {
