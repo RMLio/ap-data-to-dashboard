@@ -1,19 +1,20 @@
 # AP data to dashboard
 
-- [Purpose](#purpose)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
-    - [Output](#output)
-    - [Required SHACL structure](#required-shacl-structure)
-  - [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
-  - [Process the input data](#process-the-input-data)
-  - [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
-  - [To do by you](#to-do-by-you)
-- [Development](#development)
-  - [Work locally](#work-locally)
-- [Design Choices and Known Limitations](#design-choices-and-known-limitations)
+* [Purpose](#purpose)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
+    * [Output](#output)
+    * [Required SHACL structure](#required-shacl-structure)
+  * [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
+  * [Process the input data](#process-the-input-data)
+  * [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
+  * [To do by you](#to-do-by-you)
+* [Development](#development)
+  * [Work locally](#work-locally)
+* [Design Choices and Known Limitations](#design-choices-and-known-limitations)
+* [Markdown linter](#markdown-linter)
 
 ## Purpose
 
@@ -197,11 +198,6 @@ Visit Miravi at <http://localhost:5173>.
   therefore not considered within this tool chain.  
 - NodeShapes with `skos:Concept` as `shacl:targetClass` are not converted to sheets in `template.xlsx`.
   As there is no one-on-one relation between a label and an iri, this leads to strange query results.
-- Depending on the SHACL shape, some classes may contain properties with the same URI with different labels,
-  e.g. `https://schema.org/author` is connected with 'CreatiefWerk.auteur' and `CreatiefWerk.producent`
-  in the OSLO Leermiddelen AP.
-  We have captured those cases by merging the labels to one variable in the SPARQL query, e.g. `?Auteurofproduct`.
-  We also write a warning for those cases.
 - All values with datatype `rdf:langString` are converted to RDF with language code `@nl`.
 - Adding more than one data EXCEL file to the `in`-folder may impact the query processing time as
   the default queries contain several `OPTIONAL`s.
