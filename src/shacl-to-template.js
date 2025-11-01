@@ -270,16 +270,23 @@ function getObjectValueIfExists(store, subject, predicate) {
   }
 }
 
+function capitalize(str) {
+  if (!str || typeof str !== "string") return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 function saveLabel(label) {
-  return label
-    // Replace spaces and special characters with underscores
-    .replace(/[^a-zA-Z0-9]/g, "_")
-    // Replace multiple consecutive underscores with a single one
-    .replace(/_+/g, "_")
-    // Ensure it starts with a letter (prepend "n" if it doesn"t)
-    .replace(/^([^a-zA-Z])/, "n$1")
-    // Remove trailing underscores
-    .replace(/_+$/, "");
+  // remove special characters
+  label = label.replace(/[^a-zA-Z0-9 ]/g, "") 
+  //convert to camel case
+  label = label.split(" ")
+    .map((word, index) =>
+      index === 0 ? word : capitalize(word)
+    )
+    .join("");
+  // ensure it starts with a letter (prepend "n" if it doesn"t)
+  label = label.replace(/^([^a-zA-Z])/, "n$1")
+  return label  
 }
 
 function getRandomInteger(min = -1000, max = 1000) {

@@ -23,39 +23,21 @@ if (!fs.existsSync(splitDir)) {
   fs.mkdirSync(splitDir, { recursive: true });
 }
 
-
 function capitalize(str) {
   if (!str || typeof str !== "string") return str;
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-function toIriName(str) {
-  if (!str) return str;
-  return str + "_url";
-}
-
-function toCamelCase(str) {
-  return str
-    .toLowerCase()
-    .replace(/[^a-zA-Z0-9 ]/g, "") // verwijder speciale tekens
-    .split(" ")
-    .map((word, index) =>
-      index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
-    )
-    .join("");
-}
-
-function converLabeltoVarName(label, isIri) {
-  let varName = toCamelCase(label);
-  if (isIri) {
-    varName = toIriName(capitalize(varName));
-  }
+function convertLabeltoVariable(label, isIri){
+  if (isIri){
+    label = capitalize(label) + "_url";
+  };
   // "id" is reserved for internal use in Miravi
-  if (varName === "id"){
-    varName = "ID";
+  if (label === "id"){
+    label = "ID";
   }
-  return "?" + varName;
-}
+  return "?" + label ;
+} 
 
 function toValidFilename(str, maxLength = 255) {
   // Replace invalid characters with underscores
@@ -86,43 +68,21 @@ function toValidFilename(str, maxLength = 255) {
 function sheetToSelect(sheetLabel, sheet) {
   let triples = [];
   let vars = [];
-  const sVar = `?${toIriName(sheetLabel)}`;
+  const sVar = `${convertLabeltoVariable(sheetLabel, true)}`;
   vars.push(sVar);
   triples.push(`${sVar} a <${sheet.sheetClass}> .`);
   
-  // Solution for same column property with multiple column labels in on sheet
-  // TODO This feels like a design mistake. It would be good to flag this in some evaluation report  
-  const propertyLabelMap = {}
   for (const column of Object.values(sheet.columns)){
-    if (!propertyLabelMap[column.columnProperty]){
-      propertyLabelMap[column.columnProperty] = []
-    } 
-    propertyLabelMap[column.columnProperty].push(column.columnLabel) 
-  }
-  for (const [columnProperty, columnLabels] of Object.entries(propertyLabelMap)){
-    const firstColumn = sheet['columns'][columnLabels[0]]
-    let columnValueMinCount = firstColumn.valueMinCount
-    let v = columnLabels[0];
-    if (columnLabels.length > 1){
-      console.log(`⚠️ ${columnProperty} has multiple labels for ${sheet.sheetClass}`);
-      for (const columnLabel of columnLabels) {
-        if (sheet['columns'][columnLabel]['valueMinCount'] > columnValueMinCount){
-          columnValueMinCount = sheet['columns'][columnLabel]['valueMinCount']
-        }
-      }
-    } 
-    for (let i = 1; i < columnLabels.length; i++){
-      v += "Of" +  columnLabels[i];
-    }
-    v = converLabeltoVarName(v, firstColumn.valueClass);
-    if (columnValueMinCount >= 1){
-      triples.push(`${sVar} <${firstColumn.columnProperty}> ${v} . `); // To reduce the number of OPTIONALS per query
+    const oVar = convertLabeltoVariable(column.columnLabel, column.valueClass);
+    if (column.valueMinCount >= 1){
+      triples.push(`${sVar} <${column.columnProperty}> ${oVar} . `); 
     } else {
-      triples.push(`OPTIONAL { ${sVar} <${firstColumn.columnProperty}> ${v} . }`);
+      triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${oVar} . }`);
     }
-    vars.push(v);
+    vars.push(oVar);
   }
-  const queryTitle = `${sheetLabel}`;
+  
+  const queryTitle = sheetLabel;
   const query = `# ${queryTitle} 
 SELECT DISTINCT ${vars.join(" ")} WHERE {
   ${triples.join("\n  ")}
@@ -137,17 +97,17 @@ SELECT DISTINCT ${vars.join(" ")} WHERE {
 function sheetToCrossMappingQuery(sheet, column, iriToLabelMap) {
   let triples = [];
   const sheetLabel = sheet.sheetLabel;
-  const valueLabel = iriToLabelMap[column.valueClass];
+  let valueLabel = capitalize(iriToLabelMap[column.valueClass]);
   if (!valueLabel) {
     console.log(`⚠️  No label found for IRI ${column.valueClass}, skipping cross-mapping query.`);
     return "";
   }
-  const sheetVar = converLabeltoVarName(sheetLabel, true);
-  let valueVar = converLabeltoVarName(valueLabel, true);
   //avoid duplicate variables
-  if (sheetVar === valueVar) {
-    valueVar += "2";
+  if (sheetLabel === valueLabel) {
+    valueLabel += "2";
   }
+  const sheetVar = convertLabeltoVariable(sheetLabel, true);
+  const valueVar = convertLabeltoVariable(valueLabel, true);;
   triples.push(`${sheetVar} a <${sheet.sheetClass}> .`);
   triples.push(`${valueVar} a <${column.valueClass}> .`);
 
@@ -172,6 +132,7 @@ if (Object.values(schema).length === 0) {
   console.error("❌ No schema data found in the schema file.");
   process.exit(1);
 }
+
 let output = `# SPARQL queries generated from ${path.basename(inputFile)}\n\n`;
 for (const sheet of Object.values(schema)) {
   //skip if sheet has no columns
@@ -186,16 +147,16 @@ for (const sheet of Object.values(schema)) {
     output += sheetToSelect(sheet.sheetLabel, sheet) + "\n";
   }
 }
-output += "# Example cross-mapping queries\n\n";
-iriToLabelMap = {};
-for (const sheet of Object.values(schema)) {
-  iriToLabelMap[sheet.sheetClass] = sheet.sheetLabel;
-}
 
+output += "# Example cross-mapping queries\n\n";
+const classToLabelMap = {};
+for (const sheet of Object.values(schema)) {
+  classToLabelMap[sheet.sheetClass] = sheet.sheetLabel;
+}
 for (const sheet of Object.values(schema)) {
   for (const column of Object.values(sheet.columns)) {
     if (column.valueClass) {
-      output += sheetToCrossMappingQuery(sheet, column, iriToLabelMap) + "\n";
+      output += sheetToCrossMappingQuery(sheet, column, classToLabelMap) + "\n";
     }
   }
 }
