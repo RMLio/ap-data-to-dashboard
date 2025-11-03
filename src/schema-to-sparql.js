@@ -22,14 +22,9 @@ if (!fs.existsSync(splitDir)) {
   fs.mkdirSync(splitDir, { recursive: true });
 }
 
-function capitalize(str) {
-  if (!str || typeof str !== "string") return str;
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
 function convertLabeltoVariable(label, isIri){
   if (isIri){
-    label = capitalize(label) + "_url";
+    label = label + "_url";
   };
   // "id" is reserved for internal use in Miravi
   if (label === "id"){
@@ -96,7 +91,7 @@ SELECT DISTINCT ${vars.join(" ")} WHERE {
 function sheetToCrossMappingQuery(sheet, column, iriToLabelMap) {
   let triples = [];
   const sheetLabel = sheet.sheetLabel;
-  let valueLabel = capitalize(iriToLabelMap[column.valueClass]);
+  let valueLabel = iriToLabelMap[column.valueClass];
   if (!valueLabel) {
     console.log(`⚠️  No label found for IRI ${column.valueClass}, skipping cross-mapping query.`);
     return "";
