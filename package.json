@@ -2,7 +2,7 @@
   "name": "ap-data-to-dashboard",
   "version": "v0.0.2",
   "scripts": {
-    "setup:mapper": "npx @rmlio/fetch-rmlmapper-java -g v7.3.3",
+    "setup:mapper": "download-rmlmapper -g v7.3.3",
     "setup": "npm run setup:mapper",
     "serve": "http-server out/serve-me -p 5500 --cors",
     "miravi": "http-server node_modules/miravi/main/dist -p 5173",
