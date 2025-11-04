@@ -91,9 +91,9 @@ async function generateTemplates(store) {
     if (store.countQuads(nodeShape.subject, namedNode("http://www.w3.org/ns/shacl#property"), null) != 0) {
 
       // Get the label of the NodeShape to use as worksheet name
-      let sheetLabel = store.getObjects(nodeShape.subject, namedNode("http://www.w3.org/2000/01/rdf-schema#label"))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
+      let sheetLabel = getRequiredObjectValue(store, nodeShape.subject, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
       sheetLabel = saveLabel(sheetLabel); // replace spaces with underscores for sheet names
-      let sheetClass = store.getObjects(nodeShape.subject, namedNode("http://www.w3.org/ns/shacl#targetClass"))[0].value;
+      let sheetClass = getRequiredObjectValue(store, nodeShape.subject, namedNode("http://www.w3.org/ns/shacl#targetClass"));
       iriToLabelMap[sheetClass] = sheetLabel;
       schema[sheetLabel] = {
         "sheetLabel": sheetLabel,
@@ -107,9 +107,9 @@ async function generateTemplates(store) {
       let countColumns = 2;
       for (const property of store.match(nodeShape.subject, namedNode("http://www.w3.org/ns/shacl#property"), null)) {
         // Get the label of each property to use as column headers
-        let columnLabel = store.getObjects(property.object, namedNode("http://www.w3.org/2000/01/rdf-schema#label"))[0].value; //shacl:name is not always present, also shacl:label is missing in some shapes files 
+        let columnLabel = getRequiredObjectValue(store, property.object, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
         columnLabel = saveLabel(columnLabel); // replace spaces with underscores for column names
-        let columnProperty = store.getObjects(property.object, namedNode("http://www.w3.org/ns/shacl#path"))[0].value;
+        let columnProperty = getRequiredObjectValue(store, property.object, namedNode("http://www.w3.org/ns/shacl#path"));
         let valueClass = getObjectValueIfExists(store, property.object, namedNode("http://www.w3.org/ns/shacl#class"));
         let valueDatatype = getObjectValueIfExists(store, property.object, namedNode("http://www.w3.org/ns/shacl#datatype"));
         let valueMinCount = getObjectValueIfExists(store, property.object, namedNode("http://www.w3.org/ns/shacl#minCount"));
@@ -267,6 +267,17 @@ function getObjectValueIfExists(store, subject, predicate) {
     return objects[0].value;
   } else {
     return null;
+  }
+}
+
+// Helper function to get the value of an object for a given subject and predicate, or null if it doesn"t exist
+function getRequiredObjectValue(store, subject, predicate) {
+  const objects = store.getObjects(subject, predicate);
+  if (objects.length > 0) {
+    return objects[0].value;
+  } else {
+    console.error(`❌ ${predicate.value} is not defined for ${subject.value}.`);
+    process.exit(1);
   }
 }
 
