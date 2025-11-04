@@ -6,7 +6,7 @@
     "setup": "npm run setup:mapper",
     "serve": "http-server out/serve-me -p 5500 --cors",
     "miravi": "http-server node_modules/miravi/main/dist -p 5173",
-    "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1 --ignore-scripts && cd node_modules/miravi/main && npm i && cd ../test && npm i",
+    "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1 --ignore-scripts --no-save && cd node_modules/miravi/main && npm i && cd ../test && npm i",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2 --fix"
   },
@@ -18,7 +18,6 @@
     "glob": "^11.0.3",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
-    "miravi": "github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
