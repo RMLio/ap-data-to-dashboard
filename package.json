@@ -1,19 +1,26 @@
 {
-  "name": "ap-data-to-dashboard2",
-  "version": "v0.0.1",
+  "name": "ap-data-to-dashboard",
+  "version": "v0.0.2",
   "scripts": {
-    "setup:mapper": "npx @rmlio/fetch-rmlmapper-java -g v7.3.3",
+    "setup:mapper": "download-rmlmapper -g v7.3.3",
     "setup": "npm run setup:mapper",
-    "serve" : "npx http-server out/serve-me -p 5500 --cors",
-    "miravi": "cd subprojects/miravi-a-linked-data-viewer/main && npm run dev"
+    "serve": "http-server out/serve-me -p 5500 --cors",
+    "miravi": "http-server node_modules/miravi/main/dist -p 5173",
+    "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1 --ignore-scripts --no-save && cd node_modules/miravi/main && npm i && cd ../test && npm i",
+    "lint:markdown": "markdownlint-cli2",
+    "lint:markdown:fix": "markdownlint-cli2 --fix"
   },
   "dependencies": {
-    "commander": "^14.0.0",
-    "glob": "^11.0.3",
-    "js-yaml": "^4.1.0",
-    "xlsx": "^0.18.5",
     "@rmlio/fetch-rmlmapper-java": "^0.1.0",
     "@rmlio/yarrrml-parser": "^1.12.1",
-    "http-server": "^14.1.1"
+    "commander": "^14.0.0",
+    "exceljs": "^4.4.0",
+    "glob": "^11.0.3",
+    "http-server": "^14.1.1",
+    "js-yaml": "^4.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "markdownlint-cli2": "^0.18.1"
   }
 }
