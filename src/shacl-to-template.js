@@ -270,7 +270,7 @@ function getObjectValueIfExists(store, subject, predicate) {
   }
 }
 
-// Helper function to get the value of an object for a given subject and predicate, or null if it doesn"t exist
+// Helper function to get the value of an object for a given subject and predicate, or exit with error is it doesn't exist
 function getRequiredObjectValue(store, subject, predicate) {
   const objects = store.getObjects(subject, predicate);
   if (objects.length > 0) {
