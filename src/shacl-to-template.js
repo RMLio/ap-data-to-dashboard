@@ -295,16 +295,6 @@ function getRequiredObjectValue(store, subject, predicate) {
     return "missing"
   }
 }
-// Helper function to get the value of an object for a given subject and predicate, or "missing" is it doesn't exist
-function continueWhenMissing(requiredValue, ) {
-  const objects = store.getObjects(subject, predicate);
-  if (objects.length > 0) {
-    return objects[0].value;
-  } else {
-    console.error(`❌ ${predicate.value} is not defined for ${subject.value}.`);
-    return "missing"
-  }
-}
 
 function capitalize(str) {
   if (!str || typeof str !== "string") return str;
