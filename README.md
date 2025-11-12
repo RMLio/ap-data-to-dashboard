@@ -99,7 +99,7 @@ Per `shacl:NodeShape`:
 - `shacl:targetClass`
 - `shacl:property`
 
-Per `shac:PropertyShape`:
+Per `shacl:PropertyShape`:
 
 - `rdfs:label` – used as column headers
 - `shacl:path`
