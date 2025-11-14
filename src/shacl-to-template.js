@@ -13,6 +13,7 @@ const { DataFactory } = N3;
 const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
+const { saveLabel } = require("./util")
 
 const program = new Command();
 
@@ -90,17 +91,17 @@ async function generateTemplates(store) {
     // Only create a worksheet the domain has properties  (otherwise too many sheets with only code column)  
     const properties = store.getObjects(nodeShape, namedNode("http://www.w3.org/ns/shacl#property"))
     if (properties.length != 0) {
-      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
-      if (sheetLabel == null){
+      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+      if (sheetLabel == null) {
         console.error(`❌ Missing rdfs:label for ${nodeShape.value}, skipping sheet creation`);
-        continue; 
+        continue;
       }
       let sheetClass = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/ns/shacl#targetClass"));
-      if (sheetClass == null){
+      if (sheetClass == null) {
         console.error(`❌ Missing shacl:targetClass for ${nodeShape.value}, skipping sheet creation`);
-        continue; 
+        continue;
       }
-      sheetLabel = saveLabel(sheetLabel); 
+      sheetLabel = saveLabel(sheetLabel);
       iriToLabelMap[sheetClass] = sheetLabel;
       schema[sheetLabel] = {
         "sheetLabel": sheetLabel,
@@ -114,17 +115,17 @@ async function generateTemplates(store) {
       let countColumns = 2;
       for (const property of properties) {
         // Get the label of each property to use as column headers
-        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
-        if (columnLabel == null){
+        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+        if (columnLabel == null) {
           console.error(`❌ Missing rdfs:label for property ${property.value} of ${nodeShape.value}, skipping column creation`);
-          continue; 
+          continue;
         }
         let columnProperty = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#path"));
-        if (columnProperty == null){
+        if (columnProperty == null) {
           console.error(`❌ Missing shacl:path for property ${property.value} of ${nodeShape.value}, skipping column creation`);
-          continue; 
+          continue;
         }
-        columnLabel = saveLabel(columnLabel); 
+        columnLabel = saveLabel(columnLabel);
         let valueClass = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#class"));
         let valueDatatype = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#datatype"));
         let valueMinCount = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#minCount"));
@@ -225,13 +226,13 @@ async function generateTemplates(store) {
           const columnName = columnNames.getCell(j).value
           const columnDetails = schema[sheet.name]["columns"][columnName]
           const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
-          let v = `${prefix}_${columnName}_${i}`; 
-          if (addArray){
+          let v = `${prefix}_${columnName}_${i}`;
+          if (addArray) {
             v += "|" + v + "b";
           }
           if (columnDetails["valueForeignKeySheet"]) {
             v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
-            if (addArray){
+            if (addArray) {
               v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
             }
           } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
@@ -246,11 +247,11 @@ async function generateTemplates(store) {
             v = randomArray(() => getRandomDateTime(), addArray);
           } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
             v = `http://example.com/au/${columnName}_${i}`;
-            if (addArray){
+            if (addArray) {
               v += "|" + v + "b"
             }
-          } 
-          dummyRow.push(v) 
+          }
+          dummyRow.push(v)
         }
         sheet.addRow(dummyRow);
       }
@@ -269,7 +270,7 @@ async function generateTemplates(store) {
     wb.eachSheet(sheet => {
       // Remove all rows except the header row (row 1) 
       for (let i = 0; i < 6; i++) {
-        sheet.spliceRows(2, 1); 
+        sheet.spliceRows(2, 1);
       }
     });
   }
@@ -285,35 +286,6 @@ function getObjectValueIfExists(store, subject, predicate) {
   }
 }
 
-// Helper function to get the value of an object for a given subject and predicate, or "missing" is it doesn't exist
-function getRequiredObjectValue(store, subject, predicate) {
-  const objects = store.getObjects(subject, predicate);
-  if (objects.length > 0) {
-    return objects[0].value;
-  } else {
-    console.error(`❌ ${predicate.value} is not defined for ${subject.value}.`);
-    return "missing"
-  }
-}
-
-function capitalize(str) {
-  if (!str || typeof str !== "string") return str;
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function saveLabel(label) {
-  // remove special characters
-  label = label.replace(/[^a-zA-Z0-9 ]/g, "") 
-  //convert to camel case
-  label = label.split(" ")
-    .map((word, index) =>
-      index === 0 ? word : capitalize(word)
-    )
-    .join("");
-  // ensure it starts with a letter (prepend "n" if it doesn"t)
-  label = label.replace(/^([^a-zA-Z])/, "n$1")
-  return label  
-}
 
 function getRandomInteger(min = -1000, max = 1000) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
