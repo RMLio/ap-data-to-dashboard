@@ -33,9 +33,9 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
   extended with queries for all the separated query files generated above,
   into `node_modules/miravi/main/dist`.
 
-If the user wants to include addtional data, not defined in the SHACL template, he can add extra sheets and/or columns.
+If you want to include addtional data, not defined in the SHACL template, you can add extra sheets and/or columns.
 Each sheet must contain exactly one `CODE` column. 
-The user may specify their `sheetClass`, `columnProperty`, `valueDatatype` and `valueClass` in the sheet labeled `_customVoc`.
+You may specify their `sheetClass`, `columnProperty`, `valueDatatype` and `valueClass` in the sheet labeled `_customVoc`.
 Any additional sheets and columns without such specifications will be mapped to
  `http://missing.example.com/` + `sheetLabel` or `columnlabel`. 
 Unspecified values will be converted to string literals.
