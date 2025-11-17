@@ -186,6 +186,12 @@ Execute:
 ./run.sh
 ```
 
+Or add option `-s` to execute in strict more, ignoring custom vocabulary. 
+
+```sh
+./run.sh -s
+```
+
 In a separate shell, host the RDF output on a web server:
 
 ```sh
