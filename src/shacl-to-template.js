@@ -173,6 +173,7 @@ async function generateTemplates(store) {
     "columnLabel",
     "columnProperty",
     "valueDatatype",
+    "valueClass",
     "valueForeignKeySheet"
   ];
   customVocSheet.addRow(headers);

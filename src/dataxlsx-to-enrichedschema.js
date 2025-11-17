@@ -44,9 +44,7 @@ for (const row of customVoc) {
         }
         if (sheetLabel) {
             const sheetClass = saveGet(row, "sheetClass")
-            console.log(sheetClass)
             saveAdd(schema[sheetLabel], "sheetClass", sheetClass);
-
             const columnLabel = saveLabel(row.columnLabel);
             if (columnLabel) {
                 const sheetColumns = schema[sheetLabel]["columns"];
@@ -57,6 +55,7 @@ for (const row of customVoc) {
                 }
                 saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
                 saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
+                saveAdd(sheetColumns[columnLabel], "valueClass", saveGet(row, "valueClass"));
                 saveAdd(sheetColumns[columnLabel], "valueForeignKeySheet", saveGet(row, "valueForeignKeySheet"));
                 sheetColumns[columnLabel]["valueMinCount"] = null
                 sheetColumns[columnLabel]["valueMaxCount"] = null
