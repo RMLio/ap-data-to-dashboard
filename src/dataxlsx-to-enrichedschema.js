@@ -55,17 +55,11 @@ for (const row of customVoc) {
                         columnLabel: columnLabel,
                     };
                 }
-                for (const header of [
-                    "columnProperty",
-                    "valueDatatype",
-                    "valueForeignKeySheet"
-                ]) {
-                    saveAdd(sheetColumns[columnLabel], header, saveGet(row, header));
-                }
-                sheetColumns[columnLabel] = {
-                    "valueMinCount": null,
-                    "valueMaxCount": null,
-                }
+                saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
+                saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
+                saveAdd(sheetColumns[columnLabel], "valueForeignKeySheet", saveGet(row, "valueForeignKeySheet"));
+                sheetColumns[columnLabel]["valueMinCount"] = null
+                sheetColumns[columnLabel]["valueMaxCount"] = null
             }
         }
     }

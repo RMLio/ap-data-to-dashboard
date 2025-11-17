@@ -164,6 +164,19 @@ async function generateTemplates(store) {
     }
   }
 
+  // Add a _customVoc sheet
+  const customVocSheet = wb.addWorksheet("_customVoc");
+  // No min and max count for the custom voc
+  const headers = [
+    "sheetLabel",
+    "sheetClass",
+    "columnLabel",
+    "columnProperty",
+    "valueDatatype",
+    "valueForeignKeySheet"
+  ];
+  customVocSheet.addRow(headers);
+
   //Format the the sheets
   wb.eachSheet(sheet => {
     sheet.views = [{ state: "frozen", ySplit: 1 }];
@@ -216,44 +229,46 @@ async function generateTemplates(store) {
     actor = index + 1
     const prefix = "a" + actor
     wb.eachSheet(sheet => {
-      const columnNames = sheet.getRow(1);
-      for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
-        const dummyRow = [];
-        // Add the primary key per row: code column
-        dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
-        // Add values for the other columns
-        for (let j = 2; j <= columnNames.cellCount; j++) {
-          const columnName = columnNames.getCell(j).value
-          const columnDetails = schema[sheet.name]["columns"][columnName]
-          const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
-          let v = `${prefix}_${columnName}_${i}`;
-          if (addArray) {
-            v += "|" + v + "b";
-          }
-          if (columnDetails["valueForeignKeySheet"]) {
-            v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+      if (!(sheet.name == "_customVoc")) {
+        const columnNames = sheet.getRow(1);
+        for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
+          const dummyRow = [];
+          // Add the primary key per row: code column
+          dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
+          // Add values for the other columns
+          for (let j = 2; j <= columnNames.cellCount; j++) {
+            const columnName = columnNames.getCell(j).value
+            const columnDetails = schema[sheet.name]["columns"][columnName]
+            const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
+            let v = `${prefix}_${columnName}_${i}`;
             if (addArray) {
-              v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+              v += "|" + v + "b";
             }
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
-            v = randomArray(() => getRandomInteger(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
-            v = randomArray(() => getRandomDecimal(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
-            v = randomArray(() => getRandomDate(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
-            v = randomArray(() => getRandomTime(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
-            v = randomArray(() => getRandomDateTime(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
-            v = `http://example.com/au/${columnName}_${i}`;
-            if (addArray) {
-              v += "|" + v + "b"
+            if (columnDetails["valueForeignKeySheet"]) {
+              v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+              if (addArray) {
+                v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+              }
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
+              v = randomArray(() => getRandomInteger(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
+              v = randomArray(() => getRandomDecimal(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
+              v = randomArray(() => getRandomDate(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
+              v = randomArray(() => getRandomTime(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
+              v = randomArray(() => getRandomDateTime(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
+              v = `http://example.com/au/${columnName}_${i}`;
+              if (addArray) {
+                v += "|" + v + "b"
+              }
             }
+            dummyRow.push(v)
           }
-          dummyRow.push(v)
+          sheet.addRow(dummyRow);
         }
-        sheet.addRow(dummyRow);
       }
     }
     );
