@@ -1,0 +1,6 @@
+SELECT DISTINCT ?missingClass
+WHERE {
+  ?s a ?missingClass .
+  FILTER(STRSTARTS(STR(?missingClass), "http://missing.example.com/"))
+}
+

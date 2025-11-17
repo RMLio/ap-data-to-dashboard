@@ -10,7 +10,11 @@
     {
       "id": "gr-use-case",
       "name": "Use-case-specific queries"
-   }
+    },
+    {
+      "id": "gr-missing-voc",
+      "name": "Missing vocabulary"
+    }
   ],
   "queries": [
     {
@@ -20,6 +24,20 @@
       "name": "Count all triples in the dataset",
       "description": "A dummy use-case-specific query, simply counting all triples in the dataset.",
       "comment": "A comunicaContext specifying the source will be added automatically."
+    },
+    {
+      "id": "101",
+      "queryGroupId": "gr-missing-voc",
+      "queryLocation": "missing_classes.rq",
+      "name": "Missing classes",
+      "description": "Listing all missing classes."
+    },
+    {
+      "id": "102",
+      "queryGroupId": "gr-missing-voc",
+      "queryLocation": "missing_properties.rq",
+      "name": "Missing properties",
+      "description": "Listing all missing properties with the class of their domain."
     }
   ]
 }
