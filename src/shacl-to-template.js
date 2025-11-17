@@ -75,8 +75,6 @@ parser.parse(inputData,
  * @returns {void}
  */
 async function generateTemplates(store) {
-  // Create a new Excel workbook
-  const wb = new ExcelJS.Workbook();
 
   // collect data for foreign key mapping
   const iriToLabelMap = {};
@@ -147,10 +145,6 @@ async function generateTemplates(store) {
         }
         countColumns += 1;
       }
-      // Create sheet data with headers in the first row
-      const ws = wb.addWorksheet(sheetLabel);
-      // Add the headers
-      ws.addRow(wsColumns);
     }
   }
 
@@ -164,6 +158,24 @@ async function generateTemplates(store) {
     }
   }
 
+  // Create a new Excel workbook
+  const wb = new ExcelJS.Workbook();
+  // Create worksheets for each NodeShape, in afphabetical order
+  const sheetLablesSorted = Object.keys(schema).sort();
+  for (const sheetLabel of sheetLablesSorted) {
+    const columns = schema[sheetLabel]['columns'];
+    // Sort columns alphabetically, but CODE always first
+    const columnLablesSorted = Object.keys(columns).sort();
+    let wsColumns = ["CODE"]; // First column is always CODE      
+    for (const columnLabel of columnLablesSorted) {
+      if (!(columnLabel === "CODE")) {// Skip CODE as it is already added      
+        wsColumns.push(columnLabel);
+      }
+    }
+    const ws = wb.addWorksheet(sheetLabel);
+    // Add the headers
+    ws.addRow(wsColumns);
+  }
   // Add a _customVoc sheet
   const customVocSheet = wb.addWorksheet("_customVoc");
   // No min and max count for the custom voc
