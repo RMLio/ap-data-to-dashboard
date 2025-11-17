@@ -121,7 +121,10 @@ function saveAdd(dict, key, value) {
         value = null
     }
     if (!(key in dict) || !dict[key]) {
-
+        // Trim if string   
+        if(typeof value === "string") {
+            value = value.trim();
+        }
         dict[key] = value;
     }
 }

@@ -23,6 +23,7 @@ miravi_initial_config_dir="miravi-initial-config"
 dataUrl="http://localhost:5500/"
 delimiter="|"
 buildMiravi=true
+strict=false
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -39,11 +40,16 @@ while [[ $# -gt 0 ]]; do
       buildMiravi=false
       shift
       ;;
+    -s|--strict)
+      strict=true
+      shift
+      ;;  
     -h|--help)
-      echo "Usage: $0 -u <dataUrl> -d <delimiter> [-n | --noMiraviBuild]"
+      echo "Usage: $0 -u <dataUrl> -d <delimiter> [-n | --noMiraviBuild] [-s | --strict] [-h | --help]"
       echo "  <dataUrl>:     default='http://localhost:5500/'"
       echo "  <delimiter>:   default='|'"
       echo "  noMiraviBuild: do not build Miravi and delete previous build"
+      echo "  strict: do not take custom vocabulary into account"
       exit 1
       ;;
     -*)
@@ -82,8 +88,16 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     echo "ℹ️  Processing file: $input"
     node ./src/dataxlsx-to-datajson.js -i $input -o $out_dir -d $delimiter
 
-    echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
-    node ./src/schema-to-yarrrml.js -i "$template_schema_json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+    if [[ "$strict" == false ]]; then
+      echo "ℹ️  Enhancing schema with custom vocabulary from file: $input"
+      node ./src/dataxlsx-to-enrichedschema.js -i $input -o $out_dir -s $template_schema_json
+      echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
+      node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName-enrichedschema.json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+     else
+      echo "ℹ️  Strict mode enabled; skipping enhancement of schema with custom vocabulary."
+      echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
+      node ./src/schema-to-yarrrml.js -i "$template_schema_json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+    fi
 
     echo "ℹ️  Generating file: $out_dir/$fileName.mapping.rml.ttl"
     npx @rmlio/yarrrml-parser -i "$out_dir/$fileName.mapping.yml" -o "$out_dir/$fileName.mapping.rml.ttl" -p
@@ -96,8 +110,16 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     java -jar ./rmlmapper-7.3.3-r374-all.jar -m $out_dir/$fileName.mapping.rml.ttl -o $rdf_dir/$fileName.ttl -s turtle
   done
 
-  echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
-  node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
+  if [[ "$strict" == false ]]; then
+      echo "ℹ️  Merging enriched schemas in: $out_dir"
+      node ./src/merge-enrichedschemas.js -i "$out_dir" -o "$out_dir/mergedschema.json"
+      echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
+      node ./src/schema-to-sparql.js -i "$out_dir/mergedschema.json" -o "$queries_combined_file" -s "$queries_split_dir"
+     else
+      echo "ℹ️  Strict mode enabled; skipping merging of schemas."
+      echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
+      node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
+    fi
   
 else
   echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."
