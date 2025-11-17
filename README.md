@@ -26,11 +26,21 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
 
   Note that user intervention is required to go from above-mentioned Excel workbooks with dummy data to real data in `in/*.xlsx`.
   See [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook) below.
+
 - Generate a list of prepared queries in one file `out/queries/generated-queries.rq`.
 - Split this one file into separate query files in dir `out/queries/generated-queries`.
 - Build a Miravi instance using the initial configuration in `miravi-initial-config`,
   extended with queries for all the separated query files generated above,
   into `node_modules/miravi/main/dist`.
+
+If the user wants to include addtional data, not defined in the SHACL template, he can add extra sheets and/or columns.
+Each sheet must contain exactly one `CODE` column. 
+The user may specify their `sheetClass`, `columnProperty`, `valueDatatype` and `valueClass` in the sheet labeled `_customVoc`.
+Any additional sheets and columns without such specifications will be mapped to
+ `http://missing.example.com/` + `sheetLabel` or `columnlabel`. 
+Unspecified values will be converted to string literals.
+
+When executing the pipeline in strict mode, the additionals sheets and columns will be ignored.
 
 ## Prerequisites
 
