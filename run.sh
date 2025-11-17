@@ -49,7 +49,7 @@ while [[ $# -gt 0 ]]; do
       echo "  <dataUrl>:     default='http://localhost:5500/'"
       echo "  <delimiter>:   default='|'"
       echo "  noMiraviBuild: do not build Miravi and delete previous build"
-      echo "  strict: do not take custom vocabulary into account"
+      echo "  strict:        do not take custom vocabulary into account"
       exit 1
       ;;
     -*)
