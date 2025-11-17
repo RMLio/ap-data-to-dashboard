@@ -56,7 +56,6 @@ for (const row of customVoc) {
                 saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
                 saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
                 saveAdd(sheetColumns[columnLabel], "valueClass", saveGet(row, "valueClass"));
-                saveAdd(sheetColumns[columnLabel], "valueForeignKeySheet", saveGet(row, "valueForeignKeySheet"));
                 sheetColumns[columnLabel]["valueMinCount"] = null
                 sheetColumns[columnLabel]["valueMaxCount"] = null
             }
@@ -91,12 +90,26 @@ workBook.SheetNames.forEach((sheetName) => {
                     "valueDatatype": null,
                     "valueMinCount": null,
                     "valueMaxCount": null,
-                    "valueForeignKeySheet": null
                 }
             }
         }
     }
 });
+
+// Add foreign keys to the schema
+iriToLabelMap = {}
+for (const sheetLabel in schema) {
+    const sheetClass = schema[sheetLabel]["sheetClass"];
+    iriToLabelMap[sheetClass] = sheetLabel;
+    for (const sheet in schema) {
+        for (const column in schema[sheet]["columns"]) {
+            if (column.valueClass !== "http://www.w3.org/2004/02/skos/core#Concept") {
+                const valueClass = schema[sheet]["columns"][column]["valueClass"]
+                schema[sheet]["columns"][column]["valueForeignKeySheet"] = iriToLabelMap[valueClass]
+            }
+        }
+    }
+}
 
 
 // Save enriched schema as JSON
@@ -121,7 +134,7 @@ function saveAdd(dict, key, value) {
     }
     if (!(key in dict) || !dict[key]) {
         // Trim if string   
-        if(typeof value === "string") {
+        if (typeof value === "string") {
             value = value.trim();
         }
         dict[key] = value;
