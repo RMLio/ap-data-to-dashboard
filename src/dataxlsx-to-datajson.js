@@ -2,7 +2,7 @@ const XLSX = require("xlsx");
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
-const { saveLabel } = require("./util")
+const { safeLabel } = require("./util")
 
 const program = new Command();
 
@@ -42,20 +42,20 @@ totalXlsx.SheetNames.forEach(sheetName => {
     return;
   }
   // We convert the values of all keys to array (easier to make mappings later)
-  // To secure save labels, also for custom sheet and custom columns, we use saveLabel
+  // To secure save labels, also for custom sheet and custom columns, we use safeLabel
   const processedRows = sheetData.map(row => {
     let newRow = {};
     Object.entries(row).forEach(([key, value]) => {
       if (typeof value === "string" && value.includes(delimiter)) {
-        newRow[saveLabel(key)] = value.split(delimiter).map(v => v.trim());
+        newRow[safeLabel(key)] = value.split(delimiter).map(v => v.trim());
       } else if (value !== "" && value !== undefined) {
-        newRow[saveLabel(key)] = [value];
+        newRow[safeLabel(key)] = [value];
       } // else: skip key if empty
     });
     return newRow;
   });
 
-  allSheetsData[saveLabel(sheetName)] = processedRows;
+  allSheetsData[safeLabel(sheetName)] = processedRows;
   });
 
 // Save as mapping data as JSON

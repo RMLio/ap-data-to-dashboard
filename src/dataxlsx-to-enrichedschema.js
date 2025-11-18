@@ -1,8 +1,8 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
-const XLSX = require("xlsx"); // Missing import
-const { saveLabel } = require("./util");
+const XLSX = require("xlsx"); 
+const { safeLabel: safeLabel } = require("./util");
 
 const program = new Command();
 
@@ -33,7 +33,7 @@ const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), schemaFile
 // shaclVoc has priority over customVoc
 for (const row of customVoc) {
     if ("sheetLabel" in row) {
-        const sheetLabel = saveLabel(saveGet(row, "sheetLabel"));
+        const sheetLabel = safeLabel(saveGet(row, "sheetLabel"));
 
         if (!(sheetLabel in schema)) {
             schema[sheetLabel] = {
@@ -45,7 +45,7 @@ for (const row of customVoc) {
         if (sheetLabel) {
             const sheetClass = saveGet(row, "sheetClass")
             saveAdd(schema[sheetLabel], "sheetClass", sheetClass);
-            const columnLabel = saveLabel(row.columnLabel);
+            const columnLabel = safeLabel(row.columnLabel);
             if (columnLabel) {
                 const sheetColumns = schema[sheetLabel]["columns"];
                 if (columnLabel && !(columnLabel in sheetColumns)) {
@@ -69,7 +69,7 @@ workBook.SheetNames.forEach((sheetName) => {
         console.log(`⚠️ Sheet "${sheetName}" is ignored when adding missing voc (starts with '_')`);
         return;
     } else {
-        const sheetLabel = saveLabel(sheetName);
+        const sheetLabel = safeLabel(sheetName);
         if (!(sheetLabel in schema)) {
             schema[sheetLabel] = {
                 "sheetLabel": sheetLabel,
@@ -82,7 +82,7 @@ workBook.SheetNames.forEach((sheetName) => {
         const headers = data[0];
         const sheetColumns = schema[sheetLabel]["columns"];
         for (const header of headers) {
-            const columnLabel = saveLabel(header);
+            const columnLabel = safeLabel(header);
             if (!(header === "CODE") && !(columnLabel in sheetColumns)) {
                 sheetColumns[columnLabel] = {
                     "columnLabel": columnLabel,

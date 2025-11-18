@@ -1,4 +1,4 @@
-function saveLabel(label) {
+function safeLabel(label) {
   // remove special characters
   label = label.replace(/[^a-zA-Z0-9 ]/g, "")
   //convert to camel case
@@ -17,4 +17,4 @@ function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-module.exports = { saveLabel };
+module.exports = { safeLabel: safeLabel };

@@ -13,7 +13,7 @@ const { DataFactory } = N3;
 const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
-const { saveLabel } = require("./util")
+const { safeLabel } = require("./util")
 
 const program = new Command();
 
@@ -99,7 +99,7 @@ async function generateTemplates(store) {
         console.error(`❌ Missing shacl:targetClass for ${nodeShape.value}, skipping sheet creation`);
         continue;
       }
-      sheetLabel = saveLabel(sheetLabel);
+      sheetLabel = safeLabel(sheetLabel);
       iriToLabelMap[sheetClass] = sheetLabel;
       schema[sheetLabel] = {
         "sheetLabel": sheetLabel,
@@ -123,7 +123,7 @@ async function generateTemplates(store) {
           console.error(`❌ Missing shacl:path for property ${property.value} of ${nodeShape.value}, skipping column creation`);
           continue;
         }
-        columnLabel = saveLabel(columnLabel);
+        columnLabel = safeLabel(columnLabel);
         let valueClass = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#class"));
         let valueDatatype = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#datatype"));
         let valueMinCount = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#minCount"));
