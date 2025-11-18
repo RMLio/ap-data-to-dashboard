@@ -1,20 +1,20 @@
 # AP data to dashboard
 
-* [Purpose](#purpose)
-* [Prerequisites](#prerequisites)
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
-    * [Output](#output)
-    * [Required SHACL structure](#required-shacl-structure)
-  * [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
-  * [Process the input data](#process-the-input-data)
-  * [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
-  * [To do by you](#to-do-by-you)
-* [Development](#development)
-  * [Work locally](#work-locally)
-* [Design Choices and Known Limitations](#design-choices-and-known-limitations)
-* [Markdown linter](#markdown-linter)
+- [Purpose](#purpose)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
+    - [Output](#output)
+    - [Required SHACL structure](#required-shacl-structure)
+  - [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
+  - [Process the input data](#process-the-input-data)
+  - [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
+  - [To do by you](#to-do-by-you)
+- [Development](#development)
+  - [Work locally](#work-locally)
+- [Design Choices and Known Limitations](#design-choices-and-known-limitations)
+- [Markdown linter](#markdown-linter)
 
 ## Purpose
 
@@ -158,6 +158,12 @@ To process the input data `in/*.xlsx` as promised in [purpose](#purpose) above, 
 # ./run.sh -u 'https://www.example.com/'
 ```
 
+Add the option `-s` to process the input data in strict mode, ignoring custom vocabulary.
+
+```sh
+./run.sh -s -u '<the base URL where the RDF output files will be served (include trailing slash)>'
+```
+
 ### Add application-specific Miravi queries
 
 If you want to add application-specific queries to the Miravi instance, proceed as follows:
@@ -184,12 +190,6 @@ Execute:
 
 ```sh
 ./run.sh
-```
-
-Or add option `-s` to execute in strict more, ignoring custom vocabulary. 
-
-```sh
-./run.sh -s
 ```
 
 In a separate shell, host the RDF output on a web server:
