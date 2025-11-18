@@ -8,6 +8,7 @@
     - [Output](#output)
     - [Required SHACL structure](#required-shacl-structure)
   - [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
+  - [Optionally include additional data](#optionally-include-additional-data)
   - [Process the input data](#process-the-input-data)
   - [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
   - [To do by you](#to-do-by-you)
@@ -25,22 +26,13 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
 - Convert the input data in `in/*.xlsx` combined with schema data `in-shacl/template.schema.json` to RDF output in `out/serve-me/output.ttl`.
 
   Note that user intervention is required to go from above-mentioned Excel workbooks with dummy data to real data in `in/*.xlsx`.
-  See [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook) below.
+  See [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook) and also [Optionally include additional data](#optionally-include-additional-data) below.
 
 - Generate a list of prepared queries in one file `out/queries/generated-queries.rq`.
 - Split this one file into separate query files in dir `out/queries/generated-queries`.
 - Build a Miravi instance using the initial configuration in `miravi-initial-config`,
   extended with queries for all the separated query files generated above,
   into `node_modules/miravi/main/dist`.
-
-If you want to include addtional data, not defined in the SHACL template, you can add extra sheets and/or columns.
-Each sheet must contain exactly one `CODE` column. 
-You may specify their `sheetClass`, `columnProperty`, `valueDatatype` and `valueClass` in the sheet labeled `_customVoc`.
-Any additional sheets and columns without such specifications will be mapped to
- `http://missing.example.com/` + `sheetLabel` or `columnlabel`. 
-Unspecified values will be converted to string literals.
-
-When executing the pipeline in strict mode, the additionals sheets and columns will be ignored.
 
 ## Prerequisites
 
@@ -147,6 +139,61 @@ Several actors can add their own input data in the `in`-folder.
 
 Note: When using a SHACL shape from an OSLO application profile as input,
 the diagram of that application profile visualizes the links between the sheets and mentions the expected datatype.
+
+### Optionally include additional data
+
+If you want to include addtional data, not defined in the SHACL template, you can add extra sheets and/or columns.
+Each sheet must contain exactly one `CODE` column.
+
+**Example**: an additional sheet with name *Agent*.
+
+| CODE   | name  | knows  | age |
+|--------|-------|--------|-----|
+| agent1 | Alice | agent2 | 25  |
+| agent2 | Bob   | agent3 | 30  |
+
+You may specify custom vocabulary per sheets and sheet/columns combination in the sheet labeled `_customVoc`:
+
+- `sheetClass`: the class per sheet,
+- `columnProperty`: the property per column,
+- `valueDatatype`: the datatype per value in the column,
+- `valueClass`: the class per value in the column.
+
+**Example**: the `_customVoc` sheet.
+
+| sheetLabel | sheetClass                      | columnLabel | columnProperty                  | valueDatatype                            | valueClass                      |
+|------------|---------------------------------|-------------|---------------------------------|------------------------------------------|---------------------------------|
+| Agent      | http://xmlns.com/foaf/0.1/Agent | age         | http://xmlns.com/foaf/0.1/age   | http://www.w3.org/2001/XMLSchema#integer |                                 |
+| Agent      | http://xmlns.com/foaf/0.1/Agent | knows       | http://xmlns.com/foaf/0.1/knows |                                          | http://xmlns.com/foaf/0.1/Agent |
+
+Any additional sheets and columns without such specifications will be mapped to
+ `http://missing.example.com/` + `sheetLabel` or `columnlabel`.
+Unspecified values will be converted to string literals.
+With the above examples as input, the column *name* will be mapped to property [http://missing.example.com/name](http://missing.example.com/name),
+and the values *Alice* and *Bob* to literals with datatype [xsd:string](http://www.w3.org/2001/XMLSchema#integer).
+
+The above examples would result in the following additional RDF data:
+
+```turtle
+@prefix ex: <http://example.com/> .
+@prefix missing: <http://missing.example.com/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:agent1 a foaf:Agent; 
+    missing:name "Alice": 
+    foaf:knows ex:agent2;
+    foaf:age "25"^^^xsd:integer.
+
+ex:agent2 a foaf:Agent; 
+    missing:name "Bob": 
+    foaf:knows ex:agent3;
+    foaf:age "30"^^^xsd:integer.
+
+ex:agent3 a foaf:Agent.   
+```
+
+When executing the pipeline in strict mode, the additionals sheets and columns will be ignored.
 
 ### Process the input data
 
