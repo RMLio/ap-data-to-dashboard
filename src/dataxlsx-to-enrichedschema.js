@@ -1,7 +1,7 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
-const XLSX = require("xlsx"); 
+const XLSX = require("xlsx");
 const { safeLabel: safeLabel } = require("./util");
 
 const program = new Command();
@@ -20,49 +20,49 @@ const schemaFile = options.schema;
 
 const missingEx = "http://missing.example.com/";
 const baseName = path.basename(inputFile, path.extname(inputFile));
+const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), schemaFile), "utf8"));
 
 // Load Excel file
 const workBook = XLSX.readFile(inputFile);
 
-// Process _customVoc sheet
-const customVocSheet = workBook.Sheets["_customVoc"];
-const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: "" });
+// Process _customVoc sheet if it exists
+if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
+    const customVocSheet = workBook.Sheets["_customVoc"];
+    const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: "" });
 
-const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), schemaFile), "utf8"));
+    // shaclVoc has priority over customVoc
+    for (const row of customVoc) {
+        if ("sheetLabel" in row) {
+            const sheetLabel = safeLabel(saveGet(row, "sheetLabel"));
 
-// shaclVoc has priority over customVoc
-for (const row of customVoc) {
-    if ("sheetLabel" in row) {
-        const sheetLabel = safeLabel(saveGet(row, "sheetLabel"));
-
-        if (!(sheetLabel in schema)) {
-            schema[sheetLabel] = {
-                "sheetLabel": sheetLabel,
-                "sheetClass": null,
-                "columns": {}
-            };
-        }
-        if (sheetLabel) {
-            const sheetClass = saveGet(row, "sheetClass")
-            saveAdd(schema[sheetLabel], "sheetClass", sheetClass);
-            const columnLabel = safeLabel(row.columnLabel);
-            if (columnLabel) {
-                const sheetColumns = schema[sheetLabel]["columns"];
-                if (columnLabel && !(columnLabel in sheetColumns)) {
-                    sheetColumns[columnLabel] = {
-                        columnLabel: columnLabel,
-                    };
+            if (!(sheetLabel in schema)) {
+                schema[sheetLabel] = {
+                    "sheetLabel": sheetLabel,
+                    "sheetClass": null,
+                    "columns": {}
+                };
+            }
+            if (sheetLabel) {
+                const sheetClass = saveGet(row, "sheetClass")
+                saveAdd(schema[sheetLabel], "sheetClass", sheetClass);
+                const columnLabel = safeLabel(row.columnLabel);
+                if (columnLabel) {
+                    const sheetColumns = schema[sheetLabel]["columns"];
+                    if (columnLabel && !(columnLabel in sheetColumns)) {
+                        sheetColumns[columnLabel] = {
+                            columnLabel: columnLabel,
+                        };
+                    }
+                    saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
+                    saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
+                    saveAdd(sheetColumns[columnLabel], "valueClass", saveGet(row, "valueClass"));
+                    sheetColumns[columnLabel]["valueMinCount"] = null
+                    sheetColumns[columnLabel]["valueMaxCount"] = null
                 }
-                saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
-                saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
-                saveAdd(sheetColumns[columnLabel], "valueClass", saveGet(row, "valueClass"));
-                sheetColumns[columnLabel]["valueMinCount"] = null
-                sheetColumns[columnLabel]["valueMaxCount"] = null
             }
         }
     }
 }
-
 // Iterate sheets and add missing voc (shape voc and custom voc have priority)
 workBook.SheetNames.forEach((sheetName) => {
     if (sheetName.startsWith("_")) {
