@@ -1,0 +1,1944 @@
+{
+  "Adresvoorstelling": [
+    {
+      "CODE": [
+        "a1/code/Adresvoorstelling_1"
+      ],
+      "administratieveEenheidNiveau1": [
+        "a1_administratieveEenheidNiveau1_1"
+      ],
+      "administratieveEenheidNiveau2": [
+        "a1_administratieveEenheidNiveau2_1"
+      ],
+      "adresgebied": [
+        "a1_adresgebied_1"
+      ],
+      "busnummer": [
+        "a1_busnummer_1"
+      ],
+      "gemeentenaam": [
+        "a1_gemeentenaam_1"
+      ],
+      "huisnummer": [
+        "a1_huisnummer_1"
+      ],
+      "land": [
+        "a1_land_1"
+      ],
+      "locatieaanduiding": [
+        "a1_locatieaanduiding_1"
+      ],
+      "locatienaam": [
+        "a1_locatienaam_1"
+      ],
+      "postbus": [
+        "a1_postbus_1"
+      ],
+      "postcode": [
+        "a1_postcode_1"
+      ],
+      "postnaam": [
+        "a1_postnaam_1"
+      ],
+      "straatnaam": [
+        "a1_straatnaam_1"
+      ],
+      "volledigAdres": [
+        "a1_volledigAdres_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Adresvoorstelling_2"
+      ],
+      "administratieveEenheidNiveau1": [
+        "a1_administratieveEenheidNiveau1_2"
+      ],
+      "administratieveEenheidNiveau2": [
+        "a1_administratieveEenheidNiveau2_2"
+      ],
+      "adresgebied": [
+        "a1_adresgebied_2"
+      ],
+      "busnummer": [
+        "a1_busnummer_2"
+      ],
+      "gemeentenaam": [
+        "a1_gemeentenaam_2"
+      ],
+      "huisnummer": [
+        "a1_huisnummer_2"
+      ],
+      "land": [
+        "a1_land_2"
+      ],
+      "locatieaanduiding": [
+        "a1_locatieaanduiding_2"
+      ],
+      "locatienaam": [
+        "a1_locatienaam_2"
+      ],
+      "postbus": [
+        "a1_postbus_2"
+      ],
+      "postcode": [
+        "a1_postcode_2"
+      ],
+      "postnaam": [
+        "a1_postnaam_2"
+      ],
+      "straatnaam": [
+        "a1_straatnaam_2"
+      ],
+      "volledigAdres": [
+        "a1_volledigAdres_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Adresvoorstelling_3"
+      ],
+      "administratieveEenheidNiveau1": [
+        "a1_administratieveEenheidNiveau1_3"
+      ],
+      "administratieveEenheidNiveau2": [
+        "a1_administratieveEenheidNiveau2_3"
+      ],
+      "adresgebied": [
+        "a1_adresgebied_3"
+      ],
+      "busnummer": [
+        "a1_busnummer_3"
+      ],
+      "gemeentenaam": [
+        "a1_gemeentenaam_3"
+      ],
+      "huisnummer": [
+        "a1_huisnummer_3"
+      ],
+      "land": [
+        "a1_land_3"
+      ],
+      "locatieaanduiding": [
+        "a1_locatieaanduiding_3"
+      ],
+      "locatienaam": [
+        "a1_locatienaam_3"
+      ],
+      "postbus": [
+        "a1_postbus_3"
+      ],
+      "postcode": [
+        "a1_postcode_3"
+      ],
+      "postnaam": [
+        "a1_postnaam_3"
+      ],
+      "straatnaam": [
+        "a1_straatnaam_3"
+      ],
+      "volledigAdres": [
+        "a1_volledigAdres_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Adresvoorstelling_4"
+      ],
+      "administratieveEenheidNiveau1": [
+        "a1_administratieveEenheidNiveau1_4"
+      ],
+      "administratieveEenheidNiveau2": [
+        "a1_administratieveEenheidNiveau2_4"
+      ],
+      "adresgebied": [
+        "a1_adresgebied_4"
+      ],
+      "busnummer": [
+        "a1_busnummer_4"
+      ],
+      "gemeentenaam": [
+        "a1_gemeentenaam_4"
+      ],
+      "huisnummer": [
+        "a1_huisnummer_4"
+      ],
+      "land": [
+        "a1_land_4"
+      ],
+      "locatieaanduiding": [
+        "a1_locatieaanduiding_4"
+      ],
+      "locatienaam": [
+        "a1_locatienaam_4"
+      ],
+      "postbus": [
+        "a1_postbus_4"
+      ],
+      "postcode": [
+        "a1_postcode_4"
+      ],
+      "postnaam": [
+        "a1_postnaam_4"
+      ],
+      "straatnaam": [
+        "a1_straatnaam_4"
+      ],
+      "volledigAdres": [
+        "a1_volledigAdres_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Adresvoorstelling_5"
+      ],
+      "administratieveEenheidNiveau1": [
+        "a1_administratieveEenheidNiveau1_5"
+      ],
+      "administratieveEenheidNiveau2": [
+        "a1_administratieveEenheidNiveau2_5"
+      ],
+      "adresgebied": [
+        "a1_adresgebied_5"
+      ],
+      "busnummer": [
+        "a1_busnummer_5"
+      ],
+      "gemeentenaam": [
+        "a1_gemeentenaam_5"
+      ],
+      "huisnummer": [
+        "a1_huisnummer_5"
+      ],
+      "land": [
+        "a1_land_5"
+      ],
+      "locatieaanduiding": [
+        "a1_locatieaanduiding_5",
+        "a1_locatieaanduiding_5b"
+      ],
+      "locatienaam": [
+        "a1_locatienaam_5",
+        "a1_locatienaam_5b"
+      ],
+      "postbus": [
+        "a1_postbus_5"
+      ],
+      "postcode": [
+        "a1_postcode_5"
+      ],
+      "postnaam": [
+        "a1_postnaam_5"
+      ],
+      "straatnaam": [
+        "a1_straatnaam_5"
+      ],
+      "volledigAdres": [
+        "a1_volledigAdres_5"
+      ]
+    }
+  ],
+  "Competentie": [
+    {
+      "CODE": [
+        "a1/code/Competentie_1"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_1"
+      ],
+      "naam": [
+        "a1_naam_1"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Competentie_2"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_2"
+      ],
+      "naam": [
+        "a1_naam_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Competentie_3"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_3"
+      ],
+      "naam": [
+        "a1_naam_3"
+      ],
+      "type": [
+        "a1/code/Doelgroep_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Competentie_4"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_4"
+      ],
+      "naam": [
+        "a1_naam_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Competentie_5"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_5"
+      ],
+      "naam": [
+        "a1_naam_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ]
+    }
+  ],
+  "CreatiefWerk": [
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_1"
+      ],
+      "auteur": [
+        "a1_auteur_1"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_1"
+      ],
+      "auteursrechtJaar": [
+        "2018-06-12"
+      ],
+      "licentie": [
+        "a1/code/Licentie_4"
+      ],
+      "producent": [
+        "a1_producent_1"
+      ],
+      "publicatiedatum": [
+        "2016-07-27T22:11:37.625Z"
+      ],
+      "taal": [
+        "a1/code/Doelgroep_4"
+      ],
+      "uitgever": [
+        "a1_uitgever_1"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_1"
+      ],
+      "versie": [
+        "a1_versie_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_2"
+      ],
+      "auteur": [
+        "a1_auteur_2"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_2"
+      ],
+      "auteursrechtJaar": [
+        "2030-12-26"
+      ],
+      "licentie": [
+        "a1/code/Licentie_3"
+      ],
+      "producent": [
+        "a1_producent_2"
+      ],
+      "publicatiedatum": [
+        "2016-01-20T18:19:05.123Z"
+      ],
+      "taal": [
+        "a1/code/Doelgroep_5"
+      ],
+      "uitgever": [
+        "a1_uitgever_2"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_2"
+      ],
+      "versie": [
+        "a1_versie_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_3"
+      ],
+      "auteur": [
+        "a1_auteur_3"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_3"
+      ],
+      "auteursrechtJaar": [
+        "2000-11-30"
+      ],
+      "licentie": [
+        "a1/code/Licentie_4"
+      ],
+      "producent": [
+        "a1_producent_3"
+      ],
+      "publicatiedatum": [
+        "2009-06-19T08:48:20.264Z"
+      ],
+      "taal": [
+        "a1/code/Doelgroep_2"
+      ],
+      "uitgever": [
+        "a1_uitgever_3"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_3"
+      ],
+      "versie": [
+        "a1_versie_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_4"
+      ],
+      "auteur": [
+        "a1_auteur_4"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_4"
+      ],
+      "auteursrechtJaar": [
+        "2001-04-07"
+      ],
+      "licentie": [
+        "a1/code/Licentie_1"
+      ],
+      "producent": [
+        "a1_producent_4"
+      ],
+      "publicatiedatum": [
+        "2015-09-23T01:21:15.533Z"
+      ],
+      "taal": [
+        "a1/code/Doelgroep_4"
+      ],
+      "uitgever": [
+        "a1_uitgever_4"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_4"
+      ],
+      "versie": [
+        "a1_versie_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_5"
+      ],
+      "auteur": [
+        "a1_auteur_5",
+        "a1_auteur_5b"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_5",
+        "a1_auteursrechtHouder_5b"
+      ],
+      "auteursrechtJaar": [
+        "2019-06-06"
+      ],
+      "licentie": [
+        "a1/code/Licentie_4",
+        "a1/code/Licentie_3"
+      ],
+      "producent": [
+        "a1_producent_5",
+        "a1_producent_5b"
+      ],
+      "publicatiedatum": [
+        "2002-12-30T11:21:30.038Z"
+      ],
+      "taal": [
+        "a1/code/Doelgroep_5",
+        "a1/code/Doelgroep_5"
+      ],
+      "uitgever": [
+        "a1_uitgever_5",
+        "a1_uitgever_5b"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_5"
+      ],
+      "versie": [
+        "a1_versie_5"
+      ]
+    }
+  ],
+  "Doel": [
+    {
+      "CODE": [
+        "a1/code/Doel_1"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_1"
+      ],
+      "bestaatUit": [
+        "a1/code/Doel_2"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5"
+      ],
+      "doelgroep": [
+        "a1_doelgroep_1"
+      ],
+      "gedefinieerdDoor": [
+        "a1_gedefinieerdDoor_1"
+      ],
+      "geldigheid": [
+        "a1_geldigheid_1"
+      ],
+      "gerelateerdAan": [
+        "a1/code/Doel_5"
+      ],
+      "identificator": [
+        "a1/code/Identificator_5"
+      ],
+      "isBrederDan": [
+        "a1/code/Doel_3"
+      ],
+      "isSpecialisatieVan": [
+        "a1/code/Doel_5"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_2"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_3"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doel_2"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_2"
+      ],
+      "bestaatUit": [
+        "a1/code/Doel_4"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_4"
+      ],
+      "doelgroep": [
+        "a1_doelgroep_2"
+      ],
+      "gedefinieerdDoor": [
+        "a1_gedefinieerdDoor_2"
+      ],
+      "geldigheid": [
+        "a1_geldigheid_2"
+      ],
+      "gerelateerdAan": [
+        "a1/code/Doel_4"
+      ],
+      "identificator": [
+        "a1/code/Identificator_4"
+      ],
+      "isBrederDan": [
+        "a1/code/Doel_1"
+      ],
+      "isSpecialisatieVan": [
+        "a1/code/Doel_2"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_5"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doel_3"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_3"
+      ],
+      "bestaatUit": [
+        "a1/code/Doel_3"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_4"
+      ],
+      "doelgroep": [
+        "a1_doelgroep_3"
+      ],
+      "gedefinieerdDoor": [
+        "a1_gedefinieerdDoor_3"
+      ],
+      "geldigheid": [
+        "a1_geldigheid_3"
+      ],
+      "gerelateerdAan": [
+        "a1/code/Doel_4"
+      ],
+      "identificator": [
+        "a1/code/Identificator_2"
+      ],
+      "isBrederDan": [
+        "a1/code/Doel_1"
+      ],
+      "isSpecialisatieVan": [
+        "a1/code/Doel_2"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_1"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doel_4"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_4"
+      ],
+      "bestaatUit": [
+        "a1/code/Doel_5"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_5"
+      ],
+      "competentie": [
+        "a1/code/Competentie_4"
+      ],
+      "doelgroep": [
+        "a1_doelgroep_4"
+      ],
+      "gedefinieerdDoor": [
+        "a1_gedefinieerdDoor_4"
+      ],
+      "geldigheid": [
+        "a1_geldigheid_4"
+      ],
+      "gerelateerdAan": [
+        "a1/code/Doel_4"
+      ],
+      "identificator": [
+        "a1/code/Identificator_2"
+      ],
+      "isBrederDan": [
+        "a1/code/Doel_1"
+      ],
+      "isSpecialisatieVan": [
+        "a1/code/Doel_2"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_5"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doel_5"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_5"
+      ],
+      "bestaatUit": [
+        "a1/code/Doel_2",
+        "a1/code/Doel_3"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2",
+        "a1/code/Doelgroep_4"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5",
+        "a1/code/Competentie_3"
+      ],
+      "doelgroep": [
+        "a1_doelgroep_5"
+      ],
+      "gedefinieerdDoor": [
+        "a1_gedefinieerdDoor_5",
+        "a1_gedefinieerdDoor_5b"
+      ],
+      "geldigheid": [
+        "a1_geldigheid_5"
+      ],
+      "gerelateerdAan": [
+        "a1/code/Doel_3",
+        "a1/code/Doel_3"
+      ],
+      "identificator": [
+        "a1/code/Identificator_2"
+      ],
+      "isBrederDan": [
+        "a1/code/Doel_4",
+        "a1/code/Doel_4"
+      ],
+      "isSpecialisatieVan": [
+        "a1/code/Doel_5",
+        "a1/code/Doel_3"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_2"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_2",
+        "a1/code/Doelgroep_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2",
+        "a1/code/Doelgroep_1"
+      ]
+    }
+  ],
+  "Doelgroep": [
+    {
+      "CODE": [
+        "a1/code/Doelgroep_1"
+      ],
+      "doelgroep": [
+        "a1/code/Doelgroep_5"
+      ],
+      "leeftijdstype": [
+        "a1/code/Doelgroep_5"
+      ],
+      "onderwijsniveau": [
+        "a1/code/Doelgroep_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doelgroep_2"
+      ],
+      "doelgroep": [
+        "a1/code/Doelgroep_1"
+      ],
+      "leeftijdstype": [
+        "a1/code/Doelgroep_2"
+      ],
+      "onderwijsniveau": [
+        "a1/code/Doelgroep_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doelgroep_3"
+      ],
+      "doelgroep": [
+        "a1/code/Doelgroep_5"
+      ],
+      "leeftijdstype": [
+        "a1/code/Doelgroep_3"
+      ],
+      "onderwijsniveau": [
+        "a1/code/Doelgroep_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doelgroep_4"
+      ],
+      "doelgroep": [
+        "a1/code/Doelgroep_2"
+      ],
+      "leeftijdstype": [
+        "a1/code/Doelgroep_4"
+      ],
+      "onderwijsniveau": [
+        "a1/code/Doelgroep_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Doelgroep_5"
+      ],
+      "doelgroep": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_5"
+      ],
+      "leeftijdstype": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_5"
+      ],
+      "onderwijsniveau": [
+        "a1/code/Doelgroep_1",
+        "a1/code/Doelgroep_4"
+      ]
+    }
+  ],
+  "Geldbedrag": [
+    {
+      "CODE": [
+        "a1/code/Geldbedrag_1"
+      ],
+      "valuta": [
+        "a1_valuta_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Geldbedrag_2"
+      ],
+      "valuta": [
+        "a1_valuta_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Geldbedrag_3"
+      ],
+      "valuta": [
+        "a1_valuta_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Geldbedrag_4"
+      ],
+      "valuta": [
+        "a1_valuta_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Geldbedrag_5"
+      ],
+      "valuta": [
+        "a1_valuta_5"
+      ]
+    }
+  ],
+  "Identificator": [
+    {
+      "CODE": [
+        "a1/code/Identificator_1"
+      ],
+      "toegekendDoor": [
+        "a1_toegekendDoor_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Identificator_2"
+      ],
+      "toegekendDoor": [
+        "a1_toegekendDoor_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Identificator_3"
+      ],
+      "toegekendDoor": [
+        "a1_toegekendDoor_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Identificator_4"
+      ],
+      "toegekendDoor": [
+        "a1_toegekendDoor_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Identificator_5"
+      ],
+      "toegekendDoor": [
+        "a1_toegekendDoor_5"
+      ]
+    }
+  ],
+  "KwantitatieveWaarde": [
+    {
+      "CODE": [
+        "a1/code/KwantitatieveWaarde_1"
+      ],
+      "eenheid": [
+        "a1_eenheid_1"
+      ],
+      "waarde": [
+        "a1_waarde_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/KwantitatieveWaarde_2"
+      ],
+      "eenheid": [
+        "a1_eenheid_2"
+      ],
+      "waarde": [
+        "a1_waarde_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/KwantitatieveWaarde_3"
+      ],
+      "eenheid": [
+        "a1_eenheid_3"
+      ],
+      "waarde": [
+        "a1_waarde_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/KwantitatieveWaarde_4"
+      ],
+      "eenheid": [
+        "a1_eenheid_4"
+      ],
+      "waarde": [
+        "a1_waarde_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/KwantitatieveWaarde_5"
+      ],
+      "eenheid": [
+        "a1_eenheid_5"
+      ],
+      "waarde": [
+        "a1_waarde_5"
+      ]
+    }
+  ],
+  "Leeractiviteit": [
+    {
+      "CODE": [
+        "a1/code/Leeractiviteit_1"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_1"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteit_5"
+      ],
+      "ingerichtDoor": [
+        "a1_ingerichtDoor_1"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteit_2"
+      ],
+      "leermiddel": [
+        "a1/code/Leermiddel_5"
+      ],
+      "locatie": [
+        "a1/code/Adresvoorstelling_3"
+      ],
+      "periode": [
+        "a1_periode_1"
+      ],
+      "specificatie": [
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2"
+      ],
+      "werklast": [
+        "a1_werklast_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteit_2"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_3"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteit_5"
+      ],
+      "ingerichtDoor": [
+        "a1_ingerichtDoor_2"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteit_2"
+      ],
+      "leermiddel": [
+        "a1/code/Leermiddel_1"
+      ],
+      "locatie": [
+        "a1/code/Adresvoorstelling_2"
+      ],
+      "periode": [
+        "a1_periode_2"
+      ],
+      "specificatie": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3"
+      ],
+      "werklast": [
+        "a1_werklast_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteit_3"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_2"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteit_4"
+      ],
+      "ingerichtDoor": [
+        "a1_ingerichtDoor_3"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteit_1"
+      ],
+      "leermiddel": [
+        "a1/code/Leermiddel_1"
+      ],
+      "locatie": [
+        "a1/code/Adresvoorstelling_3"
+      ],
+      "periode": [
+        "a1_periode_3"
+      ],
+      "specificatie": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ],
+      "werklast": [
+        "a1_werklast_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteit_4"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_5"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteit_3"
+      ],
+      "ingerichtDoor": [
+        "a1_ingerichtDoor_4"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteit_1"
+      ],
+      "leermiddel": [
+        "a1/code/Leermiddel_1"
+      ],
+      "locatie": [
+        "a1/code/Adresvoorstelling_2"
+      ],
+      "periode": [
+        "a1_periode_4"
+      ],
+      "specificatie": [
+        "a1/code/Leeractiviteitspecificatie_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ],
+      "werklast": [
+        "a1_werklast_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteit_5"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_1",
+        "a1/code/Doel_3"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteit_1",
+        "a1/code/Leeractiviteit_4"
+      ],
+      "ingerichtDoor": [
+        "a1_ingerichtDoor_5",
+        "a1_ingerichtDoor_5b"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteit_4",
+        "a1/code/Leeractiviteit_5"
+      ],
+      "leermiddel": [
+        "a1/code/Leermiddel_2",
+        "a1/code/Leermiddel_5"
+      ],
+      "locatie": [
+        "a1/code/Adresvoorstelling_1",
+        "a1/code/Adresvoorstelling_4"
+      ],
+      "periode": [
+        "a1_periode_5",
+        "a1_periode_5b"
+      ],
+      "specificatie": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "type": [
+        "a1/code/Doelgroep_4",
+        "a1/code/Doelgroep_2"
+      ],
+      "werklast": [
+        "a1_werklast_5"
+      ]
+    }
+  ],
+  "Leeractiviteitspecificatie": [
+    {
+      "CODE": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "contacturen": [
+        "a1/code/Openingsurenspecificatie_1"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_2"
+      ],
+      "generalisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_3"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "schrijftVoor": [
+        "a1/code/Leermiddel_5"
+      ],
+      "specialisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "contacturen": [
+        "a1/code/Openingsurenspecificatie_4"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_3"
+      ],
+      "generalisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteitspecificatie_3"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_3"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "schrijftVoor": [
+        "a1/code/Leermiddel_3"
+      ],
+      "specialisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteitspecificatie_3"
+      ],
+      "contacturen": [
+        "a1/code/Openingsurenspecificatie_3"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_1"
+      ],
+      "generalisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_1"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "schrijftVoor": [
+        "a1/code/Leermiddel_1"
+      ],
+      "specialisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "contacturen": [
+        "a1/code/Openingsurenspecificatie_5"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_1"
+      ],
+      "generalisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_1"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_4"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteitspecificatie_5"
+      ],
+      "schrijftVoor": [
+        "a1/code/Leermiddel_4"
+      ],
+      "specialisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leeractiviteitspecificatie_5"
+      ],
+      "contacturen": [
+        "a1/code/Openingsurenspecificatie_3",
+        "a1/code/Openingsurenspecificatie_1"
+      ],
+      "draagtBijAanHetBehalenVan": [
+        "a1/code/Doel_4",
+        "a1/code/Doel_1"
+      ],
+      "generalisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_2",
+        "a1/code/Leeractiviteitspecificatie_2"
+      ],
+      "heeftDeel": [
+        "a1/code/Leeractiviteitspecificatie_1",
+        "a1/code/Leeractiviteitspecificatie_3"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_5"
+      ],
+      "isDeelVan": [
+        "a1/code/Leeractiviteitspecificatie_4",
+        "a1/code/Leeractiviteitspecificatie_3"
+      ],
+      "schrijftVoor": [
+        "a1/code/Leermiddel_5",
+        "a1/code/Leermiddel_4"
+      ],
+      "specialisatieVan": [
+        "a1/code/Leeractiviteitspecificatie_1",
+        "a1/code/Leeractiviteitspecificatie_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1",
+        "a1/code/Doelgroep_3"
+      ]
+    }
+  ],
+  "Leermiddel": [
+    {
+      "CODE": [
+        "a1/code/Leermiddel_1"
+      ],
+      "benodigdMateriaal": [
+        "a1_benodigdMateriaal_1"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_1"
+      ],
+      "bestaatUit": [
+        "a1/code/LeermiddelElement_3"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_2"
+      ],
+      "dient": [
+        "a1/code/Doel_1"
+      ],
+      "formaat": [
+        "a1/code/Doelgroep_2"
+      ],
+      "instructie": [
+        "a1_instructie_1"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_5"
+      ],
+      "interactieType": [
+        "a1/code/Doelgroep_4"
+      ],
+      "isLidVan": [
+        "a1/code/LeermiddelVerzameling_1"
+      ],
+      "kost": [
+        "a1/code/Geldbedrag_2"
+      ],
+      "naam": [
+        "a1_naam_1"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_4"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_4"
+      ],
+      "resultaat": [
+        "a1/code/Doelgroep_3"
+      ],
+      "sleutelwoord": [
+        "a1_sleutelwoord_1"
+      ],
+      "toegankelijkheid": [
+        "a1/code/Doelgroep_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_5"
+      ],
+      "vereiste": [
+        "a1_vereiste_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leermiddel_2"
+      ],
+      "benodigdMateriaal": [
+        "a1_benodigdMateriaal_2"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_2"
+      ],
+      "bestaatUit": [
+        "a1/code/LeermiddelElement_5"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_3"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5"
+      ],
+      "dient": [
+        "a1/code/Doel_2"
+      ],
+      "formaat": [
+        "a1/code/Doelgroep_4"
+      ],
+      "instructie": [
+        "a1_instructie_2"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_4"
+      ],
+      "interactieType": [
+        "a1/code/Doelgroep_4"
+      ],
+      "isLidVan": [
+        "a1/code/LeermiddelVerzameling_3"
+      ],
+      "kost": [
+        "a1/code/Geldbedrag_2"
+      ],
+      "naam": [
+        "a1_naam_2"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_3"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_4"
+      ],
+      "resultaat": [
+        "a1/code/Doelgroep_2"
+      ],
+      "sleutelwoord": [
+        "a1_sleutelwoord_2"
+      ],
+      "toegankelijkheid": [
+        "a1/code/Doelgroep_3"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3"
+      ],
+      "vereiste": [
+        "a1_vereiste_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leermiddel_3"
+      ],
+      "benodigdMateriaal": [
+        "a1_benodigdMateriaal_3"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_3"
+      ],
+      "bestaatUit": [
+        "a1/code/LeermiddelElement_5"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5"
+      ],
+      "dient": [
+        "a1/code/Doel_1"
+      ],
+      "formaat": [
+        "a1/code/Doelgroep_4"
+      ],
+      "instructie": [
+        "a1_instructie_3"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_1"
+      ],
+      "interactieType": [
+        "a1/code/Doelgroep_5"
+      ],
+      "isLidVan": [
+        "a1/code/LeermiddelVerzameling_2"
+      ],
+      "kost": [
+        "a1/code/Geldbedrag_1"
+      ],
+      "naam": [
+        "a1_naam_3"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_2"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_1"
+      ],
+      "resultaat": [
+        "a1/code/Doelgroep_4"
+      ],
+      "sleutelwoord": [
+        "a1_sleutelwoord_3"
+      ],
+      "toegankelijkheid": [
+        "a1/code/Doelgroep_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_2"
+      ],
+      "vereiste": [
+        "a1_vereiste_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leermiddel_4"
+      ],
+      "benodigdMateriaal": [
+        "a1_benodigdMateriaal_4"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_4"
+      ],
+      "bestaatUit": [
+        "a1/code/LeermiddelElement_3"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_2"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5"
+      ],
+      "dient": [
+        "a1/code/Doel_1"
+      ],
+      "formaat": [
+        "a1/code/Doelgroep_2"
+      ],
+      "instructie": [
+        "a1_instructie_4"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_4"
+      ],
+      "interactieType": [
+        "a1/code/Doelgroep_5"
+      ],
+      "isLidVan": [
+        "a1/code/LeermiddelVerzameling_4"
+      ],
+      "kost": [
+        "a1/code/Geldbedrag_5"
+      ],
+      "naam": [
+        "a1_naam_4"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_4"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_3"
+      ],
+      "resultaat": [
+        "a1/code/Doelgroep_3"
+      ],
+      "sleutelwoord": [
+        "a1_sleutelwoord_4"
+      ],
+      "toegankelijkheid": [
+        "a1/code/Doelgroep_3"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ],
+      "vereiste": [
+        "a1_vereiste_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Leermiddel_5"
+      ],
+      "benodigdMateriaal": [
+        "a1_benodigdMateriaal_5",
+        "a1_benodigdMateriaal_5b"
+      ],
+      "beschrijving": [
+        "a1_beschrijving_5"
+      ],
+      "bestaatUit": [
+        "a1/code/LeermiddelElement_2",
+        "a1/code/LeermiddelElement_1"
+      ],
+      "bron": [
+        "a1/code/Doelgroep_4",
+        "a1/code/Doelgroep_3"
+      ],
+      "competentie": [
+        "a1/code/Competentie_5",
+        "a1/code/Competentie_4"
+      ],
+      "dient": [
+        "a1/code/Doel_3",
+        "a1/code/Doel_3"
+      ],
+      "formaat": [
+        "a1/code/Doelgroep_5",
+        "a1/code/Doelgroep_5"
+      ],
+      "instructie": [
+        "a1_instructie_5"
+      ],
+      "instructietaal": [
+        "a1/code/Doelgroep_5",
+        "a1/code/Doelgroep_2"
+      ],
+      "interactieType": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_3"
+      ],
+      "isLidVan": [
+        "a1/code/LeermiddelVerzameling_2",
+        "a1/code/LeermiddelVerzameling_3"
+      ],
+      "kost": [
+        "a1/code/Geldbedrag_4"
+      ],
+      "naam": [
+        "a1_naam_5"
+      ],
+      "niveau": [
+        "a1/code/Doelgroep_1",
+        "a1/code/Doelgroep_1"
+      ],
+      "onderwerp": [
+        "a1/code/Doelgroep_5",
+        "a1/code/Doelgroep_1"
+      ],
+      "resultaat": [
+        "a1/code/Doelgroep_4",
+        "a1/code/Doelgroep_4"
+      ],
+      "sleutelwoord": [
+        "a1_sleutelwoord_5",
+        "a1_sleutelwoord_5b"
+      ],
+      "toegankelijkheid": [
+        "a1/code/Doelgroep_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_1"
+      ],
+      "vereiste": [
+        "a1_vereiste_5",
+        "a1_vereiste_5b"
+      ]
+    }
+  ],
+  "LeermiddelElement": [
+    {
+      "CODE": [
+        "a1/code/LeermiddelElement_1"
+      ],
+      "onderdeelVan": [
+        "a1/code/Leermiddel_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelElement_2"
+      ],
+      "onderdeelVan": [
+        "a1/code/Leermiddel_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelElement_3"
+      ],
+      "onderdeelVan": [
+        "a1/code/Leermiddel_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelElement_4"
+      ],
+      "onderdeelVan": [
+        "a1/code/Leermiddel_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelElement_5"
+      ],
+      "onderdeelVan": [
+        "a1/code/Leermiddel_5"
+      ]
+    }
+  ],
+  "LeermiddelVerzameling": [
+    {
+      "CODE": [
+        "a1/code/LeermiddelVerzameling_1"
+      ],
+      "heeftLid": [
+        "a1/code/Leermiddel_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelVerzameling_2"
+      ],
+      "heeftLid": [
+        "a1/code/Leermiddel_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelVerzameling_3"
+      ],
+      "heeftLid": [
+        "a1/code/Leermiddel_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelVerzameling_4"
+      ],
+      "heeftLid": [
+        "a1/code/Leermiddel_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/LeermiddelVerzameling_5"
+      ],
+      "heeftLid": [
+        "a1/code/Leermiddel_1",
+        "a1/code/Leermiddel_2"
+      ]
+    }
+  ],
+  "Licentie": [
+    {
+      "CODE": [
+        "a1/code/Licentie_1"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_2"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_3"
+      ],
+      "type": [
+        "a1/code/Doelgroep_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_4"
+      ],
+      "type": [
+        "a1/code/Doelgroep_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_5"
+      ],
+      "type": [
+        "a1/code/Doelgroep_3",
+        "a1/code/Doelgroep_1"
+      ]
+    }
+  ],
+  "Openingsurenspecificatie": [
+    {
+      "CODE": [
+        "a1/code/Openingsurenspecificatie_1"
+      ],
+      "dagVanDeWeek": [
+        "http://example.com/au/dagVanDeWeek_1"
+      ],
+      "geldigTot": [
+        "2021-10-27T04:13:01.268Z"
+      ],
+      "geldigVan": [
+        "2028-10-08T11:36:50.107Z"
+      ],
+      "gesloten": [
+        "14:59:58"
+      ],
+      "open": [
+        "06:01:16"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Openingsurenspecificatie_2"
+      ],
+      "dagVanDeWeek": [
+        "http://example.com/au/dagVanDeWeek_2"
+      ],
+      "geldigTot": [
+        "2023-10-17T13:12:37.119Z"
+      ],
+      "geldigVan": [
+        "2013-03-28T15:32:46.978Z"
+      ],
+      "gesloten": [
+        "21:08:36"
+      ],
+      "open": [
+        "11:33:49"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Openingsurenspecificatie_3"
+      ],
+      "dagVanDeWeek": [
+        "http://example.com/au/dagVanDeWeek_3"
+      ],
+      "geldigTot": [
+        "2007-07-10T18:15:39.420Z"
+      ],
+      "geldigVan": [
+        "2011-07-31T17:10:37.668Z"
+      ],
+      "gesloten": [
+        "20:20:52"
+      ],
+      "open": [
+        "18:06:24"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Openingsurenspecificatie_4"
+      ],
+      "dagVanDeWeek": [
+        "http://example.com/au/dagVanDeWeek_4"
+      ],
+      "geldigTot": [
+        "2024-08-14T17:51:56.729Z"
+      ],
+      "geldigVan": [
+        "2005-05-21T22:43:38.214Z"
+      ],
+      "gesloten": [
+        "02:39:34"
+      ],
+      "open": [
+        "04:03:07"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Openingsurenspecificatie_5"
+      ],
+      "dagVanDeWeek": [
+        "http://example.com/au/dagVanDeWeek_5"
+      ],
+      "geldigTot": [
+        "2006-04-26T18:38:52.967Z"
+      ],
+      "geldigVan": [
+        "2014-12-18T20:57:24.856Z"
+      ],
+      "gesloten": [
+        "03:18:20"
+      ],
+      "open": [
+        "04:25:31"
+      ]
+    }
+  ],
+  "Periode": [
+    {
+      "CODE": [
+        "a1/code/Periode_1"
+      ],
+      "tot": [
+        "a1_tot_1"
+      ],
+      "van": [
+        "a1_van_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Periode_2"
+      ],
+      "tot": [
+        "a1_tot_2"
+      ],
+      "van": [
+        "a1_van_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Periode_3"
+      ],
+      "tot": [
+        "a1_tot_3"
+      ],
+      "van": [
+        "a1_van_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Periode_4"
+      ],
+      "tot": [
+        "a1_tot_4"
+      ],
+      "van": [
+        "a1_van_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Periode_5"
+      ],
+      "tot": [
+        "a1_tot_5"
+      ],
+      "van": [
+        "a1_van_5"
+      ]
+    }
+  ]
+}

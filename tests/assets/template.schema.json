@@ -1,0 +1,923 @@
+{
+  "Leeractiviteit": {
+    "sheetLabel": "Leeractiviteit",
+    "sheetClass": "http://data.europa.eu/snb/model/elm/LearningActivity",
+    "columns": {
+      "heeftDeel": {
+        "columnLabel": "heeftDeel",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/hasPart",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivity",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteit"
+      },
+      "ingerichtDoor": {
+        "columnLabel": "ingerichtDoor",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/directedBy",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "isDeelVan": {
+        "columnLabel": "isDeelVan",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/isPartOf",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivity",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteit"
+      },
+      "locatie": {
+        "columnLabel": "locatie",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/location",
+        "valueClass": "http://www.w3.org/ns/locn#Address",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Adresvoorstelling"
+      },
+      "periode": {
+        "columnLabel": "periode",
+        "columnProperty": "http://purl.org/dc/terms/temporal",
+        "valueClass": "http://data.europa.eu/m8g/PeriodOfTime",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "specificatie": {
+        "columnLabel": "specificatie",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/specifiedBy",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Leeractiviteitspecificatie"
+      },
+      "werklast": {
+        "columnLabel": "werklast",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/workload",
+        "valueClass": "http://www.w3.org/2006/time#Duration",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "leermiddel": {
+        "columnLabel": "leermiddel",
+        "columnProperty": "http://purl.org/dc/terms/references",
+        "valueClass": "https://schema.org/LearningResource",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leermiddel"
+      },
+      "draagtBijAanHetBehalenVan": {
+        "columnLabel": "draagtBijAanHetBehalenVan",
+        "columnProperty": "http://purl.org/dc/terms/contributor",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      }
+    }
+  },
+  "Doelgroep": {
+    "sheetLabel": "Doelgroep",
+    "sheetClass": "http://www.w3.org/2004/02/skos/core#Concept",
+    "columns": {
+      "leeftijdstype": {
+        "columnLabel": "leeftijdstype",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "doelgroep": {
+        "columnLabel": "doelgroep",
+        "columnProperty": "http://purl.org/dc/elements/1.1/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "onderwijsniveau": {
+        "columnLabel": "onderwijsniveau",
+        "columnProperty": "http://purl.org/dc/terms/educationLevel",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      }
+    }
+  },
+  "Leeractiviteitspecificatie": {
+    "sheetLabel": "Leeractiviteitspecificatie",
+    "sheetClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+    "columns": {
+      "contacturen": {
+        "columnLabel": "contacturen",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/contactHour",
+        "valueClass": "http://schema.org/OpeningHoursSpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Openingsurenspecificatie"
+      },
+      "generalisatieVan": {
+        "columnLabel": "generalisatieVan",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/generalisationOf",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteitspecificatie"
+      },
+      "heeftDeel": {
+        "columnLabel": "heeftDeel",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/hasPart",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteitspecificatie"
+      },
+      "instructietaal": {
+        "columnLabel": "instructietaal",
+        "columnProperty": "http://purl.org/dc/terms/language",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "isDeelVan": {
+        "columnLabel": "isDeelVan",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/isPartOf",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteitspecificatie"
+      },
+      "specialisatieVan": {
+        "columnLabel": "specialisatieVan",
+        "columnProperty": "http://data.europa.eu/snb/model/elm/specialisationOf",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningActivitySpecification",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leeractiviteitspecificatie"
+      },
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "draagtBijAanHetBehalenVan": {
+        "columnLabel": "draagtBijAanHetBehalenVan",
+        "columnProperty": "http://purl.org/dc/terms/contributor",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      },
+      "schrijftVoor": {
+        "columnLabel": "schrijftVoor",
+        "columnProperty": "http://purl.org/dc/terms/references",
+        "valueClass": "https://schema.org/LearningResource",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leermiddel"
+      }
+    }
+  },
+  "Leermiddel": {
+    "sheetLabel": "Leermiddel",
+    "sheetClass": "https://schema.org/LearningResource",
+    "columns": {
+      "beschrijving": {
+        "columnLabel": "beschrijving",
+        "columnProperty": "http://purl.org/dc/elements/1.1/description",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "instructie": {
+        "columnLabel": "instructie",
+        "columnProperty": "http://purl.org/dc/terms/instructionalMethod",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "naam": {
+        "columnLabel": "naam",
+        "columnProperty": "http://purl.org/dc/terms/title",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "vereiste": {
+        "columnLabel": "vereiste",
+        "columnProperty": "http://purl.org/dc/terms/requires",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "benodigdMateriaal": {
+        "columnLabel": "benodigdMateriaal",
+        "columnProperty": "https://schema.org/material",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "sleutelwoord": {
+        "columnLabel": "sleutelwoord",
+        "columnProperty": "https://schema.org/keywords",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "onderwerp": {
+        "columnLabel": "onderwerp",
+        "columnProperty": "http://purl.org/dc/elements/1.1/subject",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "toegankelijkheid": {
+        "columnLabel": "toegankelijkheid",
+        "columnProperty": "https://schema.org/accessibilityFeature",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "interactieType": {
+        "columnLabel": "interactieType",
+        "columnProperty": "https://schema.org/interactivityType",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "instructietaal": {
+        "columnLabel": "instructietaal",
+        "columnProperty": "http://purl.org/dc/terms/language",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "resultaat": {
+        "columnLabel": "resultaat",
+        "columnProperty": "https://schema.org/result",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "niveau": {
+        "columnLabel": "niveau",
+        "columnProperty": "http://purl.org/dc/terms/educationLevel",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "kost": {
+        "columnLabel": "kost",
+        "columnProperty": "https://schema.org/estimatedCost",
+        "valueClass": "https://schema.org/MonetaryAmount",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Geldbedrag"
+      },
+      "formaat": {
+        "columnLabel": "formaat",
+        "columnProperty": "http://purl.org/dc/terms/format",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "competentie": {
+        "columnLabel": "competentie",
+        "columnProperty": "https://schema.org/assesses",
+        "valueClass": "https://ec.europa.eu/esco/lod/static/model.html#Skill",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Competentie"
+      },
+      "bron": {
+        "columnLabel": "bron",
+        "columnProperty": "http://purl.org/dc/elements/1.1/source",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "dient": {
+        "columnLabel": "dient",
+        "columnProperty": "https://schema.org/educationalUse",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      },
+      "isLidVan": {
+        "columnLabel": "isLidVan",
+        "columnProperty": "https://schema.org/isPartOf",
+        "valueClass": "https://schema.org/CreativeWorkSeries",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "LeermiddelVerzameling"
+      },
+      "bestaatUit": {
+        "columnLabel": "bestaatUit",
+        "columnProperty": "https://schema.org/hasPart",
+        "valueClass": "https://schema.org/CreativeWork",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "LeermiddelElement"
+      }
+    }
+  },
+  "CreatiefWerk": {
+    "sheetLabel": "CreatiefWerk",
+    "sheetClass": "https://schema.org/CreativeWork",
+    "columns": {
+      "auteursrechtJaar": {
+        "columnLabel": "auteursrechtJaar",
+        "columnProperty": "https://schema.org/copyrightYear",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#date",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "versie": {
+        "columnLabel": "versie",
+        "columnProperty": "https://schema.org/version",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "publicatiedatum": {
+        "columnLabel": "publicatiedatum",
+        "columnProperty": "https://schema.org/datePublished",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "auteur": {
+        "columnLabel": "auteur",
+        "columnProperty": "https://schema.org/author",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "auteursrechtHouder": {
+        "columnLabel": "auteursrechtHouder",
+        "columnProperty": "https://schema.org/copyrightHolder",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "taal": {
+        "columnLabel": "taal",
+        "columnProperty": "https://schema.org/inLanguage",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "vereisteTijd": {
+        "columnLabel": "vereisteTijd",
+        "columnProperty": "https://schema.org/timeRequired",
+        "valueClass": "http://www.w3.org/2006/time#Duration",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "licentie": {
+        "columnLabel": "licentie",
+        "columnProperty": "https://schema.org/license",
+        "valueClass": "http://purl.org/dc/terms/LicenseDocument",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Licentie"
+      },
+      "producent": {
+        "columnLabel": "producent",
+        "columnProperty": "https://schema.org/author",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null
+      },
+      "uitgever": {
+        "columnLabel": "uitgever",
+        "columnProperty": "https://schema.org/publisher",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      }
+    }
+  },
+  "Doel": {
+    "sheetLabel": "Doel",
+    "sheetClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+    "columns": {
+      "beschrijving": {
+        "columnLabel": "beschrijving",
+        "columnProperty": "http://purl.org/dc/elements/1.1/description",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "geldigheid": {
+        "columnLabel": "geldigheid",
+        "columnProperty": "http://purl.org/dc/terms/valid",
+        "valueClass": "http://data.europa.eu/m8g/PeriodOfTime",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "identificator": {
+        "columnLabel": "identificator",
+        "columnProperty": "http://www.w3.org/ns/adms#identifier",
+        "valueClass": "http://www.w3.org/ns/adms#Identifier",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Identificator"
+      },
+      "niveau": {
+        "columnLabel": "niveau",
+        "columnProperty": "http://purl.org/dc/terms/educationLevel",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "gedefinieerdDoor": {
+        "columnLabel": "gedefinieerdDoor",
+        "columnProperty": "http://purl.org/dc/elements/1.1/creator",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null
+      },
+      "onderwerp": {
+        "columnLabel": "onderwerp",
+        "columnProperty": "http://purl.org/dc/elements/1.1/subject",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "bron": {
+        "columnLabel": "bron",
+        "columnProperty": "http://purl.org/dc/elements/1.1/source",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      },
+      "doelgroep": {
+        "columnLabel": "doelgroep",
+        "columnProperty": "http://purl.org/dc/terms/audience",
+        "valueClass": "https://schema.org/Audience",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "competentie": {
+        "columnLabel": "competentie",
+        "columnProperty": "https://schema.org/assesses",
+        "valueClass": "https://ec.europa.eu/esco/lod/static/model.html#Skill",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Competentie"
+      },
+      "gerelateerdAan": {
+        "columnLabel": "gerelateerdAan",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#related",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      },
+      "isSpecialisatieVan": {
+        "columnLabel": "isSpecialisatieVan",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#narrower",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      },
+      "isBrederDan": {
+        "columnLabel": "isBrederDan",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#broader",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      },
+      "bestaatUit": {
+        "columnLabel": "bestaatUit",
+        "columnProperty": "http://purl.org/dc/terms/hasPart",
+        "valueClass": "http://data.europa.eu/snb/model/elm/LearningAchievement",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doel"
+      }
+    }
+  },
+  "LeermiddelVerzameling": {
+    "sheetLabel": "LeermiddelVerzameling",
+    "sheetClass": "https://schema.org/CreativeWorkSeries",
+    "columns": {
+      "heeftLid": {
+        "columnLabel": "heeftLid",
+        "columnProperty": "https://schema.org/hasPart",
+        "valueClass": "https://schema.org/LearningResource",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Leermiddel"
+      }
+    }
+  },
+  "Licentie": {
+    "sheetLabel": "Licentie",
+    "sheetClass": "http://purl.org/dc/terms/LicenseDocument",
+    "columns": {
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Doelgroep"
+      }
+    }
+  },
+  "LeermiddelElement": {
+    "sheetLabel": "LeermiddelElement",
+    "sheetClass": "https://schema.org/CreativeWork",
+    "columns": {
+      "onderdeelVan": {
+        "columnLabel": "onderdeelVan",
+        "columnProperty": "https://schema.org/isPartOf",
+        "valueClass": "https://schema.org/LearningResource",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Leermiddel"
+      }
+    }
+  },
+  "Competentie": {
+    "sheetLabel": "Competentie",
+    "sheetClass": "https://ec.europa.eu/esco/lod/static/model.html#Skill",
+    "columns": {
+      "beschrijving": {
+        "columnLabel": "beschrijving",
+        "columnProperty": "http://purl.org/dc/terms/description",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "naam": {
+        "columnLabel": "naam",
+        "columnProperty": "http://purl.org/dc/terms/title",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1",
+        "valueForeignKeySheet": "Doelgroep"
+      }
+    }
+  },
+  "KwantitatieveWaarde": {
+    "sheetLabel": "KwantitatieveWaarde",
+    "sheetClass": "https://schema.org/QuantitativeValue",
+    "columns": {
+      "waarde": {
+        "columnLabel": "waarde",
+        "columnProperty": "https://schema.org/value",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2000/01/rdf-schema#Literal",
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "eenheid": {
+        "columnLabel": "eenheid",
+        "columnProperty": "https://schema.org/unitCode",
+        "valueClass": "https://qudt.org/schema/qudt/Unit",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      }
+    }
+  },
+  "Openingsurenspecificatie": {
+    "sheetLabel": "Openingsurenspecificatie",
+    "sheetClass": "http://schema.org/OpeningHoursSpecification",
+    "columns": {
+      "open": {
+        "columnLabel": "open",
+        "columnProperty": "http://schema.org/opens",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#time",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "gesloten": {
+        "columnLabel": "gesloten",
+        "columnProperty": "http://schema.org/closes",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#time",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "dagVanDeWeek": {
+        "columnLabel": "dagVanDeWeek",
+        "columnProperty": "http://schema.org/dayOfWeek",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#anyURI",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "geldigVan": {
+        "columnLabel": "geldigVan",
+        "columnProperty": "http://schema.org/validFrom",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "geldigTot": {
+        "columnLabel": "geldigTot",
+        "columnProperty": "http://schema.org/validThrough",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      }
+    }
+  },
+  "Adresvoorstelling": {
+    "sheetLabel": "Adresvoorstelling",
+    "sheetClass": "http://www.w3.org/ns/locn#Address",
+    "columns": {
+      "busnummer": {
+        "columnLabel": "busnummer",
+        "columnProperty": "https://vocab.belgif.be/ns/address#AddressRepresentation.boxNumber",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "locatienaam": {
+        "columnLabel": "locatienaam",
+        "columnProperty": "http://www.w3.org/ns/locn#locatorName",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "adresgebied": {
+        "columnLabel": "adresgebied",
+        "columnProperty": "http://www.w3.org/ns/locn#addressArea",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "postnaam": {
+        "columnLabel": "postnaam",
+        "columnProperty": "http://www.w3.org/ns/locn#postName",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "gemeentenaam": {
+        "columnLabel": "gemeentenaam",
+        "columnProperty": "https://vocab.belgif.be/ns/address#municipalityName",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "administratieveEenheidNiveau2": {
+        "columnLabel": "administratieveEenheidNiveau2",
+        "columnProperty": "http://www.w3.org/ns/locn#adminUnitL2",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "administratieveEenheidNiveau1": {
+        "columnLabel": "administratieveEenheidNiveau1",
+        "columnProperty": "http://www.w3.org/ns/locn#adminUnitL1",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "land": {
+        "columnLabel": "land",
+        "columnProperty": "https://vocab.belgif.be/ns/address#country",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "postcode": {
+        "columnLabel": "postcode",
+        "columnProperty": "http://www.w3.org/ns/locn#postCode",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "volledigAdres": {
+        "columnLabel": "volledigAdres",
+        "columnProperty": "http://www.w3.org/ns/locn#fullAddress",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "postbus": {
+        "columnLabel": "postbus",
+        "columnProperty": "http://www.w3.org/ns/locn#poBox",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "straatnaam": {
+        "columnLabel": "straatnaam",
+        "columnProperty": "http://www.w3.org/ns/locn#thoroughfare",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "locatieaanduiding": {
+        "columnLabel": "locatieaanduiding",
+        "columnProperty": "http://www.w3.org/ns/locn#locatorDesignator",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "huisnummer": {
+        "columnLabel": "huisnummer",
+        "columnProperty": "https://vocab.belgif.be/ns/address#AddressRepresentation.houseNumber",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      }
+    }
+  },
+  "Identificator": {
+    "sheetLabel": "Identificator",
+    "sheetClass": "http://www.w3.org/ns/adms#Identifier",
+    "columns": {
+      "toegekendDoor": {
+        "columnLabel": "toegekendDoor",
+        "columnProperty": "http://purl.org/dc/terms/creator",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      }
+    }
+  },
+  "Geldbedrag": {
+    "sheetLabel": "Geldbedrag",
+    "sheetClass": "https://schema.org/MonetaryAmount",
+    "columns": {
+      "valuta": {
+        "columnLabel": "valuta",
+        "columnProperty": "http://www.cidoc-crm.org/cidoc-crm/P180_has_currency",
+        "valueClass": "http://qudt.org/schema/qudt/CurrencyUnit",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      }
+    }
+  },
+  "Periode": {
+    "sheetLabel": "Periode",
+    "sheetClass": "http://www.w3.org/2006/time#ProperInterval",
+    "columns": {
+      "tot": {
+        "columnLabel": "tot",
+        "columnProperty": "http://www.w3.org/2006/time#hasEnd",
+        "valueClass": "http://www.w3.org/2006/time#Instant",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "van": {
+        "columnLabel": "van",
+        "columnProperty": "http://www.w3.org/2006/time#hasBeginning",
+        "valueClass": "http://www.w3.org/2006/time#Instant",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      }
+    }
+  }
+}
