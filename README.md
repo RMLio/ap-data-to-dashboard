@@ -14,6 +14,7 @@
   - [To do by you](#to-do-by-you)
 - [Development](#development)
   - [Work locally](#work-locally)
+  - [Testing](#testing)
 - [Design Choices and Known Limitations](#design-choices-and-known-limitations)
 - [Markdown linter](#markdown-linter)
 
@@ -253,6 +254,14 @@ npm run miravi
 ```
 
 Visit Miravi at <http://localhost:5173>.
+
+### Testing
+
+Run:
+
+```sh
+npm run test
+```
 
 ## Design Choices and Known Limitations
 
