@@ -66,7 +66,7 @@ for (const row of customVoc) {
 // Iterate sheets and add missing voc (shape voc and custom voc have priority)
 workBook.SheetNames.forEach((sheetName) => {
     if (sheetName.startsWith("_")) {
-        console.log(`⚠️ Sheet "${sheetName}" is ignored when adding missing voc (starts with '_')`);
+        console.log(`ℹ️ Sheet "${sheetName}" is ignored when adding missing voc (starts with '_')`);
         return;
     } else {
         const sheetLabel = safeLabel(sheetName);
