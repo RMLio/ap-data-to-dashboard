@@ -30,14 +30,14 @@
       "queryGroupId": "gr-missing-voc",
       "queryLocation": "missing_classes.rq",
       "name": "Missing classes",
-      "description": "Listing all missing classes."
+      "description": "Listing classes that are not defined in the initial SHACL nor in the _customVoc sheet, i.e., classes containing 'http://missing.example.com/'."
     },
     {
       "id": "102",
       "queryGroupId": "gr-missing-voc",
       "queryLocation": "missing_properties.rq",
       "name": "Missing properties",
-      "description": "Listing all missing properties with the class of their domain."
+      "description": "Listing properties that are not defined in the initial SHACL nor in the _customVoc sheet, i.e., properties containing 'http://missing.example.com/', with the class of their domain."
     }
   ]
 }
