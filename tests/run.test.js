@@ -5,19 +5,16 @@ import { readFileSync } from "node:fs";
 import { readFile, utils } from "xlsx";
 import yaml from 'js-yaml';
 
-const assetsDir = join(process.cwd(), "tests", "assets");
-const outDir = join(process.cwd(), "tests", "out");
+const assetsDir = join("tests", "assets");
+const outDir = join("tests", "out");
 
 function getJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
-function getYaml(filePath, cwdToRemove = null) {
+function getYaml(filePath) {
   const yamlContent = readFileSync(filePath, "utf8");
-  const universalYamlContent = cwdToRemove
-    ? yamlContent.split(cwdToRemove).join("<CWD>")
-    : yamlContent;
-  return yaml.load(universalYamlContent);
+  return yaml.load(yamlContent);
 }
 
 function getExcelAsJson(filePath) {
@@ -118,7 +115,7 @@ describe("Test scripts included in run.sh", () => {
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "data1-nocustomvocsheet.mapping.yml"), process.cwd());
+      const output = getYaml(join(outDir, "data1-nocustomvocsheet.mapping.yml"));
       const expectedOutput = getYaml(join(assetsDir, "data1-nocustomvocsheet.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });
@@ -133,7 +130,7 @@ describe("Test scripts included in run.sh", () => {
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "data2-customandmissingvoc.mapping.yml"), process.cwd());
+      const output = getYaml(join(outDir, "data2-customandmissingvoc.mapping.yml"));
       const expectedOutput = getYaml(join(assetsDir, "data2-customandmissingvoc.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });

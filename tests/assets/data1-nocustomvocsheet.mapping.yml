@@ -11,7 +11,7 @@ base: "http://base.example.com/"
 mappings:
   m_1:
     sources:
-      - [ "<CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.CreatiefWerk[*]" ]
+      - [ "tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.CreatiefWerk[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/CreativeWork~iri]
@@ -58,56 +58,56 @@ mappings:
 
   m_11:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(auteur[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_12:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(auteursrechtHouder[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_13:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(taal[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_14:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(vereisteTijd[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Duration~iri]
 
   m_15:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(licentie[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
 
   m_16:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(producent[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_17:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(uitgever[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_18:
     sources:
-      - [ "<CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.Licentie[*]" ]
+      - [ "tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.Licentie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
@@ -118,7 +118,7 @@ mappings:
 
   m_19:
     sources:
-      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.Licentie[*]" ]
+      - [ tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.Licentie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
