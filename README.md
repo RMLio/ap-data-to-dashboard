@@ -26,7 +26,8 @@ based on a SHACL shapes file in `in-shacl/shacl.ttl`.
 - Convert the input data in `in/*.xlsx` combined with schema data `in-shacl/template.schema.json` to RDF output in `out/serve-me/output.ttl`.
 
   Note that user intervention is required to go from above-mentioned Excel workbooks with dummy data to real data in `in/*.xlsx`.
-  See [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook) and also [Optionally include additional data](#optionally-include-additional-data) below.
+  See [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
+  and also [Optionally include additional data](#optionally-include-additional-data) below.
 
 - Generate a list of prepared queries in one file `out/queries/generated-queries.rq`.
 - Split this one file into separate query files in dir `out/queries/generated-queries`.
@@ -142,7 +143,7 @@ the diagram of that application profile visualizes the links between the sheets 
 
 ### Optionally include additional data
 
-If you want to include addtional data, not defined in the SHACL template, you can add extra sheets and/or columns.
+If you want to include additional data, not defined in the SHACL template, you can add extra sheets and/or columns.
 Each sheet must contain exactly one `CODE` column.
 
 **Example**: an additional sheet with name *Agent*.
@@ -161,10 +162,10 @@ You may specify custom vocabulary per sheets and sheet/columns combination in th
 
 **Example**: the `_customVoc` sheet.
 
-| sheetLabel | sheetClass                      | columnLabel | columnProperty                  | valueDatatype                            | valueClass                      |
-|------------|---------------------------------|-------------|---------------------------------|------------------------------------------|---------------------------------|
-| Agent      | http://xmlns.com/foaf/0.1/Agent | age         | http://xmlns.com/foaf/0.1/age   | http://www.w3.org/2001/XMLSchema#integer |                                 |
-| Agent      | http://xmlns.com/foaf/0.1/Agent | knows       | http://xmlns.com/foaf/0.1/knows |                                          | http://xmlns.com/foaf/0.1/Agent |
+| sheetLabel | sheetClass                        | columnLabel | columnProperty                    | valueDatatype                              | valueClass                        |
+|------------|-----------------------------------|-------------|-----------------------------------|--------------------------------------------|-----------------------------------|
+| Agent      | <http://xmlns.com/foaf/0.1/Agent> | age         | <http://xmlns.com/foaf/0.1/age>   | <http://www.w3.org/2001/XMLSchema#integer> |                                   |
+| Agent      | <http://xmlns.com/foaf/0.1/Agent> | knows       | <http://xmlns.com/foaf/0.1/knows> |                                            | <http://xmlns.com/foaf/0.1/Agent> |
 
 Any additional sheets and columns without such specifications will be mapped to
  `http://missing.example.com/` + `sheetLabel` or `columnlabel`.
