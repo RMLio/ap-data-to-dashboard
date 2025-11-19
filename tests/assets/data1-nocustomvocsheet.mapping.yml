@@ -1,0 +1,125 @@
+
+prefixes:
+  ex: "http://example.org/"
+  exr: "http://example.org/relation/"
+  skos: "http://www.w3.org/2004/02/skos/core#"
+  dcterms: "http://purl.org/dc/terms/"
+  rdfs: "http://www.w3.org/2000/01/rdf-schema#"
+
+base: "http://base.example.com/" 
+
+mappings:
+  m_1:
+    sources:
+      - [ "<CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.CreatiefWerk[*]" ]
+    s: $(CODE[*])
+    po:
+      - [rdf:type, https://schema.org/CreativeWork~iri]
+      - p: "https://schema.org/copyrightYear"
+        o: 
+          value:  "$(auteursrechtJaar[*])"
+          datatype: http://www.w3.org/2001/XMLSchema#date
+      - p: "https://schema.org/version"
+        o: 
+          value:  "$(versie[*])"
+          language: nl
+      - p: "https://schema.org/datePublished"
+        o: 
+          value:  "$(publicatiedatum[*])"
+          datatype: http://www.w3.org/2001/XMLSchema#dateTime
+      - p: "https://schema.org/author"
+        o: 
+          value:  "$(auteur[*])"
+          type: iri
+      - p: "https://schema.org/copyrightHolder"
+        o: 
+          value:  "$(auteursrechtHouder[*])"
+          type: iri
+      - p: "https://schema.org/inLanguage"
+        o: 
+          value:  "$(taal[*])"
+          type: iri
+      - p: "https://schema.org/timeRequired"
+        o: 
+          value:  "$(vereisteTijd[*])"
+          type: iri
+      - p: "https://schema.org/license"
+        o: 
+          value:  "$(licentie[*])"
+          type: iri
+      - p: "https://schema.org/author"
+        o: 
+          value:  "$(producent[*])"
+          type: iri
+      - p: "https://schema.org/publisher"
+        o: 
+          value:  "$(uitgever[*])"
+          type: iri
+
+  m_11:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(auteur[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
+
+  m_12:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(auteursrechtHouder[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
+
+  m_13:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(taal[*])
+    po:
+      - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
+
+  m_14:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(vereisteTijd[*])
+    po:
+      - [rdf:type, http://www.w3.org/2006/time#Duration~iri]
+
+  m_15:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(licentie[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
+
+  m_16:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(producent[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
+
+  m_17:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(uitgever[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
+
+  m_18:
+    sources:
+      - [ "<CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath", "$.Licentie[*]" ]
+    s: $(CODE[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
+      - p: "http://purl.org/dc/terms/type"
+        o: 
+          value:  "$(type[*])"
+          type: iri
+
+  m_19:
+    sources:
+      - [ <CWD>/tests/assets/data1-nocustomvocsheet.json~jsonpath, "$.Licentie[*]" ]
+    s: $(type[*])
+    po:
+      - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
+

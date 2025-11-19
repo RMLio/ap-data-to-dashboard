@@ -2,7 +2,6 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { readFileSync } from "node:fs";
-import { emptyDirSync } from "fs-extra";
 import { readFile, utils } from "xlsx";
 import yaml from 'js-yaml';
 
@@ -32,10 +31,10 @@ function getExcelAsJson(filePath) {
 }
 
 describe("Test scripts included in run.sh", () => {
-
+/*
   beforeEach(() => {
     emptyDirSync(outDir);
-  });
+  });*/
 
   describe("shacl-to-template template JSON", () => {
     it("should generate template schema JSON", async () => {
@@ -69,29 +68,44 @@ describe("Test scripts included in run.sh", () => {
   describe("dataxlsx-to-datajson", () => {
     it("should generate data JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-datajson.js", "-i", join(assetsDir, "dummydata-a1.xlsx"), "-o", outDir, "-d", "|"], (error) => {
+        execFile("node", ["./src/dataxlsx-to-datajson.js", "-i", join(assetsDir, "data1-nocustomvocsheet.xlsx"), "-o", outDir, "-d", "|"], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      const output = getJson(join(outDir, "dummydata-a1.json"));
-      const expectedOutput = getJson(join(assetsDir, "dummydata-a1.json"));
+      const output = getJson(join(outDir, "data1-nocustomvocsheet.json"));
+      const expectedOutput = getJson(join(assetsDir, "data1-nocustomvocsheet.json"));
 
       expect(output).toEqual(expectedOutput);
     });
   });
 
-  //dummydata-a2.xlsx in tests/assets is extended with custom and missing vocabulary
+  //data2-customandmissingvoc.xlsx in tests/assets is extended with custom and missing vocabulary
   describe("dataxlsx-to-enrichedschema", () => {
     it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enrichedschema.js", "-i", join(assetsDir, "dummydata-a2.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enrichedschema.js", "-i", join(assetsDir, "data2-customandmissingvoc.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      const output = getJson(join(outDir, "dummydata-a2-enrichedschema.json"));
-      const expectedOutput = getJson(join(assetsDir, "dummydata-a2-enrichedschema.json"));
+      const output = getJson(join(outDir, "data2-customandmissingvoc-enrichedschema.json"));
+      const expectedOutput = getJson(join(assetsDir, "data2-customandmissingvoc-enrichedschema.json"));
+      expect(output).toEqual(expectedOutput);
+    });
+  });
+
+  //data1-nocustomvocsheet.xlsx in tests/assets has no _customVoc sheet
+  describe("dataxlsx-to-enrichedschema from  XLSX without _customVoc sheet", () => {
+    it("should generate enriched schema JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-enrichedschema.js", "-i", join(assetsDir, "data1-nocustomvocsheet.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      const output = getJson(join(outDir, "data1-nocustomvocsheet-enrichedschema.json"));
+      const expectedOutput = getJson(join(assetsDir, "data1-nocustomvocsheet-enrichedschema.json"));
       expect(output).toEqual(expectedOutput);
     });
   });
@@ -99,28 +113,28 @@ describe("Test scripts included in run.sh", () => {
   describe("schema-to-yarrrml", () => {
     it("should generate YARRRML starting from template schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "dummydata-a1.mapping.yml"), "-s", join(assetsDir, "dummydata-a1.json")], (error) => {
+        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "data1-nocustomvocsheet.mapping.yml"), "-s", join(assetsDir, "data1-nocustomvocsheet.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "dummydata-a1.mapping.yml"), process.cwd());
-      const expectedOutput = getYaml(join(assetsDir, "dummydata-a1.mapping.yml"));
+      const output = getYaml(join(outDir, "data1-nocustomvocsheet.mapping.yml"), process.cwd());
+      const expectedOutput = getYaml(join(assetsDir, "data1-nocustomvocsheet.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });
   });
 
-  //dummydata-a2.xlsx in tests/assets is extended with custom and missing vocabulary
+  //data2-customandmissingvoc.xlsx in tests/assets is extended with custom and missing vocabulary
   describe("schema-to-yarrrml enriched", () => {
     it("should generate YARRRML starting from enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "dummydata-a2-enrichedschema.json"), "-o", join(outDir, "dummydata-a2.mapping.yml"), "-s", join(assetsDir, "dummydata-a1.json")], (error) => {
+        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "data2-customandmissingvoc-enrichedschema.json"), "-o", join(outDir, "data2-customandmissingvoc.mapping.yml"), "-s", join(assetsDir, "data1-nocustomvocsheet.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "dummydata-a2.mapping.yml"), process.cwd());
-      const expectedOutput = getYaml(join(assetsDir, "dummydata-a2.mapping.yml"));
+      const output = getYaml(join(outDir, "data2-customandmissingvoc.mapping.yml"), process.cwd());
+      const expectedOutput = getYaml(join(assetsDir, "data2-customandmissingvoc.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });
   })
