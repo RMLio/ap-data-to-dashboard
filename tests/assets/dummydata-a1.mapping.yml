@@ -11,7 +11,7 @@ base: "http://base.example.com/"
 mappings:
   m_1:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Leeractiviteit[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Leeractiviteit[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivity~iri]
@@ -58,77 +58,77 @@ mappings:
 
   m_11:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(heeftDeel[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivity~iri]
 
   m_12:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(ingerichtDoor[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_13:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(isDeelVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivity~iri]
 
   m_14:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(locatie[*])
     po:
       - [rdf:type, http://www.w3.org/ns/locn#Address~iri]
 
   m_15:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(periode[*])
     po:
       - [rdf:type, http://data.europa.eu/m8g/PeriodOfTime~iri]
 
   m_16:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(specificatie[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
 
   m_17:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(werklast[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Duration~iri]
 
   m_18:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_19:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(leermiddel[*])
     po:
       - [rdf:type, https://schema.org/LearningResource~iri]
 
   m_20:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteit[*]" ]
     s: $(draagtBijAanHetBehalenVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_21:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Doelgroep[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Doelgroep[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
@@ -147,28 +147,28 @@ mappings:
 
   m_24:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
     s: $(leeftijdstype[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_25:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
     s: $(doelgroep[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_26:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doelgroep[*]" ]
     s: $(onderwijsniveau[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_27:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Leeractiviteitspecificatie[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Leeractiviteitspecificatie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
@@ -211,70 +211,70 @@ mappings:
 
   m_36:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(contacturen[*])
     po:
       - [rdf:type, http://schema.org/OpeningHoursSpecification~iri]
 
   m_37:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(generalisatieVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
 
   m_38:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(heeftDeel[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
 
   m_39:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(instructietaal[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_40:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(isDeelVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
 
   m_41:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(specialisatieVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningActivitySpecification~iri]
 
   m_42:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_43:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(draagtBijAanHetBehalenVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_44:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leeractiviteitspecificatie[*]" ]
     s: $(schrijftVoor[*])
     po:
       - [rdf:type, https://schema.org/LearningResource~iri]
 
   m_45:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Leermiddel[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Leermiddel[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/LearningResource~iri]
@@ -361,105 +361,105 @@ mappings:
 
   m_65:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(onderwerp[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_66:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(toegankelijkheid[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_67:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_68:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(interactieType[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_69:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(instructietaal[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_70:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(resultaat[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_71:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(niveau[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_72:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(kost[*])
     po:
       - [rdf:type, https://schema.org/MonetaryAmount~iri]
 
   m_73:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(formaat[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_74:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(competentie[*])
     po:
       - [rdf:type, https://ec.europa.eu/esco/lod/static/model.html#Skill~iri]
 
   m_75:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(bron[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_76:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(dient[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_77:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(isLidVan[*])
     po:
       - [rdf:type, https://schema.org/CreativeWorkSeries~iri]
 
   m_78:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Leermiddel[*]" ]
     s: $(bestaatUit[*])
     po:
       - [rdf:type, https://schema.org/CreativeWork~iri]
 
   m_79:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.CreatiefWerk[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.CreatiefWerk[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/CreativeWork~iri]
@@ -506,56 +506,56 @@ mappings:
 
   m_89:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(auteur[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_90:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(auteursrechtHouder[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_91:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(taal[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_92:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(vereisteTijd[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Duration~iri]
 
   m_93:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(licentie[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
 
   m_94:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(producent[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_95:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(uitgever[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_96:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Doel[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Doel[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
@@ -618,98 +618,98 @@ mappings:
 
   m_110:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(geldigheid[*])
     po:
       - [rdf:type, http://data.europa.eu/m8g/PeriodOfTime~iri]
 
   m_111:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(identificator[*])
     po:
       - [rdf:type, http://www.w3.org/ns/adms#Identifier~iri]
 
   m_112:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(niveau[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_113:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(gedefinieerdDoor[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_114:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(onderwerp[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_115:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_116:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(bron[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_117:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(doelgroep[*])
     po:
       - [rdf:type, https://schema.org/Audience~iri]
 
   m_118:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(competentie[*])
     po:
       - [rdf:type, https://ec.europa.eu/esco/lod/static/model.html#Skill~iri]
 
   m_119:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(gerelateerdAan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_120:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(isSpecialisatieVan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_121:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(isBrederDan[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_122:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Doel[*]" ]
     s: $(bestaatUit[*])
     po:
       - [rdf:type, http://data.europa.eu/snb/model/elm/LearningAchievement~iri]
 
   m_123:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.LeermiddelVerzameling[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.LeermiddelVerzameling[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/CreativeWorkSeries~iri]
@@ -720,14 +720,14 @@ mappings:
 
   m_124:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.LeermiddelVerzameling[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.LeermiddelVerzameling[*]" ]
     s: $(heeftLid[*])
     po:
       - [rdf:type, https://schema.org/LearningResource~iri]
 
   m_125:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Licentie[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Licentie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
@@ -738,14 +738,14 @@ mappings:
 
   m_126:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Licentie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Licentie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_127:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.LeermiddelElement[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.LeermiddelElement[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/CreativeWork~iri]
@@ -756,14 +756,14 @@ mappings:
 
   m_128:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.LeermiddelElement[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.LeermiddelElement[*]" ]
     s: $(onderdeelVan[*])
     po:
       - [rdf:type, https://schema.org/LearningResource~iri]
 
   m_129:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Competentie[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Competentie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://ec.europa.eu/esco/lod/static/model.html#Skill~iri]
@@ -782,14 +782,14 @@ mappings:
 
   m_132:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Competentie[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Competentie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
   m_133:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.KwantitatieveWaarde[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.KwantitatieveWaarde[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/QuantitativeValue~iri]
@@ -804,14 +804,14 @@ mappings:
 
   m_135:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.KwantitatieveWaarde[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.KwantitatieveWaarde[*]" ]
     s: $(eenheid[*])
     po:
       - [rdf:type, https://qudt.org/schema/qudt/Unit~iri]
 
   m_136:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Openingsurenspecificatie[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Openingsurenspecificatie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://schema.org/OpeningHoursSpecification~iri]
@@ -838,7 +838,7 @@ mappings:
 
   m_141:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Adresvoorstelling[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Adresvoorstelling[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://www.w3.org/ns/locn#Address~iri]
@@ -901,7 +901,7 @@ mappings:
 
   m_155:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Identificator[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Identificator[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://www.w3.org/ns/adms#Identifier~iri]
@@ -912,14 +912,14 @@ mappings:
 
   m_156:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Identificator[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Identificator[*]" ]
     s: $(toegekendDoor[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_157:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Geldbedrag[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Geldbedrag[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/MonetaryAmount~iri]
@@ -930,14 +930,14 @@ mappings:
 
   m_158:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Geldbedrag[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Geldbedrag[*]" ]
     s: $(valuta[*])
     po:
       - [rdf:type, http://qudt.org/schema/qudt/CurrencyUnit~iri]
 
   m_159:
     sources:
-      - [ "/home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath", "$.Periode[*]" ]
+      - [ "<CWD>/tests/assets/dummydata-a1.json~jsonpath", "$.Periode[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#ProperInterval~iri]
@@ -952,14 +952,14 @@ mappings:
 
   m_161:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Periode[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Periode[*]" ]
     s: $(tot[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Instant~iri]
 
   m_162:
     sources:
-      - [ /home/elsdvlee/ap-data-to-dashboard/tests/assets/dummydata-a1.json~jsonpath, "$.Periode[*]" ]
+      - [ <CWD>/tests/assets/dummydata-a1.json~jsonpath, "$.Periode[*]" ]
     s: $(van[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Instant~iri]

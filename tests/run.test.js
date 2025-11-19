@@ -1,20 +1,31 @@
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, beforeEach } from "vitest";
 import { execFile } from "node:child_process";
 import { join } from "node:path";
-import { readFileSync, rmSync, readdirSync, mkdirSync } from "node:fs";
+import { readFileSync } from "node:fs";
+import { emptyDirSync } from "fs-extra";
 import { readFile, utils } from "xlsx";
 import yaml from 'js-yaml';
 
-const assetsDir = join(process.cwd(), "tests/assets/");
-const outDir = join(process.cwd(), "./tests/out/");
+const assetsDir = join(process.cwd(), "tests", "assets");
+const outDir = join(process.cwd(), "tests", "out");
 
 function getJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
 }
 
-function getYaml(filePath) {
+function getYaml(filePath, cwdToRemove = null) {
   const yamlContent = readFileSync(filePath, "utf8");
-  return yaml.load(yamlContent);
+  const universalYamlContent = cwdToRemove
+    ? yamlContent.split(cwdToRemove).join("<CWD>")
+    : yamlContent;
+  return yaml.load(universalYamlContent);
+}
+
+function getYamlWithAnonimizedCwd(filePath) {
+  const yamlContent = readFileSync(filePath, "utf8");
+  const cwd = process.cwd().replace(/\\/g, '/'); // normalize for Windows paths
+  const anonymizedContent = yamlContent.split(cwd).join("<CWD>");
+  return yaml.load(anonymizedContent);
 }
 
 function getExcelAsJson(filePath) {
@@ -27,33 +38,10 @@ function getExcelAsJson(filePath) {
   return result;
 }
 
-function emptyOutDir() {
-
-  try {
-    // ensure outDir exists
-    mkdirSync(outDir, { recursive: true });
-
-    // remove everything except .gitkeep
-    const entries = readdirSync(outDir, { withFileTypes: true });
-    for (const entry of entries) {
-      if (entry.name === ".gitkeep") continue;
-      const p = join(outDir, entry.name);
-      if (entry.isDirectory()) {
-        rmSync(p, { recursive: true, force: true });
-      } else {
-        rmSync(p, { force: true });
-      }
-    }
-  } catch (err) {
-    // ignore errors
-
-  }
-}
-
 describe("Test scripts included in run.sh", () => {
 
-  afterEach(() => {
-    emptyOutDir();
+  beforeEach(() => {
+    emptyDirSync(outDir);
   });
 
   describe("shacl-to-template template JSON", () => {
@@ -123,7 +111,7 @@ describe("Test scripts included in run.sh", () => {
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "dummydata-a1.mapping.yml"));
+      const output = getYaml(join(outDir, "dummydata-a1.mapping.yml"), process.cwd());
       const expectedOutput = getYaml(join(assetsDir, "dummydata-a1.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });
@@ -138,7 +126,7 @@ describe("Test scripts included in run.sh", () => {
           else resolve();
         });
       });
-      const output = getYaml(join(outDir, "dummydata-a2.mapping.yml"));
+      const output = getYaml(join(outDir, "dummydata-a2.mapping.yml"), process.cwd());
       const expectedOutput = getYaml(join(assetsDir, "dummydata-a2.mapping.yml"));
       expect(output).toEqual(expectedOutput);
     });

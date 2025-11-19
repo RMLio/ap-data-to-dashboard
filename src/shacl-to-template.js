@@ -19,7 +19,7 @@ const program = new Command();
 
 program
   .option("-i, --input <file>", "Input SHACL file", "in-shacl/shacl.ttl")
-  .option("-o, --output <dir>", "Output directory", "in-shacl/")
+  .option("-o, --output <dir>", "Output directory", "in-shacl")
   .option("-d, --dummy <number>", "Amount of dummy data files", 2)
 
 program.parse(process.argv);
@@ -29,11 +29,11 @@ const inputFile = options.input;
 const outputDir = options.output;
 const dummy = options.dummy;
 
-const templateFile = outputDir + "template.xlsx"
-const schemaFile = outputDir + "template.schema.json"
+const templateFile = path.join(outputDir, "template.xlsx");
+const schemaFile = path.join(outputDir, "template.schema.json");
 const dummyFiles = []
 for (let i = 1; i <= dummy; i++) {
-  dummyFiles.push(outputDir + "dummydata-a" + i + ".xlsx")
+  dummyFiles.push(path.join(outputDir, "dummydata-a" + i + ".xlsx"));
 }
 
 if (!fs.existsSync(inputFile)) {
