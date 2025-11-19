@@ -21,13 +21,6 @@ function getYaml(filePath, cwdToRemove = null) {
   return yaml.load(universalYamlContent);
 }
 
-function getYamlWithAnonimizedCwd(filePath) {
-  const yamlContent = readFileSync(filePath, "utf8");
-  const cwd = process.cwd().replace(/\\/g, '/'); // normalize for Windows paths
-  const anonymizedContent = yamlContent.split(cwd).join("<CWD>");
-  return yaml.load(anonymizedContent);
-}
-
 function getExcelAsJson(filePath) {
   const workBook = readFile(filePath);
   const result = {};
