@@ -7,21 +7,10 @@ set -euo pipefail
 # Unmatched globs expand to nothing
 shopt -s nullglob  
 
-# Constants
-in_dir="in"
-in_shacl_dir="in-shacl"
-out_dir="out"
-template_schema_json="$in_shacl_dir/template.schema.json"
-queries_dir="$out_dir/queries"
-queries_combined_file="$queries_dir/generated-queries.rq"
-queries_split_dir="$queries_dir/generated-queries"
-rdf_dir="$out_dir/serve-me"
-miravi_main_dir="node_modules/miravi/main"
-miravi_initial_config_dir="miravi-initial-config"
-
 # Default argument values
 dataUrl="http://localhost:5500/"
 delimiter="|"
+prefix=""
 buildMiravi=true
 strict=false
 
@@ -36,6 +25,10 @@ while [[ $# -gt 0 ]]; do
       delimiter="$2"
       shift 2
       ;;
+    -p)
+      prefix="$2"
+      shift 2
+      ;;
     -n|--noMiraviBuild)
       buildMiravi=false
       shift
@@ -45,9 +38,10 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;  
     -h|--help)
-      echo "Usage: $0 -u <dataUrl> -d <delimiter> [-n | --noMiraviBuild] [-s | --strict] [-h | --help]"
-      echo "  <dataUrl>:     default='http://localhost:5500/'"
-      echo "  <delimiter>:   default='|'"
+      echo "Usage: $0 [-u <dataUrl>] [-d <delimiter>] [-p prefix] [-n | --noMiraviBuild] [-s | --strict] [-h | --help]"
+      echo "  <dataUrl>:     the base URL where the RDF output files will be served; default='http://localhost:5500/'"
+      echo "  <delimiter>:   delimiter used to enter multiple values in one cell in the spreadsheets; default='|'"
+      echo "  <prefix>:      prefix to paths; default=''"
       echo "  noMiraviBuild: do not build Miravi and delete previous build"
       echo "  strict:        do not take custom vocabulary into account"
       exit 1
@@ -62,6 +56,18 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+# Paths to input and output directories and files
+in_dir="${prefix}in"
+in_shacl_dir="${prefix}in-shacl"
+out_dir="${prefix}out"
+template_schema_json="${in_shacl_dir}/template.schema.json"
+queries_dir="${out_dir}/queries"
+queries_combined_file="${queries_dir}/generated-queries.rq"
+queries_split_dir="${queries_dir}/generated-queries"
+rdf_dir="${out_dir}/serve-me"
+miravi_main_dir="${prefix}node_modules/miravi/main"
+miravi_initial_config_dir="miravi-initial-config"
 
 rm -rf $out_dir
 

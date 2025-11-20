@@ -1,0 +1,7 @@
+SELECT DISTINCT ?domainClass ?missingProperty
+WHERE {
+  ?s a ?domainClass .
+  ?s ?missingProperty ?o .
+  FILTER(STRSTARTS(STR(?missingProperty), "http://missing.example.com/"))
+}
+

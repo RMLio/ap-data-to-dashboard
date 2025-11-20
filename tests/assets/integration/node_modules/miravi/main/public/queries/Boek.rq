@@ -1,0 +1,5 @@
+# Boek 
+SELECT DISTINCT ?Boek_url ?titel WHERE {
+  ?Boek_url a <http://missing.example.com/Boek> .
+  OPTIONAL { ?Boek_url <http://missing.example.com/titel> ?titel . }
+}

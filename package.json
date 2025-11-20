@@ -9,7 +9,7 @@
     "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1 --ignore-scripts --no-save && cd node_modules/miravi/main && npm i && cd ../test && npm i",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2 --fix",
-    "test": "vitest",
+    "test": "vitest --fileParallelism=false",
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
@@ -22,6 +22,9 @@
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21",
+    "minimatch": "^10.1.1",
+    "n3": "^1.26.0",
+    "rdf-isomorphic": "^2.0.1",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {

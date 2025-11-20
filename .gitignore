@@ -1,9 +1,11 @@
+.DS_Store
 .vscode/
 .idea/
-.DS_Store
-node_modules/
-out/
-subprojects/
 rmlmapper-*
-in-shacl/
-in/
+# leading slash explicitly added to ignore only root-level folders below!
+/node_modules/
+/in-shacl/
+/in/
+/out/
+/subprojects/
+/tests/out/
