@@ -25,7 +25,7 @@ describe("Testing js scripts", () => {
     });
   });
 
-  describe("template-to-template template XSLX", () => {
+  describe("shacl-to-template template XSLX", () => {
     it("should generate template XLSX", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
@@ -76,8 +76,8 @@ describe("Testing js scripts", () => {
     });
   });
 
-  describe("schema-to-yarrrml", () => {
-    it("should generate YARRRML starting from template schema JSON", async () => {
+  describe("schema-to-yarrrml starting from template schema JSON", () => {
+    it("should generate YARRRML", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "data1-nocustomvocsheet.mapping.yml"), "-s", join(assetsDir, "data1-nocustomvocsheet.json")], (error) => {
           if (error) reject(error);
@@ -89,8 +89,8 @@ describe("Testing js scripts", () => {
   });
 
   //data2-customandmissingvoc.xlsx in tests/assets is extended with custom and missing vocabulary
-  describe("schema-to-yarrrml enriched", () => {
-    it("should generate YARRRML starting from enriched schema JSON", async () => {
+  describe("schema-to-yarrrml starting from enriched schema JSON", () => {
+    it("should generate YARRRML", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "data2-customandmissingvoc-enrichedschema.json"), "-o", join(outDir, "data2-customandmissingvoc.mapping.yml"), "-s", join(assetsDir, "data1-nocustomvocsheet.json")], (error) => {
           if (error) reject(error);
@@ -113,8 +113,8 @@ describe("Testing js scripts", () => {
     });
   })
 
-  describe("schema-to-sparql", () => {
-    it("should generate queries from template schema JSON", async () => {
+  describe("schema-to-sparql starting from template schema JSON", () => {
+    it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"), 
           "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
@@ -127,8 +127,8 @@ describe("Testing js scripts", () => {
     });
   })
 
-  describe("schema-to-sparql merged", () => {
-    it("should generate queries from merged schema JSON", async () => {
+  describe("schema-to-sparql from merged schema JSON", () => {
+    it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"), 
           "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
