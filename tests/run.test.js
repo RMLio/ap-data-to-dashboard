@@ -7,7 +7,7 @@ import { compareDirectories } from "./compareUtilities.js";
 const assetsDir = join("tests", "assets");
 const outDir = join("tests", "out");
 
-describe("Testing run.sh", () => {
+describe("Testing run.sh -n", () => {
 
   it("should generate final outputs as expected", async () => {
     const integrationRefDir = join(assetsDir, "integration");
@@ -29,7 +29,7 @@ describe("Testing run.sh", () => {
     copySync(join("node_modules", "miravi", "main"), integrationActualDirMiravi);
 
     await new Promise((resolve, reject) => {
-      execFile("./run.sh", ["-u", "https://www.example.com/", "-p", integrationActualDir + sep], (error) => {
+      execFile("./run.sh", ["-u", "https://www.example.com/", "-p", integrationActualDir + sep, "-n"], (error) => {
         if (error) reject(error);
         else resolve();
       });
