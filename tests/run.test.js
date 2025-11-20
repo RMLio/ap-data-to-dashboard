@@ -2,6 +2,7 @@ import { describe, it, expect, beforeEach } from "vitest";
 import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { readFileSync } from "node:fs";
+import { emptyDirSync } from "fs-extra";
 import { readFile, utils } from "xlsx";
 import yaml from 'js-yaml';
 
@@ -28,10 +29,10 @@ function getExcelAsJson(filePath) {
 }
 
 describe("Test scripts included in run.sh", () => {
-/*
+
   beforeEach(() => {
     emptyDirSync(outDir);
-  });*/
+  });
 
   describe("shacl-to-template template JSON", () => {
     it("should generate template schema JSON", async () => {
