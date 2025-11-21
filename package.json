@@ -9,7 +9,8 @@
     "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.1 --ignore-scripts --no-save && cd node_modules/miravi/main && npm i && cd ../test && npm i",
     "lint:markdown": "markdownlint-cli2",
     "lint:markdown:fix": "markdownlint-cli2 --fix",
-    "test": "vitest --fileParallelism=false --reporter='verbose'"
+    "test": "vitest run --fileParallelism=false --reporter='verbose'",
+    "test:dev": "vitest --fileParallelism=false --reporter='verbose'"
   },
   "dependencies": {
     "@rmlio/fetch-rmlmapper-java": "^0.1.0",

@@ -9,6 +9,8 @@ const outDir = join("tests", "out");
 
 describe("Testing js scripts", () => {
 
+  this.hookTimeout = 20000;
+
   beforeEach(() => {
     emptyDirSync(outDir);
   });
@@ -116,7 +118,7 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql starting from template schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"), 
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"),
           "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
           if (error) reject(error);
           else resolve();
@@ -130,7 +132,7 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql from merged schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"), 
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"),
           "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
           if (error) reject(error);
           else resolve();
