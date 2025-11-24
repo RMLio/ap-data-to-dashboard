@@ -12,4 +12,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 First release.
 
 [1.0.0]: https://github.com/RMLio/ap-data-to-dashboard/releases/v1.0.0
-[Unreleased]: https://github.com/RMLio/ap-data-to-dashboard/-/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/RMLio/ap-data-to-dashboard/compare/v1.0.0...HEAD
