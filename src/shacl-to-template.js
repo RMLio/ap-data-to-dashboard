@@ -160,11 +160,11 @@ async function generateTemplates(store) {
 
   // Create a new Excel workbook
   const wb = new ExcelJS.Workbook();
-  // Create worksheets for each NodeShape, in afphabetical order
+  // Create worksheets for each NodeShape, in alphabetical order
   const sheetLablesSorted = Object.keys(schema).sort();
   for (const sheetLabel of sheetLablesSorted) {
     const columns = schema[sheetLabel]['columns'];
-    // Sort columns alphabetically, but CODE always first
+    // Sort columns alphabetically, but always put CODE first.
     const columnLablesSorted = Object.keys(columns).sort();
     let wsColumns = ["CODE"]; // First column is always CODE      
     for (const columnLabel of columnLablesSorted) {
