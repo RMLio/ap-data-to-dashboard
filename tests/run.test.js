@@ -21,7 +21,7 @@ describe("Testing run.sh -n", () => {
     copySync(join(integrationRefDir, "in-shacl", "template.schema.json"), join(integrationActualDirInSacl, "template.schema.json"));
 
     emptyDirSync(integrationActualDirIn);
-    copySync(join(integrationRefDir, "in", "data2-customandmissingvoc.xlsx"), join(integrationActualDirIn, "data2-customandmissingvoc.xlsx"));
+    copySync(join(integrationRefDir, "in", "data2-custom-and-missing-voc.xlsx"), join(integrationActualDirIn, "data2-custom-and-missing-voc.xlsx"));
 
     emptyDirSync(integrationActualDirOut);
 
