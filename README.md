@@ -173,10 +173,10 @@ You may specify a custom vocabulary per sheets and sheet/columns combination in 
 Our tool will map any additional sheets and columns without such specifications to
  `http://missing.example.com/` + `sheetLabel` or `columnlabel`.
 Our tool will convert unspecified values to string literals.
-With the above examples as input, the column *name* will be mapped to property [http://missing.example.com/name](http://missing.example.com/name),
-and the values *Alice* and *Bob* to literals with datatype [xsd:string](http://www.w3.org/2001/XMLSchema#integer).
+With the above examples as input, our tool will map the column *name* to property [http://missing.example.com/name](http://missing.example.com/name),
+and the values *Alice* and *Bob* to literals with datatype [xsd:string](http://www.w3.org/2001/XMLSchema#string).
 
-The above examples would result in the following additional RDF data:
+The above examples result in the following additional RDF data:
 
 ```turtle
 @prefix ex: <http://example.com/> .
@@ -197,7 +197,7 @@ ex:agent2 a foaf:Agent;
 ex:agent3 a foaf:Agent.   
 ```
 
-When executing the pipeline in strict mode, the additionals sheets and columns will be ignored.
+When executing the tool in strict mode, the additionals sheets and columns will be ignored.
 
 ### Process the input data
 
@@ -262,7 +262,7 @@ Visit Miravi at <http://localhost:5173>.
 Run:
 
 ```sh
-npm run test
+npm test
 ```
 
 ## Design Choices and Known Limitations
