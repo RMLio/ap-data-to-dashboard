@@ -212,18 +212,8 @@ export function generateUnifiedDiffFromLineLists(listA, listB, fileA = "ref", fi
   return header + hunkTexts + "\n";
 }
 
-/* ------------------------------------------------------------------
- * Exported comparators that accept filenames (paths)
- * - compareJsonFiles(refFilePath, actualFilePath, relPath)
- * - compareTtlFiles(refFilePath, actualFilePath, relPath)
- * - compareTxtFiles(refFilePath, actualFilePath, relPath)
- * - compareYamlFiles(refFilePath, actualFilePath, relPath)
- * - compareXlsxFiles(refFilePath, actualFilePath, relPath)
- * - compareBinaryFiles(refFilePath, actualFilePath, relPath)
- * ------------------------------------------------------------------*/
-
 /** Compare JSON files by deep-equality (throws on mismatch) */
-export async function compareJsonFiles(refFilePath, actualFilePath, relPath) {
+function compareJsonFiles(refFilePath, actualFilePath, relPath) {
   let a, b;
   try {
     const refText = readFileSync(refFilePath, "utf8");
@@ -241,7 +231,7 @@ export async function compareJsonFiles(refFilePath, actualFilePath, relPath) {
 }
 
 /** Compare TTL files using rdf-isomorphic (primary) with fallback unified diff */
-export async function compareTtlFiles(refFilePath, actualFilePath, relPath) {
+async function compareTtlFiles(refFilePath, actualFilePath, relPath) {
   const refText = readFileSync(refFilePath, "utf8");
   const actualText = readFileSync(actualFilePath, "utf8");
 
@@ -282,7 +272,7 @@ export async function compareTtlFiles(refFilePath, actualFilePath, relPath) {
 }
 
 /** Compare TXT files by trimmed textual equality */
-export async function compareTxtFiles(refFilePath, actualFilePath, relPath) {
+function compareTxtFiles(refFilePath, actualFilePath, relPath) {
   const refText = readFileSync(refFilePath, "utf8");
   const actualText = readFileSync(actualFilePath, "utf8");
   if (refText.trim() !== actualText.trim()) {
@@ -301,7 +291,7 @@ function getExcelAsJson(filePath) {
 }
 
 /** Compare XLSX files by deep-equality of their JSON transformations */
-export async function compareXlsxFiles(refFilePath, actualFilePath, relPath) {
+function compareXlsxFiles(refFilePath, actualFilePath, relPath) {
   let a, b;
   try {
     a = getExcelAsJson(refFilePath);
@@ -317,7 +307,7 @@ export async function compareXlsxFiles(refFilePath, actualFilePath, relPath) {
 }
 
 /** Compare YAML files by deep-equality (throws on mismatch) */
-export async function compareYamlFiles(refFilePath, actualFilePath, relPath) {
+function compareYamlFiles(refFilePath, actualFilePath, relPath) {
   let a, b;
   try {
     const refText = readFileSync(refFilePath, "utf8");
@@ -335,7 +325,7 @@ export async function compareYamlFiles(refFilePath, actualFilePath, relPath) {
 }
 
 /** Binary comparison: compare raw buffers exactly */
-export async function compareBinaryFiles(refFilePath, actualFilePath, relPath) {
+function compareBinaryFiles(refFilePath, actualFilePath, relPath) {
   const refBuf = readFileSync(refFilePath);
   const actualBuf = readFileSync(actualFilePath);
   if (!Buffer.isBuffer(refBuf) || !Buffer.isBuffer(actualBuf)) {
@@ -346,15 +336,39 @@ export async function compareBinaryFiles(refFilePath, actualFilePath, relPath) {
   }
 }
 
+// commonTrailingPath("/a/b/x/y.z", "/c/d/x/y.z")) "x/y.z"
+function commonTrailingPath(path1, path2) {
+  const parts1 = path1.split('/').filter(Boolean);
+  const parts2 = path2.split('/').filter(Boolean);
+
+  const result = [];
+  let i1 = parts1.length - 1;
+  let i2 = parts2.length - 1;
+
+  while (i1 >= 0 && i2 >= 0 && parts1[i1] === parts2[i2]) {
+    result.unshift(parts1[i1]);
+    i1--;
+    i2--;
+  }
+
+  return result.join('/');
+}
+
 /* ------------------------------------------------------------------
- * Dispatcher that calls the exported per-extension functions
+ * Compare files
  * ------------------------------------------------------------------*/
-async function compareByExtensionPaths(refFilePath, actualFilePath, relPath, ext) {
+export async function compareFiles(refFilePath, actualFilePath, relPath, ext) {
+  if (!relPath) {
+    relPath = commonTrailingPath(refFilePath, actualFilePath);
+  }
+  if (!ext) {
+    ext = extname(refFilePath).slice(1);
+  }
   if (ext.toLowerCase() === ".json") {
     return compareJsonFiles(refFilePath, actualFilePath, relPath);
   }
   if (ext.toLowerCase() === ".ttl") {
-    return compareTtlFiles(refFilePath, actualFilePath, relPath);
+    return await compareTtlFiles(refFilePath, actualFilePath, relPath);
   }
   if (ext.toLowerCase() in [".txt", ".rq"]) {
     return compareTxtFiles(refFilePath, actualFilePath, relPath);
@@ -369,7 +383,7 @@ async function compareByExtensionPaths(refFilePath, actualFilePath, relPath, ext
 }
 
 /* ------------------------------------------------------------------
- * Main exported function
+ * Compare directories
  * ------------------------------------------------------------------*/
 export async function compareDirectories(refDir, actualDir, opts = {}) {
   const refList = walk(refDir, refDir, [], opts);
@@ -393,7 +407,7 @@ export async function compareDirectories(refDir, actualDir, opts = {}) {
     const pathRef = join(refDir, relPath);
     const pathAct = join(actualDir, relPath);
     const ext = extname(relPath) || "";
-    await compareByExtensionPaths(pathRef, pathAct, relPath, ext);
+    await compareFiles(pathRef, pathAct, relPath, ext);
   }
 }
 

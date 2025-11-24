@@ -2,7 +2,7 @@ import { describe, it, beforeEach } from "vitest";
 import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { emptyDirSync } from "fs-extra";
-import { compareJsonFiles, compareTxtFiles, compareXlsxFiles, compareYamlFiles, compareDirectories } from "./compare-utilities.js";
+import { compareFiles, compareDirectories } from "./compare-utilities.js";
 
 const assetsDir = join("tests", "assets");
 const outDir = join("tests", "out");
@@ -23,7 +23,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareJsonFiles(join(assetsDir, "template.schema.json"), join(outDir, "template.schema.json"));
+      await compareFiles(join(assetsDir, "template.schema.json"), join(outDir, "template.schema.json"));
     });
   });
 
@@ -35,7 +35,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareXlsxFiles(join(assetsDir, "template.xlsx"), join(outDir, "template.xlsx"));
+      await compareFiles(join(assetsDir, "template.xlsx"), join(outDir, "template.xlsx"));
     });
 
   });
@@ -48,7 +48,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareJsonFiles(join(assetsDir, "data1-no-custom-voc-sheet.json"), join(outDir, "data1-no-custom-voc-sheet.json"));
+      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet.json"), join(outDir, "data1-no-custom-voc-sheet.json"));
     });
   });
 
@@ -61,7 +61,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareJsonFiles(join(assetsDir, "data2-custom-and-missing-voc-enrichedschema.json"), join(outDir, "data2-custom-and-missing-voc-enrichedschema.json"));
+      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc-enrichedschema.json"), join(outDir, "data2-custom-and-missing-voc-enrichedschema.json"));
     });
   });
 
@@ -74,7 +74,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareJsonFiles(join(assetsDir, "data1-no-custom-voc-sheet-enrichedschema.json"), join(outDir, "data1-no-custom-voc-sheet-enrichedschema.json"));
+      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet-enrichedschema.json"), join(outDir, "data1-no-custom-voc-sheet-enrichedschema.json"));
     });
   });
 
@@ -86,7 +86,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareYamlFiles(join(assetsDir, "data1-no-custom-voc-sheet.mapping.yml"), join(outDir, "data1-no-custom-voc-sheet.mapping.yml"));
+      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet.mapping.yml"), join(outDir, "data1-no-custom-voc-sheet.mapping.yml"));
     });
   });
 
@@ -99,7 +99,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareYamlFiles(join(assetsDir, "data2-custom-and-missing-voc.mapping.yml"), join(outDir, "data2-custom-and-missing-voc.mapping.yml"));
+      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc.mapping.yml"), join(outDir, "data2-custom-and-missing-voc.mapping.yml"));
     });
   })
 
@@ -111,7 +111,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareJsonFiles(join(assetsDir, "mergedschema.json"), join(outDir, "mergedschema.json"));
+      await compareFiles(join(assetsDir, "mergedschema.json"), join(outDir, "mergedschema.json"));
     });
   })
 
@@ -124,7 +124,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareTxtFiles(join(assetsDir, "generated-queries.rq"), join(outDir, "generated-queries.rq"));
+      await compareFiles(join(assetsDir, "generated-queries.rq"), join(outDir, "generated-queries.rq"));
       await compareDirectories(join(assetsDir, "generated-queries"), join(outDir, "generated-queries"));
     });
   })
@@ -138,7 +138,7 @@ describe("Testing js scripts", () => {
           else resolve();
         });
       });
-      await compareTxtFiles(join(assetsDir, "generated-queries-merged.rq"), join(outDir, "generated-queries-merged.rq"));
+      await compareFiles(join(assetsDir, "generated-queries-merged.rq"), join(outDir, "generated-queries-merged.rq"));
       await compareDirectories(join(assetsDir, "generated-queries-merged"), join(outDir, "generated-queries-merged"));
     });
   })
