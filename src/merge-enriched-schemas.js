@@ -7,7 +7,6 @@ const program = new Command();
 
 program
   .option("-i, --input <dir>", "Input dir to look for files ending with '-enriched-schema.json", "some-input-dir")
-  // TODO generic solution for input
   .option("-o, --output <file>", "Output merged schema file", "out/some-merged-schema.json");
 
 program.parse(process.argv);
