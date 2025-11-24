@@ -33,7 +33,7 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
     // shaclVoc has priority over customVoc
     for (const row of customVoc) {
         if ("sheetLabel" in row) {
-            const sheetLabel = safeLabel(saveGet(row, "sheetLabel"));
+            const sheetLabel = safeLabel(safeGet(row, "sheetLabel"));
 
             if (!(sheetLabel in schema)) {
                 schema[sheetLabel] = {
@@ -43,8 +43,8 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                 };
             }
             if (sheetLabel) {
-                const sheetClass = saveGet(row, "sheetClass")
-                saveAdd(schema[sheetLabel], "sheetClass", sheetClass);
+                const sheetClass = safeGet(row, "sheetClass")
+                safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
                 const columnLabel = safeLabel(row.columnLabel);
                 if (columnLabel) {
                     const sheetColumns = schema[sheetLabel]["columns"];
@@ -53,9 +53,9 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                             columnLabel: columnLabel,
                         };
                     }
-                    saveAdd(sheetColumns[columnLabel], "columnProperty", saveGet(row, "columnProperty"));
-                    saveAdd(sheetColumns[columnLabel], "valueDatatype", saveGet(row, "valueDatatype"));
-                    saveAdd(sheetColumns[columnLabel], "valueClass", saveGet(row, "valueClass"));
+                    safeAdd(sheetColumns[columnLabel], "columnProperty", safeGet(row, "columnProperty"));
+                    safeAdd(sheetColumns[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
+                    safeAdd(sheetColumns[columnLabel], "valueClass", safeGet(row, "valueClass"));
                     sheetColumns[columnLabel]["valueMinCount"] = null
                     sheetColumns[columnLabel]["valueMaxCount"] = null
                 }
@@ -128,7 +128,7 @@ fs.writeFile(outputFile, JSON.stringify(schema, null, 2), (error) => {
 });
 
 // Helper functions
-function saveAdd(dict, key, value) {
+function safeAdd(dict, key, value) {
     if (value === "") {
         value = null
     }
@@ -141,6 +141,6 @@ function saveAdd(dict, key, value) {
     }
 }
 
-function saveGet(dict, key) {
+function safeGet(dict, key) {
     return key in dict ? dict[key] : null;
 }
