@@ -2,7 +2,7 @@ import { describe, it, beforeEach } from "vitest";
 import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { emptyDirSync } from "fs-extra";
-import { compareJsonFiles, compareTxtFiles, compareXlsxFiles, compareYamlFiles, compareDirectories } from "./compareUtilities.js";
+import { compareJsonFiles, compareTxtFiles, compareXlsxFiles, compareYamlFiles, compareDirectories } from "./compare-utilities.js";
 
 const assetsDir = join("tests", "assets");
 const outDir = join("tests", "out");
