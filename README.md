@@ -154,7 +154,7 @@ Each sheet must contain exactly one `CODE` column.
 | agent1 | Alice | agent2 | 25  |
 | agent2 | Bob   | agent3 | 30  |
 
-You may specify custom vocabulary per sheets and sheet/columns combination in the sheet labeled `_customVoc`:
+You may specify a custom vocabulary per sheets and sheet/columns combination in the sheet labeled `_customVoc`:
 
 - `sheetClass`: the class per sheet,
 - `columnProperty`: the property per column,
