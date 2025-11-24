@@ -197,7 +197,7 @@ ex:agent2 a foaf:Agent;
 ex:agent3 a foaf:Agent.   
 ```
 
-When executing the tool in strict mode, the additionals sheets and columns will be ignored.
+Our tool ignores the additionals sheets and columns when you select strict mode.
 
 ### Process the input data
 
