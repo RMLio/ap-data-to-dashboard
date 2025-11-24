@@ -7,22 +7,12 @@ set -euo pipefail
 # Unmatched globs expand to nothing
 shopt -s nullglob  
 
-# Constants
-in_dir="in"
-in_shacl_dir="in-shacl"
-out_dir="out"
-template_schema_json="$in_shacl_dir/template.schema.json"
-queries_dir="$out_dir/queries"
-queries_combined_file="$queries_dir/generated-queries.rq"
-queries_split_dir="$queries_dir/generated-queries"
-rdf_dir="$out_dir/serve-me"
-miravi_main_dir="node_modules/miravi/main"
-miravi_initial_config_dir="miravi-initial-config"
-
 # Default argument values
 dataUrl="http://localhost:5500/"
 delimiter="|"
+prefix=""
 buildMiravi=true
+strict=false
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -35,15 +25,25 @@ while [[ $# -gt 0 ]]; do
       delimiter="$2"
       shift 2
       ;;
+    -p)
+      prefix="$2"
+      shift 2
+      ;;
     -n|--noMiraviBuild)
       buildMiravi=false
       shift
       ;;
+    -s|--strict)
+      strict=true
+      shift
+      ;;  
     -h|--help)
-      echo "Usage: $0 -u <dataUrl> -d <delimiter> [-n | --noMiraviBuild]"
-      echo "  <dataUrl>:     default='http://localhost:5500/'"
-      echo "  <delimiter>:   default='|'"
+      echo "Usage: $0 [-u <dataUrl>] [-d <delimiter>] [-p prefix] [-n | --noMiraviBuild] [-s | --strict] [-h | --help]"
+      echo "  <dataUrl>:     the base URL where the RDF output files will be served; default='http://localhost:5500/'"
+      echo "  <delimiter>:   delimiter used to enter multiple values in one cell in the spreadsheets; default='|'"
+      echo "  <prefix>:      prefix to paths; default=''"
       echo "  noMiraviBuild: do not build Miravi and delete previous build"
+      echo "  strict:        do not take custom vocabulary into account"
       exit 1
       ;;
     -*)
@@ -56,6 +56,18 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+# Paths to input and output directories and files
+in_dir="${prefix}in"
+in_shacl_dir="${prefix}in-shacl"
+out_dir="${prefix}out"
+template_schema_json="${in_shacl_dir}/template.schema.json"
+queries_dir="${out_dir}/queries"
+queries_combined_file="${queries_dir}/generated-queries.rq"
+queries_split_dir="${queries_dir}/generated-queries"
+rdf_dir="${out_dir}/serve-me"
+miravi_main_dir="${prefix}node_modules/miravi/main"
+miravi_initial_config_dir="miravi-initial-config"
 
 rm -rf $out_dir
 
@@ -82,8 +94,16 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     echo "ℹ️  Processing file: $input"
     node ./src/dataxlsx-to-datajson.js -i $input -o $out_dir -d $delimiter
 
-    echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
-    node ./src/schema-to-yarrrml.js -i "$template_schema_json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+    if [[ "$strict" == false ]]; then
+      echo "ℹ️  Enhancing schema with custom vocabulary from file: $input"
+      node ./src/dataxlsx-to-enriched-schema.js -i $input -o $out_dir -s $template_schema_json
+      echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
+      node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName-enriched-schema.json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+     else
+      echo "ℹ️  Strict mode enabled; skipping enhancement of schema with custom vocabulary."
+      echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
+      node ./src/schema-to-yarrrml.js -i "$template_schema_json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+    fi
 
     echo "ℹ️  Generating file: $out_dir/$fileName.mapping.rml.ttl"
     npx @rmlio/yarrrml-parser -i "$out_dir/$fileName.mapping.yml" -o "$out_dir/$fileName.mapping.rml.ttl" -p
@@ -96,8 +116,16 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     java -jar ./rmlmapper-7.3.3-r374-all.jar -m $out_dir/$fileName.mapping.rml.ttl -o $rdf_dir/$fileName.ttl -s turtle
   done
 
-  echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
-  node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
+  if [[ "$strict" == false ]]; then
+      echo "ℹ️  Merging enriched schemas in: $out_dir"
+      node ./src/merge-enriched-schemas.js -i "$out_dir" -o "$out_dir/mergedschema.json"
+      echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
+      node ./src/schema-to-sparql.js -i "$out_dir/mergedschema.json" -o "$queries_combined_file" -s "$queries_split_dir"
+     else
+      echo "ℹ️  Strict mode enabled; skipping merging of schemas."
+      echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
+      node ./src/schema-to-sparql.js -i "$template_schema_json" -o "$queries_combined_file" -s "$queries_split_dir"
+    fi
   
 else
   echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."

@@ -8,19 +8,28 @@
     "miravi": "http-server node_modules/miravi/main/dist -p 5173",
     "postinstall": "npm i github:SolidLabResearch/miravi-a-linked-data-viewer#v2.2.2 --ignore-scripts --no-save && cd node_modules/miravi/main && npm i && cd ../test && npm i",
     "lint:markdown": "markdownlint-cli2",
-    "lint:markdown:fix": "markdownlint-cli2 --fix"
+    "lint:markdown:fix": "markdownlint-cli2 --fix",
+    "test": "vitest run --fileParallelism=false --reporter='verbose'",
+    "test:dev": "vitest --fileParallelism=false --reporter='verbose'"
   },
   "dependencies": {
     "@rmlio/fetch-rmlmapper-java": "^0.1.0",
     "@rmlio/yarrrml-parser": "^1.12.1",
     "commander": "^14.0.0",
     "exceljs": "^4.4.0",
+    "fs-extra": "^11.3.2",
     "glob": "^11.0.3",
     "http-server": "^14.1.1",
     "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "markdownlint-cli2": "^0.18.1"
+    "@vitest/coverage-v8": "^4.0.10",
+    "markdownlint-cli2": "^0.18.1",
+    "minimatch": "^10.1.1",
+    "n3": "^1.26.0",
+    "rdf-isomorphic": "^2.0.1",
+    "vitest": "^4.0.10"
   }
 }

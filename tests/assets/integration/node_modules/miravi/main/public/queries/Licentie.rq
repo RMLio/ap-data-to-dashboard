@@ -1,0 +1,5 @@
+# Licentie 
+SELECT DISTINCT ?Licentie_url ?type_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?type_url . 
+}

@@ -1,0 +1,282 @@
+{
+  "CreatiefWerk": [
+    {
+      "CODE": [
+        "a2/code/CreatiefWerk_1"
+      ],
+      "agent": [
+        "agent1"
+      ],
+      "auteur": [
+        "a2_auteur_1"
+      ],
+      "auteursrechtHouder": [
+        "a2_auteursrechtHouder_1"
+      ],
+      "auteursrechtJaar": [
+        "2027-01-30"
+      ],
+      "licentie": [
+        "a2/code/Licentie_5"
+      ],
+      "producent": [
+        "a2_producent_1"
+      ],
+      "publicatiedatum": [
+        "2030-09-18T11:21:54.639Z"
+      ],
+      "taal": [
+        "a2_taal_1"
+      ],
+      "uitgever": [
+        "a2_uitgever_1"
+      ],
+      "vereisteTijd": [
+        "a2_vereisteTijd_1"
+      ],
+      "versie": [
+        "a2_versie_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/CreatiefWerk_2"
+      ],
+      "agent": [
+        "agent2"
+      ],
+      "auteur": [
+        "a2_auteur_2"
+      ],
+      "auteursrechtHouder": [
+        "a2_auteursrechtHouder_2"
+      ],
+      "auteursrechtJaar": [
+        "2025-09-08"
+      ],
+      "licentie": [
+        "a2/code/Licentie_2"
+      ],
+      "producent": [
+        "a2_producent_2"
+      ],
+      "publicatiedatum": [
+        "2012-04-20T08:34:15.981Z"
+      ],
+      "taal": [
+        "a2_taal_2"
+      ],
+      "uitgever": [
+        "a2_uitgever_2"
+      ],
+      "vereisteTijd": [
+        "a2_vereisteTijd_2"
+      ],
+      "versie": [
+        "a2_versie_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/CreatiefWerk_3"
+      ],
+      "auteur": [
+        "a2_auteur_3"
+      ],
+      "auteursrechtHouder": [
+        "a2_auteursrechtHouder_3"
+      ],
+      "auteursrechtJaar": [
+        "2018-05-21"
+      ],
+      "licentie": [
+        "a2/code/Licentie_2"
+      ],
+      "producent": [
+        "a2_producent_3"
+      ],
+      "publicatiedatum": [
+        "2015-08-25T06:52:18.051Z"
+      ],
+      "taal": [
+        "a2_taal_3"
+      ],
+      "uitgever": [
+        "a2_uitgever_3"
+      ],
+      "vereisteTijd": [
+        "a2_vereisteTijd_3"
+      ],
+      "versie": [
+        "a2_versie_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/CreatiefWerk_4"
+      ],
+      "auteur": [
+        "a2_auteur_4"
+      ],
+      "auteursrechtHouder": [
+        "a2_auteursrechtHouder_4"
+      ],
+      "auteursrechtJaar": [
+        "2022-08-11"
+      ],
+      "licentie": [
+        "a2/code/Licentie_4"
+      ],
+      "producent": [
+        "a2_producent_4"
+      ],
+      "publicatiedatum": [
+        "2010-04-10T14:10:07.236Z"
+      ],
+      "taal": [
+        "a2_taal_4"
+      ],
+      "uitgever": [
+        "a2_uitgever_4"
+      ],
+      "vereisteTijd": [
+        "a2_vereisteTijd_4"
+      ],
+      "versie": [
+        "a2_versie_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/CreatiefWerk_5"
+      ],
+      "auteur": [
+        "a2_auteur_5",
+        "a2_auteur_5b"
+      ],
+      "auteursrechtHouder": [
+        "a2_auteursrechtHouder_5",
+        "a2_auteursrechtHouder_5b"
+      ],
+      "auteursrechtJaar": [
+        "2018-02-03"
+      ],
+      "licentie": [
+        "a2/code/Licentie_4",
+        "a2/code/Licentie_4"
+      ],
+      "producent": [
+        "a2_producent_5",
+        "a2_producent_5b"
+      ],
+      "publicatiedatum": [
+        "2015-03-29T12:07:48.527Z"
+      ],
+      "taal": [
+        "a2_taal_5",
+        "a2_taal_5b"
+      ],
+      "uitgever": [
+        "a2_uitgever_5",
+        "a2_uitgever_5b"
+      ],
+      "vereisteTijd": [
+        "a2_vereisteTijd_5"
+      ],
+      "versie": [
+        "a2_versie_5"
+      ]
+    }
+  ],
+  "Licentie": [
+    {
+      "CODE": [
+        "a2/code/Licentie_1"
+      ],
+      "type": [
+        "a2_type_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/Licentie_2"
+      ],
+      "type": [
+        "a2_type_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/Licentie_3"
+      ],
+      "type": [
+        "a2_type_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/Licentie_4"
+      ],
+      "type": [
+        "a2_type_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a2/code/Licentie_5"
+      ],
+      "type": [
+        "a2_type_5",
+        "a2_type_5b"
+      ]
+    }
+  ],
+  "Agent": [
+    {
+      "CODE": [
+        "agent1"
+      ],
+      "naam": [
+        "Alice"
+      ],
+      "kent": [
+        "agent2"
+      ],
+      "leeftijd": [
+        25
+      ]
+    },
+    {
+      "CODE": [
+        "agent2"
+      ],
+      "naam": [
+        "Bob"
+      ],
+      "kent": [
+        "agent3"
+      ],
+      "leeftijd": [
+        30
+      ]
+    }
+  ],
+  "Boek": [
+    {
+      "CODE": [
+        "boek1"
+      ],
+      "titel": [
+        "titel van boek1"
+      ]
+    },
+    {
+      "CODE": [
+        "boek2"
+      ],
+      "titel": [
+        "titel van boek2"
+      ]
+    }
+  ]
+}

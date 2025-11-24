@@ -1,7 +1,7 @@
 {
-  "title": "Implementatietraject tooling",
-  "logoLocation": "images/vlaanderen-logo.png",
-  "logoRedirectURL": "https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/oslo",
+  "title": "Miravi, by KNoWS, IDLab, Ghent University -- imec",
+  "logoLocation": "images/miravi.png",
+  "logoRedirectURL": "https://github.com/SolidLabResearch/miravi-a-linked-data-viewer/",
   "queryFolder": "queries",
   "showMilliseconds": false,
   "defaultIDP": "",
@@ -10,7 +10,11 @@
     {
       "id": "gr-use-case",
       "name": "Use-case-specific queries"
-   }
+    },
+    {
+      "id": "gr-missing-voc",
+      "name": "Missing vocabulary"
+    }
   ],
   "queries": [
     {
@@ -20,6 +24,20 @@
       "name": "Count all triples in the dataset",
       "description": "A dummy use-case-specific query, simply counting all triples in the dataset.",
       "comment": "A comunicaContext specifying the source will be added automatically."
+    },
+    {
+      "id": "101",
+      "queryGroupId": "gr-missing-voc",
+      "queryLocation": "missing_classes.rq",
+      "name": "Missing classes",
+      "description": "Listing classes that are not defined in the initial SHACL nor in the _customVoc sheet, i.e., classes containing 'http://missing.example.com/'."
+    },
+    {
+      "id": "102",
+      "queryGroupId": "gr-missing-voc",
+      "queryLocation": "missing_properties.rq",
+      "name": "Missing properties",
+      "description": "Listing properties that are not defined in the initial SHACL nor in the _customVoc sheet, i.e., properties containing 'http://missing.example.com/', with the class of their domain."
     }
   ]
 }

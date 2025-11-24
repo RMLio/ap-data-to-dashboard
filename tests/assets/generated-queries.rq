@@ -1,0 +1,39 @@
+# SPARQL queries generated from template.schema.json
+
+# CreatiefWerk 
+SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?auteur_url ?auteursrechtHouder_url ?taal_url ?vereisteTijd_url ?licentie_url ?producent_url ?uitgever_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/copyrightYear> ?auteursrechtJaar . }
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/version> ?versie . }
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/datePublished> ?publicatiedatum . }
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/author> ?auteur_url . }
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/copyrightHolder> ?auteursrechtHouder_url . }
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/inLanguage> ?taal_url . }
+  ?CreatiefWerk_url <https://schema.org/timeRequired> ?vereisteTijd_url . 
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/license> ?licentie_url . }
+  ?CreatiefWerk_url <https://schema.org/author> ?producent_url . 
+  OPTIONAL { ?CreatiefWerk_url <https://schema.org/publisher> ?uitgever_url . }
+}
+
+# Licentie 
+SELECT DISTINCT ?Licentie_url ?type_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?type_url . 
+}
+
+# Example cross-mapping queries
+
+
+
+
+
+# Join CreatiefWerk → licentie → Licentie
+SELECT DISTINCT ?CreatiefWerk_url ?Licentie_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?CreatiefWerk_url <https://schema.org/license> ?Licentie_url .
+}
+
+
+
+

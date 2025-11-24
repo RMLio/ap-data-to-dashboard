@@ -1,0 +1,228 @@
+{
+  "CreatiefWerk": [
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_1"
+      ],
+      "auteur": [
+        "a1_auteur_1"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_1"
+      ],
+      "auteursrechtJaar": [
+        "2017-06-23"
+      ],
+      "licentie": [
+        "a1/code/Licentie_2"
+      ],
+      "producent": [
+        "a1_producent_1"
+      ],
+      "publicatiedatum": [
+        "2020-07-26T11:46:42.812Z"
+      ],
+      "taal": [
+        "a1_taal_1"
+      ],
+      "uitgever": [
+        "a1_uitgever_1"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_1"
+      ],
+      "versie": [
+        "a1_versie_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_2"
+      ],
+      "auteur": [
+        "a1_auteur_2"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_2"
+      ],
+      "auteursrechtJaar": [
+        "2012-10-07"
+      ],
+      "licentie": [
+        "a1/code/Licentie_2"
+      ],
+      "producent": [
+        "a1_producent_2"
+      ],
+      "publicatiedatum": [
+        "2007-09-16T18:32:56.325Z"
+      ],
+      "taal": [
+        "a1_taal_2"
+      ],
+      "uitgever": [
+        "a1_uitgever_2"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_2"
+      ],
+      "versie": [
+        "a1_versie_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_3"
+      ],
+      "auteur": [
+        "a1_auteur_3"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_3"
+      ],
+      "auteursrechtJaar": [
+        "2004-03-04"
+      ],
+      "licentie": [
+        "a1/code/Licentie_4"
+      ],
+      "producent": [
+        "a1_producent_3"
+      ],
+      "publicatiedatum": [
+        "2003-09-08T10:43:09.346Z"
+      ],
+      "taal": [
+        "a1_taal_3"
+      ],
+      "uitgever": [
+        "a1_uitgever_3"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_3"
+      ],
+      "versie": [
+        "a1_versie_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_4"
+      ],
+      "auteur": [
+        "a1_auteur_4"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_4"
+      ],
+      "auteursrechtJaar": [
+        "2003-01-31"
+      ],
+      "licentie": [
+        "a1/code/Licentie_3"
+      ],
+      "producent": [
+        "a1_producent_4"
+      ],
+      "publicatiedatum": [
+        "2025-06-02T21:46:04.278Z"
+      ],
+      "taal": [
+        "a1_taal_4"
+      ],
+      "uitgever": [
+        "a1_uitgever_4"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_4"
+      ],
+      "versie": [
+        "a1_versie_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/CreatiefWerk_5"
+      ],
+      "auteur": [
+        "a1_auteur_5",
+        "a1_auteur_5b"
+      ],
+      "auteursrechtHouder": [
+        "a1_auteursrechtHouder_5",
+        "a1_auteursrechtHouder_5b"
+      ],
+      "auteursrechtJaar": [
+        "2004-08-30"
+      ],
+      "licentie": [
+        "a1/code/Licentie_1",
+        "a1/code/Licentie_1"
+      ],
+      "producent": [
+        "a1_producent_5",
+        "a1_producent_5b"
+      ],
+      "publicatiedatum": [
+        "2005-03-03T10:42:42.449Z"
+      ],
+      "taal": [
+        "a1_taal_5",
+        "a1_taal_5b"
+      ],
+      "uitgever": [
+        "a1_uitgever_5",
+        "a1_uitgever_5b"
+      ],
+      "vereisteTijd": [
+        "a1_vereisteTijd_5"
+      ],
+      "versie": [
+        "a1_versie_5"
+      ]
+    }
+  ],
+  "Licentie": [
+    {
+      "CODE": [
+        "a1/code/Licentie_1"
+      ],
+      "type": [
+        "a1_type_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_2"
+      ],
+      "type": [
+        "a1_type_2"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_3"
+      ],
+      "type": [
+        "a1_type_3"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_4"
+      ],
+      "type": [
+        "a1_type_4"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_5"
+      ],
+      "type": [
+        "a1_type_5",
+        "a1_type_5b"
+      ]
+    }
+  ]
+}

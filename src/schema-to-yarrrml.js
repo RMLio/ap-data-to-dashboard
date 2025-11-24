@@ -6,7 +6,7 @@ const program = new Command();
 
 program
     .option("-i, --input <file>", "Input schema json", "in-shacl/template.schema.json")
-    .option("-o, --output <dir>", "Output YARRRML file", "out/some-yarrrml.yml")
+    .option("-o, --output <file>", "Output YARRRML file", "out/some-yarrrml.yml")
     .option("-s, --source <file>", "Input source data json", "out/some-data.json")
 
 program.parse(process.argv);
@@ -44,7 +44,7 @@ for (const sheet of Object.values(schema)) {
     // collect columns with class values, for additional mapping later
     const iriAsObject = [];
 
-    for (const column of Object.values(sheet.columns) ) {
+    for (const column of Object.values(sheet.columns)) {
         yarrrml += `      - p: "${column.columnProperty}"\n`;
         yarrrml += `        o: \n`;
         yarrrml += `          value:  "$(${column.columnLabel}[*])"\n`;

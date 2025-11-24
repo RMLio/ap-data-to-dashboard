@@ -13,12 +13,13 @@ const { DataFactory } = N3;
 const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
+const { safeLabel } = require("./util")
 
 const program = new Command();
 
 program
   .option("-i, --input <file>", "Input SHACL file", "in-shacl/shacl.ttl")
-  .option("-o, --output <dir>", "Output directory", "in-shacl/")
+  .option("-o, --output <dir>", "Output directory", "in-shacl")
   .option("-d, --dummy <number>", "Amount of dummy data files", 2)
 
 program.parse(process.argv);
@@ -28,11 +29,11 @@ const inputFile = options.input;
 const outputDir = options.output;
 const dummy = options.dummy;
 
-const templateFile = outputDir + "template.xlsx"
-const schemaFile = outputDir + "template.schema.json"
+const templateFile = path.join(outputDir, "template.xlsx");
+const schemaFile = path.join(outputDir, "template.schema.json");
 const dummyFiles = []
 for (let i = 1; i <= dummy; i++) {
-  dummyFiles.push(outputDir + "dummydata-a" + i + ".xlsx")
+  dummyFiles.push(path.join(outputDir, "dummydata-a" + i + ".xlsx"));
 }
 
 if (!fs.existsSync(inputFile)) {
@@ -74,8 +75,6 @@ parser.parse(inputData,
  * @returns {void}
  */
 async function generateTemplates(store) {
-  // Create a new Excel workbook
-  const wb = new ExcelJS.Workbook();
 
   // collect data for foreign key mapping
   const iriToLabelMap = {};
@@ -90,17 +89,17 @@ async function generateTemplates(store) {
     // Only create a worksheet the domain has properties  (otherwise too many sheets with only code column)  
     const properties = store.getObjects(nodeShape, namedNode("http://www.w3.org/ns/shacl#property"))
     if (properties.length != 0) {
-      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
-      if (sheetLabel == null){
+      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+      if (sheetLabel == null) {
         console.error(`❌ Missing rdfs:label for ${nodeShape.value}, skipping sheet creation`);
-        continue; 
+        continue;
       }
       let sheetClass = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/ns/shacl#targetClass"));
-      if (sheetClass == null){
+      if (sheetClass == null) {
         console.error(`❌ Missing shacl:targetClass for ${nodeShape.value}, skipping sheet creation`);
-        continue; 
+        continue;
       }
-      sheetLabel = saveLabel(sheetLabel); 
+      sheetLabel = safeLabel(sheetLabel);
       iriToLabelMap[sheetClass] = sheetLabel;
       schema[sheetLabel] = {
         "sheetLabel": sheetLabel,
@@ -114,17 +113,17 @@ async function generateTemplates(store) {
       let countColumns = 2;
       for (const property of properties) {
         // Get the label of each property to use as column headers
-        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label")); 
-        if (columnLabel == null){
+        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+        if (columnLabel == null) {
           console.error(`❌ Missing rdfs:label for property ${property.value} of ${nodeShape.value}, skipping column creation`);
-          continue; 
+          continue;
         }
         let columnProperty = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#path"));
-        if (columnProperty == null){
+        if (columnProperty == null) {
           console.error(`❌ Missing shacl:path for property ${property.value} of ${nodeShape.value}, skipping column creation`);
-          continue; 
+          continue;
         }
-        columnLabel = saveLabel(columnLabel); 
+        columnLabel = safeLabel(columnLabel);
         let valueClass = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#class"));
         let valueDatatype = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#datatype"));
         let valueMinCount = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#minCount"));
@@ -146,10 +145,6 @@ async function generateTemplates(store) {
         }
         countColumns += 1;
       }
-      // Create sheet data with headers in the first row
-      const ws = wb.addWorksheet(sheetLabel);
-      // Add the headers
-      ws.addRow(wsColumns);
     }
   }
 
@@ -162,6 +157,37 @@ async function generateTemplates(store) {
       }
     }
   }
+
+  // Create a new Excel workbook
+  const wb = new ExcelJS.Workbook();
+  // Create worksheets for each NodeShape, in alphabetical order
+  const sheetLablesSorted = Object.keys(schema).sort();
+  for (const sheetLabel of sheetLablesSorted) {
+    const columns = schema[sheetLabel]['columns'];
+    // Sort columns alphabetically, but always put CODE first.
+    const columnLablesSorted = Object.keys(columns).sort();
+    let wsColumns = ["CODE"]; // First column is always CODE      
+    for (const columnLabel of columnLablesSorted) {
+      if (!(columnLabel === "CODE")) {// Skip CODE as it is already added      
+        wsColumns.push(columnLabel);
+      }
+    }
+    const ws = wb.addWorksheet(sheetLabel);
+    // Add the headers
+    ws.addRow(wsColumns);
+  }
+  // Add a _customVoc sheet
+  const customVocSheet = wb.addWorksheet("_customVoc");
+  // No min and max count for the custom voc
+  const headers = [
+    "sheetLabel",
+    "sheetClass",
+    "columnLabel",
+    "columnProperty",
+    "valueDatatype",
+    "valueClass"
+  ];
+  customVocSheet.addRow(headers);
 
   //Format the the sheets
   wb.eachSheet(sheet => {
@@ -215,44 +241,46 @@ async function generateTemplates(store) {
     actor = index + 1
     const prefix = "a" + actor
     wb.eachSheet(sheet => {
-      const columnNames = sheet.getRow(1);
-      for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
-        const dummyRow = [];
-        // Add the primary key per row: code column
-        dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
-        // Add values for the other columns
-        for (let j = 2; j <= columnNames.cellCount; j++) {
-          const columnName = columnNames.getCell(j).value
-          const columnDetails = schema[sheet.name]["columns"][columnName]
-          const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
-          let v = `${prefix}_${columnName}_${i}`; 
-          if (addArray){
-            v += "|" + v + "b";
+      if (!(sheet.name == "_customVoc")) {
+        const columnNames = sheet.getRow(1);
+        for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
+          const dummyRow = [];
+          // Add the primary key per row: code column
+          dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
+          // Add values for the other columns
+          for (let j = 2; j <= columnNames.cellCount; j++) {
+            const columnName = columnNames.getCell(j).value
+            const columnDetails = schema[sheet.name]["columns"][columnName]
+            const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
+            let v = `${prefix}_${columnName}_${i}`;
+            if (addArray) {
+              v += "|" + v + "b";
+            }
+            if (columnDetails["valueForeignKeySheet"]) {
+              v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+              if (addArray) {
+                v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
+              }
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
+              v = randomArray(() => getRandomInteger(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
+              v = randomArray(() => getRandomDecimal(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
+              v = randomArray(() => getRandomDate(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
+              v = randomArray(() => getRandomTime(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
+              v = randomArray(() => getRandomDateTime(), addArray);
+            } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
+              v = `http://example.com/au/${columnName}_${i}`;
+              if (addArray) {
+                v += "|" + v + "b"
+              }
+            }
+            dummyRow.push(v)
           }
-          if (columnDetails["valueForeignKeySheet"]) {
-            v = `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
-            if (addArray){
-              v += "|" + `${prefix}/code/${columnDetails["valueForeignKeySheet"]}_${getRandomInteger(1, 5)}`
-            }
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#integer") {
-            v = randomArray(() => getRandomInteger(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#decimal") {
-            v = randomArray(() => getRandomDecimal(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#date") {
-            v = randomArray(() => getRandomDate(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#time") {
-            v = randomArray(() => getRandomTime(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#dateTime") {
-            v = randomArray(() => getRandomDateTime(), addArray);
-          } else if (columnDetails["valueDatatype"] === "http://www.w3.org/2001/XMLSchema#anyURI") {
-            v = `http://example.com/au/${columnName}_${i}`;
-            if (addArray){
-              v += "|" + v + "b"
-            }
-          } 
-          dummyRow.push(v) 
+          sheet.addRow(dummyRow);
         }
-        sheet.addRow(dummyRow);
       }
     }
     );
@@ -269,7 +297,7 @@ async function generateTemplates(store) {
     wb.eachSheet(sheet => {
       // Remove all rows except the header row (row 1) 
       for (let i = 0; i < 6; i++) {
-        sheet.spliceRows(2, 1); 
+        sheet.spliceRows(2, 1);
       }
     });
   }
@@ -285,35 +313,6 @@ function getObjectValueIfExists(store, subject, predicate) {
   }
 }
 
-// Helper function to get the value of an object for a given subject and predicate, or "missing" is it doesn't exist
-function getRequiredObjectValue(store, subject, predicate) {
-  const objects = store.getObjects(subject, predicate);
-  if (objects.length > 0) {
-    return objects[0].value;
-  } else {
-    console.error(`❌ ${predicate.value} is not defined for ${subject.value}.`);
-    return "missing"
-  }
-}
-
-function capitalize(str) {
-  if (!str || typeof str !== "string") return str;
-  return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function saveLabel(label) {
-  // remove special characters
-  label = label.replace(/[^a-zA-Z0-9 ]/g, "") 
-  //convert to camel case
-  label = label.split(" ")
-    .map((word, index) =>
-      index === 0 ? word : capitalize(word)
-    )
-    .join("");
-  // ensure it starts with a letter (prepend "n" if it doesn"t)
-  label = label.replace(/^([^a-zA-Z])/, "n$1")
-  return label  
-}
 
 function getRandomInteger(min = -1000, max = 1000) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
