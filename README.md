@@ -156,7 +156,9 @@ Each sheet must contain exactly one `CODE` column.
 
 You may specify a custom vocabulary per sheets and sheet/columns combination in the sheet labeled `_customVoc`:
 
+- `sheetLabel`: the label per sheet,
 - `sheetClass`: the class per sheet,
+- `columnLabel`: the label per column,
 - `columnProperty`: the property per column,
 - `valueDatatype`: the datatype per value in the column,
 - `valueClass`: the class per value in the column.
@@ -168,9 +170,9 @@ You may specify a custom vocabulary per sheets and sheet/columns combination in 
 | Agent      | <http://xmlns.com/foaf/0.1/Agent> | age         | <http://xmlns.com/foaf/0.1/age>   | <http://www.w3.org/2001/XMLSchema#integer> |                                   |
 | Agent      | <http://xmlns.com/foaf/0.1/Agent> | knows       | <http://xmlns.com/foaf/0.1/knows> |                                            | <http://xmlns.com/foaf/0.1/Agent> |
 
-Any additional sheets and columns without such specifications will be mapped to
+Our tool will map any additional sheets and columns without such specifications to
  `http://missing.example.com/` + `sheetLabel` or `columnlabel`.
-Unspecified values will be converted to string literals.
+Our tool will convert unspecified values to string literals.
 With the above examples as input, the column *name* will be mapped to property [http://missing.example.com/name](http://missing.example.com/name),
 and the values *Alice* and *Bob* to literals with datatype [xsd:string](http://www.w3.org/2001/XMLSchema#integer).
 
