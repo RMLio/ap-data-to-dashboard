@@ -1,7 +1,7 @@
 {
-  "title": "Implementatietraject tooling",
-  "logoLocation": "images/vlaanderen-logo.png",
-  "logoRedirectURL": "https://www.vlaanderen.be/digitaal-vlaanderen/onze-diensten-en-platformen/oslo",
+  "title": "Miravi, by KNoWS, IDLab, Ghent University -- imec",
+  "logoLocation": "images/miravi.png",
+  "logoRedirectURL": "https://github.com/SolidLabResearch/miravi-a-linked-data-viewer/",
   "queryFolder": "queries",
   "showMilliseconds": false,
   "defaultIDP": "",
