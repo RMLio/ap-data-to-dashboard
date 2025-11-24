@@ -53,28 +53,28 @@ describe("Testing js scripts", () => {
   });
 
   //data2-custom-and-missing-voc.xlsx in tests/assets is extended with custom and missing vocabulary
-  describe("dataxlsx-to-enrichedschema", () => {
+  describe("dataxlsx-to-enriched-schema", () => {
     it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enrichedschema.js", "-i", join(assetsDir, "data2-custom-and-missing-voc.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data2-custom-and-missing-voc.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc-enrichedschema.json"), join(outDir, "data2-custom-and-missing-voc-enrichedschema.json"));
+      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc-enriched-schema.json"), join(outDir, "data2-custom-and-missing-voc-enriched-schema.json"));
     });
   });
 
   //data1-no-custom-voc-sheet.xlsx in tests/assets has no _customVoc sheet
-  describe("dataxlsx-to-enrichedschema from  XLSX without _customVoc sheet", () => {
+  describe("dataxlsx-to-enriched-schema from  XLSX without _customVoc sheet", () => {
     it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enrichedschema.js", "-i", join(assetsDir, "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet-enrichedschema.json"), join(outDir, "data1-no-custom-voc-sheet-enrichedschema.json"));
+      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet-enriched-schema.json"), join(outDir, "data1-no-custom-voc-sheet-enriched-schema.json"));
     });
   });
 
@@ -94,7 +94,7 @@ describe("Testing js scripts", () => {
   describe("schema-to-yarrrml starting from enriched schema JSON", () => {
     it("should generate YARRRML", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "data2-custom-and-missing-voc-enrichedschema.json"), "-o", join(outDir, "data2-custom-and-missing-voc.mapping.yml"), "-s", join(assetsDir, "data1-no-custom-voc-sheet.json")], (error) => {
+        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "data2-custom-and-missing-voc-enriched-schema.json"), "-o", join(outDir, "data2-custom-and-missing-voc.mapping.yml"), "-s", join(assetsDir, "data1-no-custom-voc-sheet.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
@@ -103,10 +103,10 @@ describe("Testing js scripts", () => {
     });
   })
 
-  describe("merge-enrichedschemas", () => {
+  describe("merge-enriched-schemas", () => {
     it("should generate merged YARRRML", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/merge-enrichedschemas.js", "-i", join(assetsDir), "-o", join(outDir, "mergedschema.json")], (error) => {
+        execFile("node", ["./src/merge-enriched-schemas.js", "-i", join(assetsDir), "-o", join(outDir, "mergedschema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });

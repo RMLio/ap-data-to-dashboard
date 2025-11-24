@@ -113,7 +113,7 @@ for (const sheetLabel in schema) {
 
 
 // Save enriched schema as JSON
-const outputFile = path.join(outputDir, `${baseName}-enrichedschema.json`);
+const outputFile = path.join(outputDir, `${baseName}-enriched-schema.json`);
 
 if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });

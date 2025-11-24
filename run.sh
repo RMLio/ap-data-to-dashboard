@@ -96,9 +96,9 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
 
     if [[ "$strict" == false ]]; then
       echo "ℹ️  Enhancing schema with custom vocabulary from file: $input"
-      node ./src/dataxlsx-to-enrichedschema.js -i $input -o $out_dir -s $template_schema_json
+      node ./src/dataxlsx-to-enriched-schema.js -i $input -o $out_dir -s $template_schema_json
       echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
-      node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName-enrichedschema.json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
+      node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName-enriched-schema.json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
      else
       echo "ℹ️  Strict mode enabled; skipping enhancement of schema with custom vocabulary."
       echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
@@ -118,7 +118,7 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
 
   if [[ "$strict" == false ]]; then
       echo "ℹ️  Merging enriched schemas in: $out_dir"
-      node ./src/merge-enrichedschemas.js -i "$out_dir" -o "$out_dir/mergedschema.json"
+      node ./src/merge-enriched-schemas.js -i "$out_dir" -o "$out_dir/mergedschema.json"
       echo "ℹ️  Generating combined queries file $queries_combined_file and split queries in $queries_split_dir"
       node ./src/schema-to-sparql.js -i "$out_dir/mergedschema.json" -o "$queries_combined_file" -s "$queries_split_dir"
      else

@@ -6,7 +6,7 @@ const { Command } = require("commander");
 const program = new Command();
 
 program
-  .option("-i, --input <dir>", "Input dir to look for files ending with '-enrichedschema.json", "some-input-dir")
+  .option("-i, --input <dir>", "Input dir to look for files ending with '-enriched-schema.json", "some-input-dir")
   // TODO generic solution for input
   .option("-o, --output <file>", "Output merged schema file", "out/some-merged-schema.json");
 
@@ -20,8 +20,8 @@ const outputFile = options.output;
 // Read all files in the directory
 const files = fs.readdirSync(inputDir);
 
-// Filter files ending with -enrichedschema.json
-const schemaFiles = files.filter(file => file.endsWith('-enrichedschema.json'));
+// Filter files ending with -enriched-schema.json
+const schemaFiles = files.filter(file => file.endsWith('-enriched-schema.json'));
 
 let merged = {}
 schemaFiles.forEach(file => {
