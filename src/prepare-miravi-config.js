@@ -83,7 +83,7 @@ const defaultComunicaContext = {
 };
 
 let miraviConfig = JSON.parse(fs.readFileSync(path.join(inDir, "config.json"), "utf8"));
-// addto additionalQueryGroups only if the group with this id is not present in the miravi config
+// Add to additionalQueryGroups only if the group with this id is not present in the miravi config
 const groupIdNormal = "gr-tooling-other";
 const groupIdJoin = "gr-tooling-join";
 additionalQueryGroups = [];
@@ -92,7 +92,7 @@ if (!existsGroupIdNormal) {
   additionalQueryGroups.push({
     id: groupIdNormal,
     name: "Automatically generated queries"
-  })
+  });
 }
 const existsGroupIdJoin = miraviConfig.queryGroups.some(obj => obj.id === groupIdNormal)
 if (!existsGroupIdJoin) {
