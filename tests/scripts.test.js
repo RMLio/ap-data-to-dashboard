@@ -142,7 +142,7 @@ describe("Testing js scripts", () => {
   })
 
   describe("prepare-miravi-config from config without custom tooling groups", () => {
-    it("should generate miravi config", async () => {
+    it("should generate miravi config JSON", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/prepare-miravi-config.js",
           "-i", join(assetsDir, "miravi-initial-config"),
@@ -160,7 +160,7 @@ describe("Testing js scripts", () => {
   })
 
   describe("prepare-miravi-config from config with custom tooling groups", () => {
-    it("should generate miravi config", async () => {
+    it("should generate miravi config JSON", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/prepare-miravi-config.js",
           "-i", join(assetsDir, "miravi-initial-config-with-custom-tooling-groups"),
