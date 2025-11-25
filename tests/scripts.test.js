@@ -3,7 +3,6 @@ import { execFile } from "node:child_process";
 import { join } from "node:path";
 import { emptyDirSync } from "fs-extra";
 import { compareFiles, compareDirectories } from "./compare-utilities.js";
-import { config } from "node:process";
 
 const assetsDir = join("tests", "assets");
 const outDir = join("tests", "out");
@@ -119,11 +118,10 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql starting from template schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"),
-          "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
       });
       await compareFiles(join(assetsDir, "generated-queries.rq"), join(outDir, "generated-queries.rq"));
       await compareDirectories(join(assetsDir, "generated-queries"), join(outDir, "generated-queries"));
@@ -133,11 +131,10 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql from merged schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"),
-          "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
-            if (error) reject(error);
-            else resolve();
-          });
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"), "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
       });
       await compareFiles(join(assetsDir, "generated-queries-merged.rq"), join(outDir, "generated-queries-merged.rq"));
       await compareDirectories(join(assetsDir, "generated-queries-merged"), join(outDir, "generated-queries-merged"));
