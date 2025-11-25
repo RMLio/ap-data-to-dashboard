@@ -2,7 +2,6 @@ const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
 const { exit } = require("process");
-const { experimental_getRunnerTask } = require("vitest/node");
 
 const program = new Command();
 
