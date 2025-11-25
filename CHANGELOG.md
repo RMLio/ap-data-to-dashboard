@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-11-25
+
 ### Added
 
 - Enabling custom names for tooling query groups in Miravi config.
@@ -15,5 +17,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 First release.
 
+[1.1.0]: https://github.com/RMLio/ap-data-to-dashboard/releases/v1.1.0
 [1.0.0]: https://github.com/RMLio/ap-data-to-dashboard/releases/v1.0.0
-[Unreleased]: https://github.com/RMLio/ap-data-to-dashboard/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/RMLio/ap-data-to-dashboard/compare/v1.1.0...HEAD
