@@ -10,7 +10,7 @@
   - [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
   - [Optionally include additional data](#optionally-include-additional-data)
   - [Process the input data](#process-the-input-data)
-  - [Add application-specific Miravi queries](#add-application-specific-miravi-queries)
+  - [Customize your Miravi dashboard](#customize-your-miravi-dashboard)
   - [To do by you](#to-do-by-you)
 - [Development](#development)
   - [Work locally](#work-locally)
@@ -215,18 +215,23 @@ Add the option `-s` to process the input data in strict mode, ignoring custom vo
 ./run.sh -s -u '<the base URL where the RDF output files will be served (include trailing slash)>'
 ```
 
-### Add application-specific Miravi queries
+### Customize your Miravi dashboard
 
 If you want to add application-specific queries to the Miravi instance, proceed as follows:
 
-1. Extend the array `"queries"` in [miravi-initial-config/config.json)](miravi-initial-config/config.json).
+1. Extend the array `"queries"` in [miravi-initial-config/config.json](miravi-initial-config/config.json).
    Note that you don't have to add a `"comunicaContext"`: `./run.sh` does that for you.
 2. Add your corresponding SPARQL queries to
    [miravi-initial-config/public/queries/](miravi-initial-config/public/queries/).
 3. Re-run the `run.sh` command explained in above [Process the input data](#process-the-input-data) section.
 
+In [miravi-initial-config/config.json](miravi-initial-config/config.json), you can also adapt other settings
+such as titles, names, comments, images.
 You can find further information on Miravi configuration
 [in this repository](https://github.com/SolidLabResearch/miravi-a-linked-data-viewer).
+
+Our tool uses id *gr-tooling-other* and id *gr-tooling-join* to group generated queries,
+consequently you must not adapt those ids.
 
 ### To do by you
 
