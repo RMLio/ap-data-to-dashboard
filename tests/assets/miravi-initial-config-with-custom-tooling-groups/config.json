@@ -9,19 +9,19 @@
   "queryGroups": [
     {
       "id": "gr-use-case",
-      "name": "Use-case-specific queries"
+      "name": "Overzichten specifiek voor de werkgroepen OSLO Leermiddelen"
     },
     {
       "id": "gr-missing-voc",
-      "name": "Missing vocabulary"
-    }, 
+      "name": "Ontbrekende termen"
+    },
     {
       "id": "gr-tooling-other",
-      "name": "Automatically generated queries"
+      "name": "Overzicht per klasse"
     },
     {
       "id": "gr-tooling-join",
-      "name": "Automatically generated join-queries"
+      "name": "Overzicht van relaties tussen klasses"
     }
   ],
   "queries": [

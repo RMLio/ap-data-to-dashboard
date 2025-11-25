@@ -118,8 +118,7 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql starting from template schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"),
-          "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
           if (error) reject(error);
           else resolve();
         });
@@ -132,8 +131,7 @@ describe("Testing js scripts", () => {
   describe("schema-to-sparql from merged schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"),
-          "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"), "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
           if (error) reject(error);
           else resolve();
         });
@@ -142,4 +140,41 @@ describe("Testing js scripts", () => {
       await compareDirectories(join(assetsDir, "generated-queries-merged"), join(outDir, "generated-queries-merged"));
     });
   })
+
+  describe("prepare-miravi-config from config without custom tooling groups", () => {
+    it("should generate miravi config JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/prepare-miravi-config.js",
+          "-i", join(assetsDir, "miravi-initial-config"),
+          "-s", join(assetsDir, "generated-queries-merged"),
+          "-o", join(outDir, "miravi-config"),
+          "-u", "http://localhost:5500/",
+          "-d", join(assetsDir, "serve-me")
+        ], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "generated-miravi-config.json"), join(outDir, "miravi-config", "src", "config.json"));
+    });
+  })
+
+  describe("prepare-miravi-config from config with custom tooling groups", () => {
+    it("should generate miravi config JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/prepare-miravi-config.js",
+          "-i", join(assetsDir, "miravi-initial-config-with-custom-tooling-groups"),
+          "-s", join(assetsDir, "generated-queries-merged"),
+          "-o", join(outDir, "miravi-config-with-custom-tooling-groups"),
+          "-u", "http://localhost:5500/",
+          "-d", join(assetsDir, "serve-me")
+        ], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "generated-miravi-config-with-custom-tooling-groups.json"), join(outDir, "miravi-config-with-custom-tooling-groups", "src", "config.json"));
+    });
+  })
+
 });

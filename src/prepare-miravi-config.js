@@ -82,19 +82,25 @@ const defaultComunicaContext = {
   sources: sources
 };
 
+let miraviConfig = JSON.parse(fs.readFileSync(path.join(inDir, "config.json"), "utf8"));
+// Add to additionalQueryGroups only if the group with this id is not present in the miravi config
 const groupIdNormal = "gr-tooling-other";
 const groupIdJoin = "gr-tooling-join";
-const additionalQueryGroups = [
-  {
+additionalQueryGroups = [];
+const existsGroupIdNormal = miraviConfig.queryGroups.some(obj => obj.id === groupIdNormal)
+if (!existsGroupIdNormal) {
+  additionalQueryGroups.push({
     id: groupIdNormal,
     name: "Automatically generated queries"
-  },
-  {
+  });
+}
+const existsGroupIdJoin = miraviConfig.queryGroups.some(obj => obj.id === groupIdNormal)
+if (!existsGroupIdJoin) {
+  additionalQueryGroups.push({
     id: groupIdJoin,
     name: "Automatically generated join-queries"
-  }
-];
-let miraviConfig = JSON.parse(fs.readFileSync(path.join(inDir, "config.json"), "utf8"));
+  })
+}
 miraviConfig.queryGroups = miraviConfig.queryGroups ? [...miraviConfig.queryGroups, ...additionalQueryGroups] : additionalQueryGroups;
 let idSequenceNumber = 1000;
 if (!miraviConfig.queries) {
@@ -104,7 +110,7 @@ if (!miraviConfig.queries) {
     query.comunicaContext = query.comunicaContext ? [...query.comunicaContext, ...defaultComunicaContext] : defaultComunicaContext;
     const currentId = parseInt(query.id, 10);
     if (!isNaN(currentId) && currentId >= idSequenceNumber) {
-      idSequenceNumber = Math.floor((currentId + 1000)/1000)*1000;
+      idSequenceNumber = Math.floor((currentId + 1000) / 1000) * 1000;
     }
   }
 }
@@ -123,5 +129,10 @@ if (fs.existsSync(splitDir)) {
     idSequenceNumber += 10;
   }
 }
-fs.writeFileSync(path.join(outDir, "src", "config.json"), JSON.stringify(miraviConfig, null, 2), "utf8");
-console.log(`✅ Wrote updated Miravi configuration to ${path.join(outDir, "config.json")}`);
+
+const outSrcDir = path.join(outDir, "src")
+if (!fs.existsSync(outSrcDir)) {
+    fs.mkdirSync(outSrcDir, { recursive: true });
+  }
+fs.writeFileSync(path.join(outSrcDir, "config.json"), JSON.stringify(miraviConfig, null, 2), "utf8");
+console.log(`✅ Wrote updated Miravi configuration to ${path.join(outSrcDir, "config.json")}`);
