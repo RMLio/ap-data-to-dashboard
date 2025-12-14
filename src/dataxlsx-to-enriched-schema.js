@@ -25,6 +25,19 @@ const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), schemaFile
 // Load Excel file
 const workBook = XLSX.readFile(inputFile);
 
+// Process _prefixes sheet if it exists
+const prefixesDict = {}
+if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
+    const prefixesSheet = workBook.Sheets["_prefixes"];
+    const prefixes = XLSX.utils.sheet_to_json(prefixesSheet, { defval: "" });
+
+    for (const row of prefixes) {
+        if ("prefix" in row) {
+            prefixesDict[row.prefix] = row.url
+        }
+    }
+}
+
 // Process _customVoc sheet if it exists
 if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
     const customVocSheet = workBook.Sheets["_customVoc"];
@@ -43,7 +56,8 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                 };
             }
             if (sheetLabel) {
-                const sheetClass = safeGet(row, "sheetClass")
+                let sheetClass = safeGet(row, "sheetClass")
+                sheetClass = expandCompactUri(sheetClass, prefixesDict);
                 safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
                 const columnLabel = safeLabel(row.columnLabel);
                 if (columnLabel) {
@@ -53,9 +67,13 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                             columnLabel: columnLabel,
                         };
                     }
-                    safeAdd(sheetColumns[columnLabel], "columnProperty", safeGet(row, "columnProperty"));
+                    let columnProperty = safeGet(row, "columnProperty");
+                    columnProperty = expandCompactUri(columnProperty, prefixesDict)
+                    safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
                     safeAdd(sheetColumns[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
-                    safeAdd(sheetColumns[columnLabel], "valueClass", safeGet(row, "valueClass"));
+                    let valueClass = safeGet(row, "valueClass");
+                    valueClass = expandCompactUri(valueClass, prefixesDict)                    
+                    safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
                     sheetColumns[columnLabel]["valueMinCount"] = null
                     sheetColumns[columnLabel]["valueMaxCount"] = null
                 }
@@ -144,3 +162,19 @@ function safeAdd(dict, key, value) {
 function safeGet(dict, key) {
     return key in dict ? dict[key] : null;
 }
+
+function expandCompactUri(inputUri, prefixesDict) {
+    const idx = inputUri.indexOf(":");
+    if (idx === -1) {
+      return inputUri; // No colon → not a compact URI
+    }
+    const prefix = inputUri.slice(0, idx); // may be empty
+    const local = inputUri.slice(idx + 1);
+    const base = prefixesDict[prefix];
+    if (!base) {
+        return inputUri;
+    }
+    return base + local;
+}
+
+    

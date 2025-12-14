@@ -1,0 +1,140 @@
+{
+  "CreatiefWerk": {
+    "sheetLabel": "CreatiefWerk",
+    "sheetClass": "https://schema.org/CreativeWork",
+    "columns": {
+      "auteursrechtJaar": {
+        "columnLabel": "auteursrechtJaar",
+        "columnProperty": "https://schema.org/copyrightYear",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#date",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "versie": {
+        "columnLabel": "versie",
+        "columnProperty": "https://schema.org/version",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "publicatiedatum": {
+        "columnLabel": "publicatiedatum",
+        "columnProperty": "https://schema.org/datePublished",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+        "valueMinCount": null,
+        "valueMaxCount": "1"
+      },
+      "auteur": {
+        "columnLabel": "auteur",
+        "columnProperty": "https://schema.org/author",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "auteursrechtHouder": {
+        "columnLabel": "auteursrechtHouder",
+        "columnProperty": "https://schema.org/copyrightHolder",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "taal": {
+        "columnLabel": "taal",
+        "columnProperty": "https://schema.org/inLanguage",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "vereisteTijd": {
+        "columnLabel": "vereisteTijd",
+        "columnProperty": "https://schema.org/timeRequired",
+        "valueClass": "http://www.w3.org/2006/time#Duration",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": "1"
+      },
+      "licentie": {
+        "columnLabel": "licentie",
+        "columnProperty": "https://schema.org/license",
+        "valueClass": "http://purl.org/dc/terms/LicenseDocument",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Licentie"
+      },
+      "producent": {
+        "columnLabel": "producent",
+        "columnProperty": "https://schema.org/author",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null
+      },
+      "uitgever": {
+        "columnLabel": "uitgever",
+        "columnProperty": "https://schema.org/publisher",
+        "valueClass": "http://purl.org/dc/terms/Agent",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "agent": {
+        "columnLabel": "agent",
+        "columnProperty": "http://example.com/heeftAgent",
+        "valueDatatype": null,
+        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      }
+    }
+  },
+  "Licentie": {
+    "sheetLabel": "Licentie",
+    "sheetClass": "http://purl.org/dc/terms/LicenseDocument",
+    "columns": {
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null
+      }
+    }
+  },
+  "Agent": {
+    "sheetLabel": "Agent",
+    "sheetClass": "foafAgent",
+    "columns": {
+      "leeftijd": {
+        "columnLabel": "leeftijd",
+        "columnProperty": "http://xmlns.com/foaf/0.1/age",
+        "valueDatatype": "xsd:integer",
+        "valueClass": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "kent": {
+        "columnLabel": "kent",
+        "columnProperty": "http://xmlns.com/foaf/0.1/knows",
+        "valueDatatype": null,
+        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "naam": {
+        "columnLabel": "naam",
+        "columnProperty": "http://missing.example.com/naam",
+        "valueDatatype": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      }
+    }
+  }
+}

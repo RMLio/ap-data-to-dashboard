@@ -12,7 +12,7 @@ describe("Testing js scripts", () => {
   this.hookTimeout = 20000;
 
   beforeEach(() => {
-    emptyDirSync(outDir);
+//    emptyDirSync(outDir);
   });
 
   describe("shacl-to-template template JSON", () => {
@@ -62,6 +62,19 @@ describe("Testing js scripts", () => {
         });
       });
       await compareFiles(join(assetsDir, "data2-custom-and-missing-voc-enriched-schema.json"), join(outDir, "data2-custom-and-missing-voc-enriched-schema.json"));
+    });
+  });
+
+  //data3-custom-voc-with-prefixes.xlsx in tests/assets is extended with custom vocabulary and prefixes
+  describe("dataxlsx-to-enriched-schema-with-prefixes", () => {
+    it("should generate enriched schema JSON with prefixes", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data3-custom-voc-with-prefixes.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "data3-custom-voc-with-prefixes-enriched-schema.json"), join(outDir, "data3-custom-voc-with-prefixes-enriched-schema.json"));
     });
   });
 
