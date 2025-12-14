@@ -55,9 +55,10 @@ mappings:
         o: 
           value:  "$(uitgever[*])"
           type: iri
-      - p: "http://missing.example.com/agent"
+      - p: "http://example.com/heeftAgent"
         o: 
           value:  "$(agent[*])"
+          type: iri
 
   m_12:
     sources:
@@ -110,6 +111,13 @@ mappings:
 
   m_19:
     sources:
+      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(agent[*])
+    po:
+      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
+
+  m_20:
+    sources:
       - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Licentie[*]" ]
     s: $(CODE[*])
     po:
@@ -119,30 +127,39 @@ mappings:
           value:  "$(type[*])"
           type: iri
 
-  m_20:
+  m_21:
     sources:
       - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.Licentie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
-  m_21:
+  m_22:
     sources:
       - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Agent[*]" ]
     s: $(CODE[*])
     po:
-      - [rdf:type, http://missing.example.com/Agent~iri]
+      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
+      - p: "http://xmlns.com/foaf/0.1/age"
+        o: 
+          value:  "$(leeftijd[*])"
+          datatype: http://www.w3.org/2001/XMLSchema#integer
+      - p: "http://xmlns.com/foaf/0.1/knows"
+        o: 
+          value:  "$(kent[*])"
+          type: iri
       - p: "http://missing.example.com/naam"
         o: 
           value:  "$(naam[*])"
-      - p: "http://missing.example.com/kent"
-        o: 
-          value:  "$(kent[*])"
-      - p: "http://missing.example.com/leeftijd"
-        o: 
-          value:  "$(leeftijd[*])"
 
-  m_24:
+  m_25:
+    sources:
+      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.Agent[*]" ]
+    s: $(kent[*])
+    po:
+      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
+
+  m_26:
     sources:
       - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Boek[*]" ]
     s: $(CODE[*])

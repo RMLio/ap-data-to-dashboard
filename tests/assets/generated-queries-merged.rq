@@ -1,7 +1,7 @@
 # SPARQL queries generated from mergedschema.json
 
 # CreatiefWerk 
-SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?auteur_url ?auteursrechtHouder_url ?taal_url ?vereisteTijd_url ?licentie_url ?producent_url ?uitgever_url ?agent WHERE {
+SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?auteur_url ?auteursrechtHouder_url ?taal_url ?vereisteTijd_url ?licentie_url ?producent_url ?uitgever_url ?agent_url WHERE {
   ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/copyrightYear> ?auteursrechtJaar . }
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/version> ?versie . }
@@ -13,7 +13,7 @@ SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?au
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/license> ?licentie_url . }
   ?CreatiefWerk_url <https://schema.org/author> ?producent_url . 
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/publisher> ?uitgever_url . }
-  OPTIONAL { ?CreatiefWerk_url <http://missing.example.com/agent> ?agent . }
+  OPTIONAL { ?CreatiefWerk_url <http://example.com/heeftAgent> ?agent_url . }
 }
 
 # Licentie 
@@ -23,11 +23,11 @@ SELECT DISTINCT ?Licentie_url ?type_url WHERE {
 }
 
 # Agent 
-SELECT DISTINCT ?Agent_url ?naam ?kent ?leeftijd WHERE {
-  ?Agent_url a <http://missing.example.com/Agent> .
+SELECT DISTINCT ?Agent_url ?leeftijd ?kent_url ?naam WHERE {
+  ?Agent_url a <foafAgent> .
+  OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/age> ?leeftijd . }
+  OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/knows> ?kent_url . }
   OPTIONAL { ?Agent_url <http://missing.example.com/naam> ?naam . }
-  OPTIONAL { ?Agent_url <http://missing.example.com/kent> ?kent . }
-  OPTIONAL { ?Agent_url <http://missing.example.com/leeftijd> ?leeftijd . }
 }
 
 # Boek 
@@ -48,6 +48,8 @@ SELECT DISTINCT ?CreatiefWerk_url ?Licentie_url WHERE {
   ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
   ?CreatiefWerk_url <https://schema.org/license> ?Licentie_url .
 }
+
+
 
 
 

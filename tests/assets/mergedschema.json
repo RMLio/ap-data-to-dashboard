@@ -86,10 +86,12 @@
       },
       "agent": {
         "columnLabel": "agent",
-        "columnProperty": "http://missing.example.com/agent",
+        "columnProperty": "http://example.com/heeftAgent",
         "valueDatatype": null,
+        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
         "valueMinCount": null,
-        "valueMaxCount": null
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Agent"
       }
     }
   },
@@ -109,25 +111,28 @@
   },
   "Agent": {
     "sheetLabel": "Agent",
-    "sheetClass": "http://missing.example.com/Agent",
+    "sheetClass": "foafAgent",
     "columns": {
-      "naam": {
-        "columnLabel": "naam",
-        "columnProperty": "http://missing.example.com/naam",
-        "valueDatatype": null,
+      "leeftijd": {
+        "columnLabel": "leeftijd",
+        "columnProperty": "http://xmlns.com/foaf/0.1/age",
+        "valueDatatype": "xsd:integer",
+        "valueClass": null,
         "valueMinCount": null,
         "valueMaxCount": null
       },
       "kent": {
         "columnLabel": "kent",
-        "columnProperty": "http://missing.example.com/kent",
+        "columnProperty": "http://xmlns.com/foaf/0.1/knows",
         "valueDatatype": null,
+        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
         "valueMinCount": null,
-        "valueMaxCount": null
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "Agent"
       },
-      "leeftijd": {
-        "columnLabel": "leeftijd",
-        "columnProperty": "http://missing.example.com/leeftijd",
+      "naam": {
+        "columnLabel": "naam",
+        "columnProperty": "http://missing.example.com/naam",
         "valueDatatype": null,
         "valueMinCount": null,
         "valueMaxCount": null
