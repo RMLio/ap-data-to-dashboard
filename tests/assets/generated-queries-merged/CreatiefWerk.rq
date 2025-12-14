@@ -1,5 +1,5 @@
 # CreatiefWerk 
-SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?auteur_url ?auteursrechtHouder_url ?taal_url ?vereisteTijd_url ?licentie_url ?producent_url ?uitgever_url ?agent WHERE {
+SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?auteur_url ?auteursrechtHouder_url ?taal_url ?vereisteTijd_url ?licentie_url ?producent_url ?uitgever_url ?agent_url WHERE {
   ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/copyrightYear> ?auteursrechtJaar . }
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/version> ?versie . }
@@ -11,5 +11,5 @@ SELECT DISTINCT ?CreatiefWerk_url ?auteursrechtJaar ?versie ?publicatiedatum ?au
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/license> ?licentie_url . }
   ?CreatiefWerk_url <https://schema.org/author> ?producent_url . 
   OPTIONAL { ?CreatiefWerk_url <https://schema.org/publisher> ?uitgever_url . }
-  OPTIONAL { ?CreatiefWerk_url <http://missing.example.com/agent> ?agent . }
+  OPTIONAL { ?CreatiefWerk_url <http://example.com/heeftAgent> ?agent_url . }
 }
