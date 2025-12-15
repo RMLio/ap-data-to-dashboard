@@ -142,6 +142,10 @@ function sheetToCrossMappingQuery(sheet, column, iriToLabelMap) {
   let triples = [];
   const sheetLabel = sheet.sheetLabel;
   let valueLabel = iriToLabelMap[column.valueClass];
+  // default label for SkosConcept as skos:Concept has often multiple labels in OSLO app
+  if (column.valueClass == "http://www.w3.org/2004/02/skos/core#Concept") {
+    valueLabel = "SkosConcept"
+  } 
   if (!valueLabel) {
     console.log(`⚠️  No label found for IRI ${column.valueClass}, skipping cross-mapping query.`);
     return "";
