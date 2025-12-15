@@ -33,7 +33,7 @@ if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
 
     for (const row of prefixes) {
         if ("prefix" in row) {
-            prefixesDict[row.prefix] = row.url
+            prefixesDict[row.prefix] = row.uri
         }
     }
 }
@@ -71,7 +71,9 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                     let columnProperty = safeGet(row, "columnProperty");
                     columnProperty = expandCompactUri(columnProperty, prefixesDict)
                     safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
-                    safeAdd(sheetColumns[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
+                    let valueDatatype = safeGet(row, "valueDatatype");
+                    valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+                    safeAdd(sheetColumns[columnLabel], "valueDatatype", valueDatatype);
                     let valueClass = safeGet(row, "valueClass");
                     valueClass = expandCompactUri(valueClass, prefixesDict)
                     safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
@@ -89,7 +91,9 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                 let columnProperty = safeGet(row, "columnProperty");
                 columnProperty = expandCompactUri(columnProperty, prefixesDict)
                 safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
-                safeAdd(defaultProperties[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
+                let valueDatatype = safeGet(row, "valueDatatype");
+                valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+                safeAdd(defaultProperties[columnLabel], "valueDatatype", valueDatatype);
                 let valueClass = safeGet(row, "valueClass");
                 valueClass = expandCompactUri(valueClass, prefixesDict)
                 safeAdd(defaultProperties[columnLabel], "valueClass", valueClass);
@@ -193,7 +197,7 @@ function expandCompactUri(inputUri, prefixesDict) {
     const prefix = inputUri.slice(0, idx); // may be empty
     const local = inputUri.slice(idx + 1);
     const base = prefixesDict[prefix];
-    if (!base) {
+    if (! base) {
         return inputUri;
     }
     return base + local;
