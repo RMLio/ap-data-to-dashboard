@@ -117,18 +117,20 @@ workBook.SheetNames.forEach((sheetName) => {
         const headers = data[0];
         const sheetColumns = schema[sheetLabel]["columns"];
         for (const header of headers) {
-            const columnLabel = safeLabel(header);
-            if (columnLabel !== "CODE" && !(columnLabel in sheetColumns)) {
-                if (columnLabel in defaultProperties) {
-                    sheetColumns[columnLabel] = defaultProperties[columnLabel];
-                } else {
-                    sheetColumns[columnLabel] = {
-                        "columnLabel": columnLabel,
-                        "columnProperty": missingEx + columnLabel,
-                        "valueDatatype": null,
-                        "valueClass": null,
-                        "valueMinCount": null,
-                        "valueMaxCount": null,
+            if (header && !header.startsWith("_")) {
+                const columnLabel = safeLabel(header);
+                if (columnLabel !== "CODE" && !(columnLabel in sheetColumns)) {
+                    if (columnLabel in defaultProperties) {
+                        sheetColumns[columnLabel] = defaultProperties[columnLabel];
+                    } else {
+                        sheetColumns[columnLabel] = {
+                            "columnLabel": columnLabel,
+                            "columnProperty": missingEx + columnLabel,
+                            "valueDatatype": null,
+                            "valueClass": null,
+                            "valueMinCount": null,
+                            "valueMaxCount": null,
+                        }
                     }
                 }
             }

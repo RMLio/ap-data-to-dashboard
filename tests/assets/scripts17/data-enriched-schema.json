@@ -1,0 +1,16 @@
+{
+  "Licentie": {
+    "sheetLabel": "Licentie",
+    "sheetClass": "http://purl.org/dc/terms/LicenseDocument",
+    "columns": {
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null
+      }
+    }
+  }
+}

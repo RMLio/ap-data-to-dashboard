@@ -43,14 +43,17 @@ totalXlsx.SheetNames.forEach(sheetName => {
   }
   // We convert the values of all keys to array (easier to make mappings later)
   // To secure save labels, also for custom sheet and custom columns, we use safeLabel
+  // Columns without header or columns with header starting with _ are ignored
   const processedRows = sheetData.map(row => {
     let newRow = {};
     Object.entries(row).forEach(([key, value]) => {
-      if (typeof value === "string" && value.includes(delimiter)) {
-        newRow[safeLabel(key)] = value.split(delimiter).map(v => v.trim());
-      } else if (value !== "" && value !== undefined) {
-        newRow[safeLabel(key)] = [value];
-      } // else: skip key if empty
+      if (key && !key.startsWith("_")) { 
+        if (typeof value === "string" && value.includes(delimiter)) {
+          newRow[safeLabel(key)] = value.split(delimiter).map(v => v.trim());
+        } else if (value !== "" && value !== undefined) {
+          newRow[safeLabel(key)] = [value];
+        } // else: skip key if empty
+      }
     });
     return newRow;
   });

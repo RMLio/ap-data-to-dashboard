@@ -226,4 +226,28 @@ describe("Testing js scripts", () => {
     });
   })
 
+  describe("17. dataxlsx-to-enriched-schema ignoring columns with empty header and columns starting with _", () => {
+    it("should generate enriched schema JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts17", "data.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts17", "template.schema.json")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts17", "data-enriched-schema.json"), join(outDir, "data-enriched-schema.json"));
+    });
+  });
+
+  describe("18. dataxlsx-to-datajson ignoring columns with empty header and columns starting with _", () => {
+    it("should generate data JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-datajson.js", "-i", join(assetsDir, "scripts18", "data.xlsx"), "-o", outDir, "-d", "|"], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts18", "data.json"), join(outDir, "data.json"));
+    });
+  });
+
 });

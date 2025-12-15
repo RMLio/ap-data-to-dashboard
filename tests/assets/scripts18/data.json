@@ -1,0 +1,20 @@
+{
+  "Licentie": [
+    {
+      "CODE": [
+        "a1/code/Licentie_1"
+      ],
+      "type": [
+        "a1_type_1"
+      ]
+    },
+    {
+      "CODE": [
+        "a1/code/Licentie_2"
+      ],
+      "type": [
+        "a1_type_2"
+      ]
+    }
+  ]
+}
