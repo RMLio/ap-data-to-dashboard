@@ -51,7 +51,7 @@ const skosConceptSheet = {
       "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
       "valueMinCount": null,
       "valueMaxCount": null
-    }, 
+    },
     "relatedCode": {
       "columnLabel": "relatedCode",
       "columnProperty": "http://www.w3.org/2004/02/skos/core#related",
@@ -62,6 +62,8 @@ const skosConceptSheet = {
     }
   }
 }
+
+let includesSkosConceptSheet = false;
 
 if (!fs.existsSync(path.dirname(outputFile))) {
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
@@ -183,6 +185,7 @@ for (const sheet of Object.values(schema)) {
   }
   // if skos:Concept, add custom properties to skosConceptSheet 
   else if (sheet.sheetClass === "http://www.w3.org/2004/02/skos/core#Concept") {
+    includesSkosConceptSheet = true;
     for (const column of Object.values(sheet.columns)) {
       if (!(column.columnLabel in skosConceptSheet)) {
         const columnDict = {
@@ -202,8 +205,10 @@ for (const sheet of Object.values(schema)) {
   }
 }
 
-output += sheetToSelect("SkosConcept", skosConceptSheet);
-output += "\n";
+if (includesSkosConceptSheet) {
+  output += sheetToSelect("SkosConcept", skosConceptSheet);
+  output += "\n";
+}
 
 output += "# Example cross-mapping queries\n\n";
 const classToLabelMap = {};
