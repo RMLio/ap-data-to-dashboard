@@ -13,7 +13,7 @@ const { DataFactory } = N3;
 const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
-const { safeLabel } = require("./util")
+const { safeLabel } = require("./util");
 
 const program = new Command();
 
@@ -188,6 +188,21 @@ async function generateTemplates(store) {
     "valueClass"
   ];
   customVocSheet.addRow(headers);
+  customVocSheet.addRow([null, null, "parentCode", "skos:broader", null, "skos:Concept"]);
+  customVocSheet.addRow([null, null, "relatedCode", "skos:related", null, "skos:Concept"]);
+  customVocSheet.addRow([null, null, "prefLabel", "skos:prefLabel", "rdf:langString", null]);
+  customVocSheet.addRow([null, null, "altLabel", "skos:altLabel", "rdf:langString", null]);
+  customVocSheet.addRow([null, null, "definition", "skos:definition", "rdf:langString", null]);
+  customVocSheet.addRow([null, null, "name", "dcterms:title", "rdf:langString", null]);
+  customVocSheet.addRow([null, null, "label", "rdfs:label", "rdf:langString", null]);
+
+  // Add a _prefixes sheet
+  const prefixSheet = wb.addWorksheet("_prefixes");
+  prefixSheet.addRow(["prefix", "uri"]);
+  prefixSheet.addRow(["rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"]);
+  prefixSheet.addRow(["rdfs", "http://www.w3.org/2000/01/rdf-schema#"]);
+  prefixSheet.addRow(["xsd", "http://www.w3.org/2001/XMLSchema#"]);
+  prefixSheet.addRow(["skos", "http://www.w3.org/2004/02/skos/core#"]);
 
   //Format the the sheets
   wb.eachSheet(sheet => {
@@ -241,7 +256,7 @@ async function generateTemplates(store) {
     actor = index + 1
     const prefix = "a" + actor
     wb.eachSheet(sheet => {
-      if (!(sheet.name == "_customVoc")) {
+      if (!(sheet.name == "_customVoc") && !(sheet.name == "_prefixes")) {
         const columnNames = sheet.getRow(1);
         for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
           const dummyRow = [];
@@ -295,9 +310,11 @@ async function generateTemplates(store) {
     }
     // remove added lines before making next dummy data file
     wb.eachSheet(sheet => {
-      // Remove all rows except the header row (row 1) 
-      for (let i = 0; i < 6; i++) {
-        sheet.spliceRows(2, 1);
+      if (!(sheet.name == "_customVoc") && !(sheet.name == "_prefixes")) {
+        // Remove all rows except the header row (row 1) 
+        for (let i = 0; i < 6; i++) {
+          sheet.spliceRows(2, 1);
+        }
       }
     });
   }

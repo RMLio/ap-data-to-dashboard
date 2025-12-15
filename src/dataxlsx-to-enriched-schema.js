@@ -39,6 +39,7 @@ if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
 }
 
 // Process _customVoc sheet if it exists
+const defaultProperties = {};
 if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
     const customVocSheet = workBook.Sheets["_customVoc"];
     const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: "" });
@@ -72,16 +73,33 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                     safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
                     safeAdd(sheetColumns[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
                     let valueClass = safeGet(row, "valueClass");
-                    valueClass = expandCompactUri(valueClass, prefixesDict)                    
+                    valueClass = expandCompactUri(valueClass, prefixesDict)
                     safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
                     sheetColumns[columnLabel]["valueMinCount"] = null
                     sheetColumns[columnLabel]["valueMaxCount"] = null
                 }
+            } else {
+                // default custom properties, not linked to any sheet
+                const columnLabel = safeLabel(row.columnLabel);
+                if (columnLabel) {
+                    defaultProperties[columnLabel] = {
+                        columnLabel: columnLabel,
+                    };
+                }
+                let columnProperty = safeGet(row, "columnProperty");
+                columnProperty = expandCompactUri(columnProperty, prefixesDict)
+                safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
+                safeAdd(defaultProperties[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
+                let valueClass = safeGet(row, "valueClass");
+                valueClass = expandCompactUri(valueClass, prefixesDict)
+                safeAdd(defaultProperties[columnLabel], "valueClass", valueClass);
+                defaultProperties[columnLabel]["valueMinCount"] = null
+                defaultProperties[columnLabel]["valueMaxCount"] = null
             }
         }
     }
 }
-// Iterate sheets and add missing voc (shape voc and custom voc have priority)
+// Iterate sheets and add default and missing voc (shape voc and custom voc have priority)
 workBook.SheetNames.forEach((sheetName) => {
     if (sheetName.startsWith("_")) {
         console.log(`ℹ️ Sheet "${sheetName}" is ignored when adding missing voc (starts with '_')`);
@@ -102,12 +120,16 @@ workBook.SheetNames.forEach((sheetName) => {
         for (const header of headers) {
             const columnLabel = safeLabel(header);
             if (columnLabel !== "CODE" && !(columnLabel in sheetColumns)) {
-                sheetColumns[columnLabel] = {
-                    "columnLabel": columnLabel,
-                    "columnProperty": missingEx + columnLabel,
-                    "valueDatatype": null,
-                    "valueMinCount": null,
-                    "valueMaxCount": null,
+                if (columnLabel in defaultProperties) {
+                    sheetColumns[columnLabel] = defaultProperties[columnLabel];
+                } else {
+                    sheetColumns[columnLabel] = {
+                        "columnLabel": columnLabel,
+                        "columnProperty": missingEx + columnLabel,
+                        "valueDatatype": null,
+                        "valueMinCount": null,
+                        "valueMaxCount": null,
+                    }
                 }
             }
         }
@@ -166,7 +188,7 @@ function safeGet(dict, key) {
 function expandCompactUri(inputUri, prefixesDict) {
     const idx = inputUri.indexOf(":");
     if (idx === -1) {
-      return inputUri; // No colon → not a compact URI
+        return inputUri; // No colon → not a compact URI
     }
     const prefix = inputUri.slice(0, idx); // may be empty
     const local = inputUri.slice(idx + 1);
@@ -177,4 +199,3 @@ function expandCompactUri(inputUri, prefixesDict) {
     return base + local;
 }
 
-    
