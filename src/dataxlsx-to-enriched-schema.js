@@ -29,7 +29,7 @@ const workBook = XLSX.readFile(inputFile);
 const prefixesDict = {}
 if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
     const prefixesSheet = workBook.Sheets["_prefixes"];
-    const prefixes = XLSX.utils.sheet_to_json(prefixesSheet, { defval: "" });
+    const prefixes = XLSX.utils.sheet_to_json(prefixesSheet, { defval: null });
 
     for (const row of prefixes) {
         if ("prefix" in row) {
@@ -42,11 +42,11 @@ if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
 const defaultProperties = {};
 if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
     const customVocSheet = workBook.Sheets["_customVoc"];
-    const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: "" });
+    const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: null });
 
     // shaclVoc has priority over customVoc
     for (const row of customVoc) {
-        if ("sheetLabel" in row) {
+        if ("sheetLabel" in row && row.sheetLabel) {
             const sheetLabel = safeLabel(safeGet(row, "sheetLabel"));
 
             if (!(sheetLabel in schema)) {
@@ -80,26 +80,26 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                     sheetColumns[columnLabel]["valueMinCount"] = null
                     sheetColumns[columnLabel]["valueMaxCount"] = null
                 }
-            } else {
-                // default custom properties, not linked to any sheet
-                const columnLabel = safeLabel(row.columnLabel);
-                if (columnLabel) {
-                    defaultProperties[columnLabel] = {
-                        columnLabel: columnLabel,
-                    };
-                }
-                let columnProperty = safeGet(row, "columnProperty");
-                columnProperty = expandCompactUri(columnProperty, prefixesDict)
-                safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
-                let valueDatatype = safeGet(row, "valueDatatype");
-                valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
-                safeAdd(defaultProperties[columnLabel], "valueDatatype", valueDatatype);
-                let valueClass = safeGet(row, "valueClass");
-                valueClass = expandCompactUri(valueClass, prefixesDict)
-                safeAdd(defaultProperties[columnLabel], "valueClass", valueClass);
-                defaultProperties[columnLabel]["valueMinCount"] = null
-                defaultProperties[columnLabel]["valueMaxCount"] = null
             }
+        } else {
+            // default custom properties, not linked to any sheet
+            const columnLabel = safeLabel(row.columnLabel);
+            if (columnLabel) {
+                defaultProperties[columnLabel] = {
+                    columnLabel: columnLabel,
+                };
+            }
+            let columnProperty = safeGet(row, "columnProperty");
+            columnProperty = expandCompactUri(columnProperty, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
+            let valueDatatype = safeGet(row, "valueDatatype");
+            valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "valueDatatype", valueDatatype);
+            let valueClass = safeGet(row, "valueClass");
+            valueClass = expandCompactUri(valueClass, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "valueClass", valueClass);
+            defaultProperties[columnLabel]["valueMinCount"] = null
+            defaultProperties[columnLabel]["valueMaxCount"] = null
         }
     }
 }
@@ -190,6 +190,9 @@ function safeGet(dict, key) {
 }
 
 function expandCompactUri(inputUri, prefixesDict) {
+    if (!inputUri) {
+        return null;
+    } 
     const idx = inputUri.indexOf(":");
     if (idx === -1) {
         return inputUri; // No colon → not a compact URI
@@ -197,7 +200,7 @@ function expandCompactUri(inputUri, prefixesDict) {
     const prefix = inputUri.slice(0, idx); // may be empty
     const local = inputUri.slice(idx + 1);
     const base = prefixesDict[prefix];
-    if (! base) {
+    if (!base) {
         return inputUri;
     }
     return base + local;
