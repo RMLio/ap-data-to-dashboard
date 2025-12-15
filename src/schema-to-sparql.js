@@ -15,6 +15,54 @@ const inputFile = options.input;
 const outputFile = options.outfile;
 const splitDir = options.splitdir;
 
+// skos:Concepts are summarized in one query with optional default properties
+const skosConceptSheet = {
+  "sheetLabel": "SkosConcept",
+  "sheetClass": "http://www.w3.org/2004/02/skos/core#Concept",
+  "columns": {
+    "prefLabel": {
+      "columnLabel": "prefLabel",
+      "columnProperty": "http://www.w3.org/2004/02/skos/core#prefLabel",
+      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "valueClass": null,
+      "valueMinCount": null,
+      "valueMaxCount": null
+    },
+    "definition": {
+      "columnLabel": "definition",
+      "columnProperty": "http://www.w3.org/2004/02/skos/core#definition",
+      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "valueClass": null,
+      "valueMinCount": null,
+      "valueMaxCount": null
+    },
+    "altLabel": {
+      "columnLabel": "altLabel",
+      "columnProperty": "http://www.w3.org/2004/02/skos/core#altLabel",
+      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+      "valueClass": null,
+      "valueMinCount": null,
+      "valueMaxCount": null
+    },
+    "parentCode": {
+      "columnLabel": "parentCode",
+      "columnProperty": "http://www.w3.org/2004/02/skos/core#broader",
+      "valueDatatype": null,
+      "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+      "valueMinCount": null,
+      "valueMaxCount": null
+    }, 
+    "relatedCode": {
+      "columnLabel": "relatedCode",
+      "columnProperty": "http://www.w3.org/2004/02/skos/core#related",
+      "valueDatatype": null,
+      "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+      "valueMinCount": null,
+      "valueMaxCount": null
+    }
+  }
+}
+
 if (!fs.existsSync(path.dirname(outputFile))) {
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
 }
@@ -22,16 +70,16 @@ if (!fs.existsSync(splitDir)) {
   fs.mkdirSync(splitDir, { recursive: true });
 }
 
-function convertLabeltoVariable(label, isIri){
-  if (isIri){
+function convertLabeltoVariable(label, isIri) {
+  if (isIri) {
     label = label + "_url";
   };
   // "id" is reserved for internal use in Miravi
-  if (label === "id"){
+  if (label === "id") {
     label = "ID";
   }
-  return "?" + label ;
-} 
+  return "?" + label;
+}
 
 function toValidFilename(str, maxLength = 255) {
   // Replace invalid characters with underscores
@@ -65,11 +113,11 @@ function sheetToSelect(sheetLabel, sheet) {
   const sVar = `${convertLabeltoVariable(sheetLabel, true)}`;
   vars.push(sVar);
   triples.push(`${sVar} a <${sheet.sheetClass}> .`);
-  
-  for (const column of Object.values(sheet.columns)){
+
+  for (const column of Object.values(sheet.columns)) {
     const oVar = convertLabeltoVariable(column.columnLabel, column.valueClass);
-    if (column.valueMinCount >= 1){
-      triples.push(`${sVar} <${column.columnProperty}> ${oVar} . `); 
+    if (column.valueMinCount >= 1) {
+      triples.push(`${sVar} <${column.columnProperty}> ${oVar} . `);
     } else {
       triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${oVar} . }`);
     }
@@ -133,14 +181,29 @@ for (const sheet of Object.values(schema)) {
   if (sheet.columns.length === 0) {
     console.log(`⚠️  ${sheet.sheetLabel} has no columns, skipping query generation.`);
   }
-  //skip if sheet class is skos:Concept
+  // if skos:Concept, add custom properties to skosConceptSheet 
   else if (sheet.sheetClass === "http://www.w3.org/2004/02/skos/core#Concept") {
-    console.log(`⚠️  ${sheet.sheetLabel} is skos:Concept, skipping query generation.`);
+    for (const column of Object.values(sheet.columns)) {
+      if (!(column.columnLabel in skosConceptSheet)) {
+        const columnDict = {
+          "columnLabel": column.columnLabel,
+          "columnProperty": column.columnProperty,
+          "valueDatatype": column.valueDatatype,
+          "valueClass": column.valueClass,
+          "valueMinCount": null,
+          "valueMaxCount": null
+        }
+        skosConceptSheet.columns[column.columnLabel] = columnDict;
+      }
+    }
   }
   else {
     output += sheetToSelect(sheet.sheetLabel, sheet) + "\n";
   }
 }
+
+output += sheetToSelect("SkosConcept", skosConceptSheet);
+output += "\n";
 
 output += "# Example cross-mapping queries\n\n";
 const classToLabelMap = {};
