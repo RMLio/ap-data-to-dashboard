@@ -46,7 +46,7 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
 
     // shaclVoc has priority over customVoc
     for (const row of customVoc) {
-        if ("sheetLabel" in row && row.sheetLabel) {
+        if (row.sheetLabel) {
             const sheetLabel = safeLabel(safeGet(row, "sheetLabel"));
 
             if (!(sheetLabel in schema)) {
@@ -56,39 +56,34 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                     "columns": {}
                 };
             }
-            if (sheetLabel) {
-                let sheetClass = safeGet(row, "sheetClass")
-                sheetClass = expandCompactUri(sheetClass, prefixesDict);
-                safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
+            let sheetClass = safeGet(row, "sheetClass")
+            sheetClass = expandCompactUri(sheetClass, prefixesDict);
+            safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
+            if (row.columnLabel) {
                 const columnLabel = safeLabel(row.columnLabel);
-                if (columnLabel) {
-                    const sheetColumns = schema[sheetLabel]["columns"];
-                    if (columnLabel && !(columnLabel in sheetColumns)) {
-                        sheetColumns[columnLabel] = {
-                            columnLabel: columnLabel,
-                        };
-                    }
-                    let columnProperty = safeGet(row, "columnProperty");
-                    columnProperty = expandCompactUri(columnProperty, prefixesDict)
-                    safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
-                    let valueDatatype = safeGet(row, "valueDatatype");
-                    valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
-                    safeAdd(sheetColumns[columnLabel], "valueDatatype", valueDatatype);
-                    let valueClass = safeGet(row, "valueClass");
-                    valueClass = expandCompactUri(valueClass, prefixesDict)
-                    safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
-                    sheetColumns[columnLabel]["valueMinCount"] = null
-                    sheetColumns[columnLabel]["valueMaxCount"] = null
+                const sheetColumns = schema[sheetLabel]["columns"];
+                if (columnLabel && !(columnLabel in sheetColumns)) {
+                    sheetColumns[columnLabel] = {
+                        columnLabel: columnLabel,
+                    };
                 }
+                let columnProperty = safeGet(row, "columnProperty");
+                columnProperty = expandCompactUri(columnProperty, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
+                let valueDatatype = safeGet(row, "valueDatatype");
+                valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "valueDatatype", valueDatatype);
+                let valueClass = safeGet(row, "valueClass");
+                valueClass = expandCompactUri(valueClass, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
+                sheetColumns[columnLabel]["valueMinCount"] = null
+                sheetColumns[columnLabel]["valueMaxCount"] = null
             }
-        } else {
-            // default custom properties, not linked to any sheet
+        }
+        // default custom properties, not linked to any sheet
+        else if (row.columnLabel) {
             const columnLabel = safeLabel(row.columnLabel);
-            if (columnLabel) {
-                defaultProperties[columnLabel] = {
-                    columnLabel: columnLabel,
-                };
-            }
+            defaultProperties[columnLabel] = { "columnLabel": columnLabel };
             let columnProperty = safeGet(row, "columnProperty");
             columnProperty = expandCompactUri(columnProperty, prefixesDict)
             safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
@@ -192,7 +187,7 @@ function safeGet(dict, key) {
 function expandCompactUri(inputUri, prefixesDict) {
     if (!inputUri) {
         return null;
-    } 
+    }
     const idx = inputUri.indexOf(":");
     if (idx === -1) {
         return inputUri; // No colon → not a compact URI
