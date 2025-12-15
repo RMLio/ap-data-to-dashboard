@@ -187,6 +187,18 @@ describe("Testing js scripts", () => {
       });
       await compareFiles(join(assetsDir, "scripts13", "generated-miravi-config-with-custom-tooling-groups.json"), join(outDir, "miravi-config-with-custom-tooling-groups", "src", "config.json"));
     });
-  })
+  });
+
+  describe("14. dataxlsx-to-enriched-schema including default properties", () => {
+    it("should generate enriched schema JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts14", "data.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts14", "template.schema.json")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts14", "data-enriched-schema.json"), join(outDir, "data-enriched-schema.json"));
+    });
+  });
 
 });
