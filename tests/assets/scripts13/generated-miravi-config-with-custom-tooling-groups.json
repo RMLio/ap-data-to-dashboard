@@ -9,19 +9,19 @@
   "queryGroups": [
     {
       "id": "gr-use-case",
-      "name": "Use-case-specific queries"
+      "name": "Overzichten specifiek voor de werkgroepen OSLO Leermiddelen"
     },
     {
       "id": "gr-missing-voc",
-      "name": "Missing vocabulary"
+      "name": "Ontbrekende termen"
     },
     {
       "id": "gr-tooling-other",
-      "name": "Automatically generated queries"
+      "name": "Overzicht per klasse"
     },
     {
       "id": "gr-tooling-join",
-      "name": "Automatically generated join-queries"
+      "name": "Overzicht van relaties tussen klasses"
     }
   ],
   "queries": [
@@ -107,6 +107,32 @@
     {
       "id": "1030",
       "queryGroupId": "gr-tooling-join",
+      "queryLocation": "Join_Agent_kent_Agent2.rq",
+      "name": "Join Agent → kent → Agent2",
+      "description": "Automatically generated query Join_Agent_kent_Agent2.rq",
+      "comunicaContext": {
+        "sources": [
+          "http://localhost:5500/data1-no-custom-voc-sheet.ttl",
+          "http://localhost:5500/data2-custom-and-missing-voc.ttl"
+        ]
+      }
+    },
+    {
+      "id": "1040",
+      "queryGroupId": "gr-tooling-join",
+      "queryLocation": "Join_CreatiefWerk_agent_Agent.rq",
+      "name": "Join CreatiefWerk → agent → Agent",
+      "description": "Automatically generated query Join_CreatiefWerk_agent_Agent.rq",
+      "comunicaContext": {
+        "sources": [
+          "http://localhost:5500/data1-no-custom-voc-sheet.ttl",
+          "http://localhost:5500/data2-custom-and-missing-voc.ttl"
+        ]
+      }
+    },
+    {
+      "id": "1050",
+      "queryGroupId": "gr-tooling-join",
       "queryLocation": "Join_CreatiefWerk_licentie_Licentie.rq",
       "name": "Join CreatiefWerk → licentie → Licentie",
       "description": "Automatically generated query Join_CreatiefWerk_licentie_Licentie.rq",
@@ -118,7 +144,7 @@
       }
     },
     {
-      "id": "1040",
+      "id": "1060",
       "queryGroupId": "gr-tooling-other",
       "queryLocation": "Licentie.rq",
       "name": "Licentie ",

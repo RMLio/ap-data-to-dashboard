@@ -1,0 +1,6 @@
+# Join Agent → kent → Agent2
+SELECT DISTINCT ?Agent_url ?Agent2_url WHERE {
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?Agent2_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?Agent_url <http://xmlns.com/foaf/0.1/knows> ?Agent2_url .
+}

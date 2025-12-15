@@ -1,0 +1,6 @@
+# Join CreatiefWerk → agent → Agent
+SELECT DISTINCT ?CreatiefWerk_url ?Agent_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?CreatiefWerk_url <http://example.com/heeftAgent> ?Agent_url .
+}

@@ -13,7 +13,7 @@
 @prefix void: <http://rdfs.org/ns/void#> .
 
 <http://example.com/a2/code/CreatiefWerk_1> a <https://schema.org/CreativeWork>;
-  <http://missing.example.com/agent> "agent1";
+  <http://example.com/heeftAgent> <http://example.com/agent1>;
   <https://schema.org/author> <http://example.com/a2_auteur_1>, <http://example.com/a2_producent_1>;
   <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_1>;
   <https://schema.org/copyrightYear> "2027-01-30"^^<http://www.w3.org/2001/XMLSchema#date>;
@@ -25,7 +25,7 @@
   <https://schema.org/version> "a2_versie_1"@nl .
 
 <http://example.com/a2/code/CreatiefWerk_2> a <https://schema.org/CreativeWork>;
-  <http://missing.example.com/agent> "agent2";
+  <http://example.com/heeftAgent> <http://example.com/agent2>;
   <https://schema.org/author> <http://example.com/a2_auteur_2>, <http://example.com/a2_producent_2>;
   <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_2>;
   <https://schema.org/copyrightYear> "2025-09-08"^^<http://www.w3.org/2001/XMLSchema#date>;
@@ -168,15 +168,17 @@
 
 <http://example.com/a2_vereisteTijd_5> a <http://www.w3.org/2006/time#Duration> .
 
-<http://example.com/agent1> a <http://missing.example.com/Agent>;
-  <http://missing.example.com/kent> "agent2";
-  <http://missing.example.com/leeftijd> "25";
-  <http://missing.example.com/naam> "Alice" .
+<http://example.com/agent1> a foaf:Agent;
+  <http://missing.example.com/naam> "Alice";
+  foaf:age 25;
+  foaf:knows <http://example.com/agent2> .
 
-<http://example.com/agent2> a <http://missing.example.com/Agent>;
-  <http://missing.example.com/kent> "agent3";
-  <http://missing.example.com/leeftijd> "30";
-  <http://missing.example.com/naam> "Bob" .
+<http://example.com/agent2> a foaf:Agent;
+  <http://missing.example.com/naam> "Bob";
+  foaf:age 30;
+  foaf:knows <http://example.com/agent3> .
+
+<http://example.com/agent3> a foaf:Agent .
 
 <http://example.com/boek1> a <http://missing.example.com/Boek>;
   <http://missing.example.com/titel> "titel van boek1" .

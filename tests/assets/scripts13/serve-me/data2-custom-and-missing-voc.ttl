@@ -1,0 +1,187 @@
+@prefix : <http://base.example.com/> .
+@prefix d2rq: <http://www.wiwiss.fu-berlin.de/suhl/bizer/D2RQ/0.1#> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix ex: <http://example.org/> .
+@prefix exr: <http://example.org/relation/> .
+@prefix fnml: <http://semweb.mmlab.be/ns/fnml#> .
+@prefix fno: <https://w3id.org/function/ontology#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rml: <http://w3id.org/rml/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix void: <http://rdfs.org/ns/void#> .
+
+<http://example.com/a2/code/CreatiefWerk_1> a <https://schema.org/CreativeWork>;
+  <http://example.com/heeftAgent> <http://example.com/agent1>;
+  <https://schema.org/author> <http://example.com/a2_auteur_1>, <http://example.com/a2_producent_1>;
+  <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_1>;
+  <https://schema.org/copyrightYear> "2027-01-30"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <https://schema.org/datePublished> "2030-09-18T11:21:54.639Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <https://schema.org/inLanguage> <http://example.com/a2_taal_1>;
+  <https://schema.org/license> <http://example.com/a2/code/Licentie_5>;
+  <https://schema.org/publisher> <http://example.com/a2_uitgever_1>;
+  <https://schema.org/timeRequired> <http://example.com/a2_vereisteTijd_1>;
+  <https://schema.org/version> "a2_versie_1"@nl .
+
+<http://example.com/a2/code/CreatiefWerk_2> a <https://schema.org/CreativeWork>;
+  <http://example.com/heeftAgent> <http://example.com/agent2>;
+  <https://schema.org/author> <http://example.com/a2_auteur_2>, <http://example.com/a2_producent_2>;
+  <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_2>;
+  <https://schema.org/copyrightYear> "2025-09-08"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <https://schema.org/datePublished> "2012-04-20T08:34:15.981Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <https://schema.org/inLanguage> <http://example.com/a2_taal_2>;
+  <https://schema.org/license> <http://example.com/a2/code/Licentie_2>;
+  <https://schema.org/publisher> <http://example.com/a2_uitgever_2>;
+  <https://schema.org/timeRequired> <http://example.com/a2_vereisteTijd_2>;
+  <https://schema.org/version> "a2_versie_2"@nl .
+
+<http://example.com/a2/code/CreatiefWerk_3> a <https://schema.org/CreativeWork>;
+  <https://schema.org/author> <http://example.com/a2_auteur_3>, <http://example.com/a2_producent_3>;
+  <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_3>;
+  <https://schema.org/copyrightYear> "2018-05-21"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <https://schema.org/datePublished> "2015-08-25T06:52:18.051Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <https://schema.org/inLanguage> <http://example.com/a2_taal_3>;
+  <https://schema.org/license> <http://example.com/a2/code/Licentie_2>;
+  <https://schema.org/publisher> <http://example.com/a2_uitgever_3>;
+  <https://schema.org/timeRequired> <http://example.com/a2_vereisteTijd_3>;
+  <https://schema.org/version> "a2_versie_3"@nl .
+
+<http://example.com/a2/code/CreatiefWerk_4> a <https://schema.org/CreativeWork>;
+  <https://schema.org/author> <http://example.com/a2_auteur_4>, <http://example.com/a2_producent_4>;
+  <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_4>;
+  <https://schema.org/copyrightYear> "2022-08-11"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <https://schema.org/datePublished> "2010-04-10T14:10:07.236Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <https://schema.org/inLanguage> <http://example.com/a2_taal_4>;
+  <https://schema.org/license> <http://example.com/a2/code/Licentie_4>;
+  <https://schema.org/publisher> <http://example.com/a2_uitgever_4>;
+  <https://schema.org/timeRequired> <http://example.com/a2_vereisteTijd_4>;
+  <https://schema.org/version> "a2_versie_4"@nl .
+
+<http://example.com/a2/code/CreatiefWerk_5> a <https://schema.org/CreativeWork>;
+  <https://schema.org/author> <http://example.com/a2_auteur_5>, <http://example.com/a2_auteur_5b>,
+    <http://example.com/a2_producent_5>, <http://example.com/a2_producent_5b>;
+  <https://schema.org/copyrightHolder> <http://example.com/a2_auteursrechtHouder_5>,
+    <http://example.com/a2_auteursrechtHouder_5b>;
+  <https://schema.org/copyrightYear> "2018-02-03"^^<http://www.w3.org/2001/XMLSchema#date>;
+  <https://schema.org/datePublished> "2015-03-29T12:07:48.527Z"^^<http://www.w3.org/2001/XMLSchema#dateTime>;
+  <https://schema.org/inLanguage> <http://example.com/a2_taal_5>, <http://example.com/a2_taal_5b>;
+  <https://schema.org/license> <http://example.com/a2/code/Licentie_4>;
+  <https://schema.org/publisher> <http://example.com/a2_uitgever_5>, <http://example.com/a2_uitgever_5b>;
+  <https://schema.org/timeRequired> <http://example.com/a2_vereisteTijd_5>;
+  <https://schema.org/version> "a2_versie_5"@nl .
+
+<http://example.com/a2/code/Licentie_1> a dc:LicenseDocument;
+  dc:type <http://example.com/a2_type_1> .
+
+<http://example.com/a2/code/Licentie_2> a dc:LicenseDocument;
+  dc:type <http://example.com/a2_type_2> .
+
+<http://example.com/a2/code/Licentie_3> a dc:LicenseDocument;
+  dc:type <http://example.com/a2_type_3> .
+
+<http://example.com/a2/code/Licentie_4> a dc:LicenseDocument;
+  dc:type <http://example.com/a2_type_4> .
+
+<http://example.com/a2/code/Licentie_5> a dc:LicenseDocument;
+  dc:type <http://example.com/a2_type_5>, <http://example.com/a2_type_5b> .
+
+<http://example.com/a2_auteur_1> a dc:Agent .
+
+<http://example.com/a2_auteur_2> a dc:Agent .
+
+<http://example.com/a2_auteur_3> a dc:Agent .
+
+<http://example.com/a2_auteur_4> a dc:Agent .
+
+<http://example.com/a2_auteur_5> a dc:Agent .
+
+<http://example.com/a2_auteur_5b> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_1> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_2> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_3> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_4> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_5> a dc:Agent .
+
+<http://example.com/a2_auteursrechtHouder_5b> a dc:Agent .
+
+<http://example.com/a2_producent_1> a dc:Agent .
+
+<http://example.com/a2_producent_2> a dc:Agent .
+
+<http://example.com/a2_producent_3> a dc:Agent .
+
+<http://example.com/a2_producent_4> a dc:Agent .
+
+<http://example.com/a2_producent_5> a dc:Agent .
+
+<http://example.com/a2_producent_5b> a dc:Agent .
+
+<http://example.com/a2_taal_1> a skos:Concept .
+
+<http://example.com/a2_taal_2> a skos:Concept .
+
+<http://example.com/a2_taal_3> a skos:Concept .
+
+<http://example.com/a2_taal_4> a skos:Concept .
+
+<http://example.com/a2_taal_5> a skos:Concept .
+
+<http://example.com/a2_taal_5b> a skos:Concept .
+
+<http://example.com/a2_type_1> a skos:Concept .
+
+<http://example.com/a2_type_2> a skos:Concept .
+
+<http://example.com/a2_type_3> a skos:Concept .
+
+<http://example.com/a2_type_4> a skos:Concept .
+
+<http://example.com/a2_type_5> a skos:Concept .
+
+<http://example.com/a2_type_5b> a skos:Concept .
+
+<http://example.com/a2_uitgever_1> a dc:Agent .
+
+<http://example.com/a2_uitgever_2> a dc:Agent .
+
+<http://example.com/a2_uitgever_3> a dc:Agent .
+
+<http://example.com/a2_uitgever_4> a dc:Agent .
+
+<http://example.com/a2_uitgever_5> a dc:Agent .
+
+<http://example.com/a2_uitgever_5b> a dc:Agent .
+
+<http://example.com/a2_vereisteTijd_1> a <http://www.w3.org/2006/time#Duration> .
+
+<http://example.com/a2_vereisteTijd_2> a <http://www.w3.org/2006/time#Duration> .
+
+<http://example.com/a2_vereisteTijd_3> a <http://www.w3.org/2006/time#Duration> .
+
+<http://example.com/a2_vereisteTijd_4> a <http://www.w3.org/2006/time#Duration> .
+
+<http://example.com/a2_vereisteTijd_5> a <http://www.w3.org/2006/time#Duration> .
+
+<http://example.com/agent1> a foaf:Agent;
+  <http://missing.example.com/naam> "Alice";
+  foaf:age 25;
+  foaf:knows <http://example.com/agent2> .
+
+<http://example.com/agent2> a foaf:Agent;
+  <http://missing.example.com/naam> "Bob";
+  foaf:age 30;
+  foaf:knows <http://example.com/agent3> .
+
+<http://example.com/agent3> a foaf:Agent .
+
+<http://example.com/boek1> a <http://missing.example.com/Boek>;
+  <http://missing.example.com/titel> "titel van boek1" .
+
+<http://example.com/boek2> a <http://missing.example.com/Boek>;
+  <http://missing.example.com/titel> "titel van boek2" .

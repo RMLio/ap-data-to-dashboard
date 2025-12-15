@@ -1,6 +1,6 @@
 # Agent 
 SELECT DISTINCT ?Agent_url ?leeftijd ?kent_url ?naam WHERE {
-  ?Agent_url a <foafAgent> .
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
   OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/age> ?leeftijd . }
   OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/knows> ?kent_url . }
   OPTIONAL { ?Agent_url <http://missing.example.com/naam> ?naam . }

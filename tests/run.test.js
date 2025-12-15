@@ -34,6 +34,6 @@ describe("Testing run.sh -n", () => {
         else resolve();
       });
     });
-    await compareDirectories(integrationRefDir, integrationActualDir, { exclude: ["in-shaccl/*", "in/*"] });
+    await compareDirectories(integrationRefDir, integrationActualDir, { exclude: ["in-shacl/*", "in/*"] });
   }, 120000 /* this test takes 48s on my laptop, so setting timeout to 120s */);
 });

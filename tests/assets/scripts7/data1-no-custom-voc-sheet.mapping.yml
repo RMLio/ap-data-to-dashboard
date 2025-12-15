@@ -11,7 +11,7 @@ base: "http://base.example.com/"
 mappings:
   m_1:
     sources:
-      - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.CreatiefWerk[*]" ]
+      - [ "tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath", "$.CreatiefWerk[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, https://schema.org/CreativeWork~iri]
@@ -55,70 +55,59 @@ mappings:
         o: 
           value:  "$(uitgever[*])"
           type: iri
-      - p: "http://example.com/heeftAgent"
-        o: 
-          value:  "$(agent[*])"
-          type: iri
+
+  m_11:
+    sources:
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(auteur[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_12:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
-    s: $(auteur[*])
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(auteursrechtHouder[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_13:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
-    s: $(auteursrechtHouder[*])
-    po:
-      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
-
-  m_14:
-    sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(taal[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
 
-  m_15:
+  m_14:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(vereisteTijd[*])
     po:
       - [rdf:type, http://www.w3.org/2006/time#Duration~iri]
 
-  m_16:
+  m_15:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
     s: $(licentie[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
 
+  m_16:
+    sources:
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(producent[*])
+    po:
+      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
+
   m_17:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
-    s: $(producent[*])
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
+    s: $(uitgever[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/Agent~iri]
 
   m_18:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
-    s: $(uitgever[*])
-    po:
-      - [rdf:type, http://purl.org/dc/terms/Agent~iri]
-
-  m_19:
-    sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.CreatiefWerk[*]" ]
-    s: $(agent[*])
-    po:
-      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
-
-  m_20:
-    sources:
-      - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Licentie[*]" ]
+      - [ "tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath", "$.Licentie[*]" ]
     s: $(CODE[*])
     po:
       - [rdf:type, http://purl.org/dc/terms/LicenseDocument~iri]
@@ -127,45 +116,10 @@ mappings:
           value:  "$(type[*])"
           type: iri
 
-  m_21:
+  m_19:
     sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.Licentie[*]" ]
+      - [ tests/assets/scripts7/data1-no-custom-voc-sheet.json~jsonpath, "$.Licentie[*]" ]
     s: $(type[*])
     po:
       - [rdf:type, http://www.w3.org/2004/02/skos/core#Concept~iri]
-
-  m_22:
-    sources:
-      - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Agent[*]" ]
-    s: $(CODE[*])
-    po:
-      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
-      - p: "http://xmlns.com/foaf/0.1/age"
-        o: 
-          value:  "$(leeftijd[*])"
-          datatype: http://www.w3.org/2001/XMLSchema#integer
-      - p: "http://xmlns.com/foaf/0.1/knows"
-        o: 
-          value:  "$(kent[*])"
-          type: iri
-      - p: "http://missing.example.com/naam"
-        o: 
-          value:  "$(naam[*])"
-
-  m_25:
-    sources:
-      - [ tests/assets/data1-no-custom-voc-sheet.json~jsonpath, "$.Agent[*]" ]
-    s: $(kent[*])
-    po:
-      - [rdf:type, http://xmlns.com/foaf/0.1/Agent~iri]
-
-  m_26:
-    sources:
-      - [ "tests/assets/data1-no-custom-voc-sheet.json~jsonpath", "$.Boek[*]" ]
-    s: $(CODE[*])
-    po:
-      - [rdf:type, http://missing.example.com/Boek~iri]
-      - p: "http://missing.example.com/titel"
-        o: 
-          value:  "$(titel[*])"
 

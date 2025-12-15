@@ -1,0 +1,6 @@
+# Join CreatiefWerk → licentie → Licentie
+SELECT DISTINCT ?CreatiefWerk_url ?Licentie_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?CreatiefWerk_url <https://schema.org/license> ?Licentie_url .
+}

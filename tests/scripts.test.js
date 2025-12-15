@@ -12,181 +12,180 @@ describe("Testing js scripts", () => {
   this.hookTimeout = 20000;
 
   beforeEach(() => {
-//    emptyDirSync(outDir);
+    emptyDirSync(outDir);
   });
 
-  describe("shacl-to-template template JSON", () => {
+  describe("1. shacl-to-template template JSON", () => {
     it("should generate template schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
+        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts1", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "template.schema.json"), join(outDir, "template.schema.json"));
+      await compareFiles(join(assetsDir, "scripts1", "template.schema.json"), join(outDir, "template.schema.json"));
     });
   });
 
-  describe("shacl-to-template template XSLX", () => {
+  describe("2. shacl-to-template template XSLX", () => {
     it("should generate template XLSX", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
+        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts2", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "template.xlsx"), join(outDir, "template.xlsx"));
+      await compareFiles(join(assetsDir, "scripts2", "template.xlsx"), join(outDir, "template.xlsx"));
     });
-
   });
-
-  describe("dataxlsx-to-datajson", () => {
+  
+  describe("3. dataxlsx-to-datajson", () => {
     it("should generate data JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-datajson.js", "-i", join(assetsDir, "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-d", "|"], (error) => {
+        execFile("node", ["./src/dataxlsx-to-datajson.js", "-i", join(assetsDir, "scripts6", "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-d", "|"], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet.json"), join(outDir, "data1-no-custom-voc-sheet.json"));
+      await compareFiles(join(assetsDir, "scripts6", "data1-no-custom-voc-sheet.json"), join(outDir, "data1-no-custom-voc-sheet.json"));
     });
   });
 
   //data2-custom-and-missing-voc.xlsx in tests/assets is extended with custom and missing vocabulary
-  describe("dataxlsx-to-enriched-schema", () => {
+  describe("4. dataxlsx-to-enriched-schema", () => {
     it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data2-custom-and-missing-voc.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts4", "data2-custom-and-missing-voc.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts4", "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc-enriched-schema.json"), join(outDir, "data2-custom-and-missing-voc-enriched-schema.json"));
+      await compareFiles(join(assetsDir, "scripts4", "data2-custom-and-missing-voc-enriched-schema.json"), join(outDir, "data2-custom-and-missing-voc-enriched-schema.json"));
     });
   });
 
   //data3-custom-voc-with-prefixes.xlsx in tests/assets is extended with custom vocabulary and prefixes
-  describe("dataxlsx-to-enriched-schema-with-prefixes", () => {
-    it("should generate enriched schema JSON with prefixes", async () => {
+  describe("5. dataxlsx-to-enriched-schema-with-prefixes", () => {
+    it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data3-custom-voc-with-prefixes.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts5", "data3-custom-voc-with-prefixes.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts5", "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data3-custom-voc-with-prefixes-enriched-schema.json"), join(outDir, "data3-custom-voc-with-prefixes-enriched-schema.json"));
+      await compareFiles(join(assetsDir, "scripts5", "data3-custom-voc-with-prefixes-enriched-schema.json"), join(outDir, "data3-custom-voc-with-prefixes-enriched-schema.json"));
     });
   });
 
   //data1-no-custom-voc-sheet.xlsx in tests/assets has no _customVoc sheet
-  describe("dataxlsx-to-enriched-schema from  XLSX without _customVoc sheet", () => {
+  describe("6. dataxlsx-to-enriched-schema from  XLSX without _customVoc sheet", () => {
     it("should generate enriched schema JSON", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-s", join(assetsDir, "template.schema.json")], (error) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts6", "data1-no-custom-voc-sheet.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts6", "template.schema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet-enriched-schema.json"), join(outDir, "data1-no-custom-voc-sheet-enriched-schema.json"));
+      await compareFiles(join(assetsDir, "scripts6", "data1-no-custom-voc-sheet-enriched-schema.json"), join(outDir, "data1-no-custom-voc-sheet-enriched-schema.json"));
     });
   });
 
-  describe("schema-to-yarrrml starting from template schema JSON", () => {
+  describe("7. schema-to-yarrrml starting from template schema JSON", () => {
     it("should generate YARRRML", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "data1-no-custom-voc-sheet.mapping.yml"), "-s", join(assetsDir, "data1-no-custom-voc-sheet.json")], (error) => {
+        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "scripts7", "template.schema.json"), "-o", join(outDir, "data1-no-custom-voc-sheet.mapping.yml"), "-s", join(assetsDir, "scripts7", "data1-no-custom-voc-sheet.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data1-no-custom-voc-sheet.mapping.yml"), join(outDir, "data1-no-custom-voc-sheet.mapping.yml"));
+      await compareFiles(join(assetsDir, "scripts7", "data1-no-custom-voc-sheet.mapping.yml"), join(outDir, "data1-no-custom-voc-sheet.mapping.yml"));
     });
   });
 
   //data2-custom-and-missing-voc.xlsx in tests/assets is extended with custom and missing vocabulary
-  describe("schema-to-yarrrml starting from enriched schema JSON", () => {
+  describe("8. schema-to-yarrrml starting from enriched schema JSON", () => {
     it("should generate YARRRML", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "data2-custom-and-missing-voc-enriched-schema.json"), "-o", join(outDir, "data2-custom-and-missing-voc.mapping.yml"), "-s", join(assetsDir, "data1-no-custom-voc-sheet.json")], (error) => {
+        execFile("node", ["./src/schema-to-yarrrml.js", "-i", join(assetsDir, "scripts8", "data2-custom-and-missing-voc-enriched-schema.json"), "-o", join(outDir, "data2-custom-and-missing-voc.mapping.yml"), "-s", join(assetsDir, "scripts8", "data2-custom-and-missing-voc-sheet.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "data2-custom-and-missing-voc.mapping.yml"), join(outDir, "data2-custom-and-missing-voc.mapping.yml"));
+      await compareFiles(join(assetsDir, "scripts8", "data2-custom-and-missing-voc.mapping.yml"), join(outDir, "data2-custom-and-missing-voc.mapping.yml"));
     });
   })
 
-  describe("merge-enriched-schemas", () => {
+  describe("9. merge-enriched-schemas", () => {
     it("should generate merged YARRRML", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/merge-enriched-schemas.js", "-i", join(assetsDir), "-o", join(outDir, "mergedschema.json")], (error) => {
+        execFile("node", ["./src/merge-enriched-schemas.js", "-i", join(assetsDir, "scripts9"), "-o", join(outDir, "mergedschema.json")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "mergedschema.json"), join(outDir, "mergedschema.json"));
+      await compareFiles(join(assetsDir, "scripts9", "mergedschema.json"), join(outDir, "mergedschema.json"));
     });
   })
 
-  describe("schema-to-sparql starting from template schema JSON", () => {
+  describe("10. schema-to-sparql starting from template schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "template.schema.json"), "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "scripts10", "template.schema.json"), "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "generated-queries.rq"), join(outDir, "generated-queries.rq"));
-      await compareDirectories(join(assetsDir, "generated-queries"), join(outDir, "generated-queries"));
+      await compareFiles(join(assetsDir, "scripts10", "generated-queries.rq"), join(outDir, "generated-queries.rq"));
+      await compareDirectories(join(assetsDir, "scripts10", "generated-queries"), join(outDir, "generated-queries"));
     });
   })
 
-  describe("schema-to-sparql from merged schema JSON", () => {
+  describe("11. schema-to-sparql from merged schema JSON", () => {
     it("should generate queries", async () => {
       await new Promise((resolve, reject) => {
-        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "mergedschema.json"), "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "scripts11", "mergedschema.json"), "-o", join(outDir, "generated-queries-merged.rq"), "-s", join(outDir, "generated-queries-merged")], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "generated-queries-merged.rq"), join(outDir, "generated-queries-merged.rq"));
-      await compareDirectories(join(assetsDir, "generated-queries-merged"), join(outDir, "generated-queries-merged"));
+      await compareFiles(join(assetsDir, "scripts11", "generated-queries-merged.rq"), join(outDir, "generated-queries-merged.rq"));
+      await compareDirectories(join(assetsDir, "scripts11", "generated-queries-merged"), join(outDir, "generated-queries-merged"));
     });
   })
 
-  describe("prepare-miravi-config from config without custom tooling groups", () => {
+  describe("12. prepare-miravi-config from config without custom tooling groups", () => {
     it("should generate miravi config JSON", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/prepare-miravi-config.js",
-          "-i", join(assetsDir, "miravi-initial-config"),
-          "-s", join(assetsDir, "generated-queries-merged"),
+          "-i", join(assetsDir, "scripts12", "miravi-initial-config"),
+          "-s", join(assetsDir, "scripts12", "generated-queries-merged"),
           "-o", join(outDir, "miravi-config"),
           "-u", "http://localhost:5500/",
-          "-d", join(assetsDir, "serve-me")
+          "-d", join(assetsDir, "scripts12", "serve-me")
         ], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "generated-miravi-config.json"), join(outDir, "miravi-config", "src", "config.json"));
+      await compareFiles(join(assetsDir, "scripts12", "generated-miravi-config.json"), join(outDir, "miravi-config", "src", "config.json"));
     });
   })
 
-  describe("prepare-miravi-config from config with custom tooling groups", () => {
+  describe("13. prepare-miravi-config from config with custom tooling groups", () => {
     it("should generate miravi config JSON", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/prepare-miravi-config.js",
-          "-i", join(assetsDir, "miravi-initial-config-with-custom-tooling-groups"),
-          "-s", join(assetsDir, "generated-queries-merged"),
+          "-i", join(assetsDir, "scripts13", "miravi-initial-config-with-custom-tooling-groups"),
+          "-s", join(assetsDir, "scripts13", "generated-queries-merged"),
           "-o", join(outDir, "miravi-config-with-custom-tooling-groups"),
           "-u", "http://localhost:5500/",
-          "-d", join(assetsDir, "serve-me")
+          "-d", join(assetsDir, "scripts13", "serve-me")
         ], (error) => {
           if (error) reject(error);
           else resolve();
         });
       });
-      await compareFiles(join(assetsDir, "generated-miravi-config-with-custom-tooling-groups.json"), join(outDir, "miravi-config-with-custom-tooling-groups", "src", "config.json"));
+      await compareFiles(join(assetsDir, "scripts13", "generated-miravi-config-with-custom-tooling-groups.json"), join(outDir, "miravi-config-with-custom-tooling-groups", "src", "config.json"));
     });
   })
 

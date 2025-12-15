@@ -24,7 +24,7 @@ SELECT DISTINCT ?Licentie_url ?type_url WHERE {
 
 # Agent 
 SELECT DISTINCT ?Agent_url ?leeftijd ?kent_url ?naam WHERE {
-  ?Agent_url a <foafAgent> .
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
   OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/age> ?leeftijd . }
   OPTIONAL { ?Agent_url <http://xmlns.com/foaf/0.1/knows> ?kent_url . }
   OPTIONAL { ?Agent_url <http://missing.example.com/naam> ?naam . }
@@ -51,6 +51,18 @@ SELECT DISTINCT ?CreatiefWerk_url ?Licentie_url WHERE {
 
 
 
+# Join CreatiefWerk → agent → Agent
+SELECT DISTINCT ?CreatiefWerk_url ?Agent_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?CreatiefWerk_url <http://example.com/heeftAgent> ?Agent_url .
+}
 
 
+# Join Agent → kent → Agent2
+SELECT DISTINCT ?Agent_url ?Agent2_url WHERE {
+  ?Agent_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?Agent2_url a <http://xmlns.com/foaf/0.1/Agent> .
+  ?Agent_url <http://xmlns.com/foaf/0.1/knows> ?Agent2_url .
+}
 
