@@ -126,6 +126,7 @@ workBook.SheetNames.forEach((sheetName) => {
                         "columnLabel": columnLabel,
                         "columnProperty": missingEx + columnLabel,
                         "valueDatatype": null,
+                        "valueClass": null,
                         "valueMinCount": null,
                         "valueMaxCount": null,
                     }
@@ -142,6 +143,7 @@ for (const sheetLabel in schema) {
     iriToLabelMap[sheetClass] = sheetLabel;
     for (const sheet in schema) {
         for (const column in schema[sheet]["columns"]) {
+            // excluded because skos:Concept has typically multiple labels in OSLO
             if (column.valueClass !== "http://www.w3.org/2004/02/skos/core#Concept") {
                 const valueClass = schema[sheet]["columns"][column]["valueClass"]
                 schema[sheet]["columns"][column]["valueForeignKeySheet"] = iriToLabelMap[valueClass]
