@@ -83,15 +83,6 @@
         "valueDatatype": null,
         "valueMinCount": null,
         "valueMaxCount": null
-      },
-      "agent": {
-        "columnLabel": "agent",
-        "columnProperty": "http://example.com/heeftAgent",
-        "valueDatatype": null,
-        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
-        "valueMinCount": null,
-        "valueMaxCount": null,
-        "valueForeignKeySheet": "Agent"
       }
     }
   },
@@ -105,37 +96,6 @@
         "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
         "valueDatatype": null,
         "valueMinCount": "1",
-        "valueMaxCount": null
-      }
-    }
-  },
-  "Agent": {
-    "sheetLabel": "Agent",
-    "sheetClass": "http://xmlns.com/foaf/0.1/Agent",
-    "columns": {
-      "leeftijd": {
-        "columnLabel": "leeftijd",
-        "columnProperty": "http://xmlns.com/foaf/0.1/age",
-        "valueDatatype": "http://www.w3.org/2001/XMLSchema#integer",
-        "valueClass": null,
-        "valueMinCount": null,
-        "valueMaxCount": null
-      },
-      "kent": {
-        "columnLabel": "kent",
-        "columnProperty": "http://xmlns.com/foaf/0.1/knows",
-        "valueDatatype": null,
-        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
-        "valueMinCount": null,
-        "valueMaxCount": null,
-        "valueForeignKeySheet": "Agent"
-      },
-      "naam": {
-        "columnLabel": "naam",
-        "columnProperty": "http://missing.example.com/naam",
-        "valueDatatype": null,
-        "valueClass": null,
-        "valueMinCount": null,
         "valueMaxCount": null
       }
     }

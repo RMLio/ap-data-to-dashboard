@@ -84,14 +84,13 @@
         "valueMinCount": null,
         "valueMaxCount": null
       },
-      "agent": {
-        "columnLabel": "agent",
-        "columnProperty": "http://example.com/heeftAgent",
-        "valueDatatype": null,
-        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
+      "label": {
+        "columnLabel": "label",
+        "columnProperty": "http://www.w3.org/2000/01/rdf-schema#label",
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueClass": null,
         "valueMinCount": null,
-        "valueMaxCount": null,
-        "valueForeignKeySheet": "Agent"
+        "valueMaxCount": null
       }
     }
   },
@@ -109,31 +108,22 @@
       }
     }
   },
-  "Agent": {
-    "sheetLabel": "Agent",
-    "sheetClass": "http://xmlns.com/foaf/0.1/Agent",
+  "LicentieType": {
+    "sheetLabel": "LicentieType",
+    "sheetClass": "http://missing.example.com/LicentieType",
     "columns": {
-      "leeftijd": {
-        "columnLabel": "leeftijd",
-        "columnProperty": "http://xmlns.com/foaf/0.1/age",
-        "valueDatatype": "http://www.w3.org/2001/XMLSchema#integer",
+      "prefLabel": {
+        "columnLabel": "prefLabel",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
         "valueClass": null,
         "valueMinCount": null,
         "valueMaxCount": null
       },
-      "kent": {
-        "columnLabel": "kent",
-        "columnProperty": "http://xmlns.com/foaf/0.1/knows",
-        "valueDatatype": null,
-        "valueClass": "http://xmlns.com/foaf/0.1/Agent",
-        "valueMinCount": null,
-        "valueMaxCount": null,
-        "valueForeignKeySheet": "Agent"
-      },
-      "naam": {
-        "columnLabel": "naam",
-        "columnProperty": "http://missing.example.com/naam",
-        "valueDatatype": null,
+      "definition": {
+        "columnLabel": "definition",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#definition",
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
         "valueClass": null,
         "valueMinCount": null,
         "valueMaxCount": null

@@ -134,6 +134,7 @@
         "columnLabel": "naam",
         "columnProperty": "http://missing.example.com/naam",
         "valueDatatype": null,
+        "valueClass": null,
         "valueMinCount": null,
         "valueMaxCount": null
       }
@@ -147,6 +148,7 @@
         "columnLabel": "titel",
         "columnProperty": "http://missing.example.com/titel",
         "valueDatatype": null,
+        "valueClass": null,
         "valueMinCount": null,
         "valueMaxCount": null
       }

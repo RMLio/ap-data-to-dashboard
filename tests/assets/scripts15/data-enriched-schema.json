@@ -1,0 +1,39 @@
+{
+  "Licentie": {
+    "sheetLabel": "Licentie",
+    "sheetClass": "http://purl.org/dc/terms/LicenseDocument",
+    "columns": {
+      "type": {
+        "columnLabel": "type",
+        "columnProperty": "http://purl.org/dc/terms/type",
+        "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
+        "valueDatatype": null,
+        "valueMinCount": "1",
+        "valueMaxCount": null,
+        "valueForeignKeySheet": "LicentieType"
+      }
+    }
+  },
+  "LicentieType": {
+    "sheetLabel": "LicentieType",
+    "sheetClass": "http://www.w3.org/2004/02/skos/core#Concept",
+    "columns": {
+      "prefLabel": {
+        "columnLabel": "prefLabel",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#prefLabel",
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueClass": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "definition": {
+        "columnLabel": "definition",
+        "columnProperty": "http://www.w3.org/2004/02/skos/core#definition",
+        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueClass": null,
+        "valueMinCount": null,
+        "valueMaxCount": null
+      }
+    }
+  }
+}

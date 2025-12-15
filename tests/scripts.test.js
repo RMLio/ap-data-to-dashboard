@@ -201,4 +201,29 @@ describe("Testing js scripts", () => {
     });
   });
 
+  describe("15. dataxlsx-to-enriched-schema including default properties and skos:Concept sheet with custom label", () => {
+    it("should generate enriched schema JSON", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/dataxlsx-to-enriched-schema.js", "-i", join(assetsDir, "scripts15", "data.xlsx"), "-o", outDir, "-s", join(assetsDir, "scripts15", "template.schema.json")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts15", "data-enriched-schema.json"), join(outDir, "data-enriched-schema.json"));
+    });
+  });
+
+  describe("16. schema-to-sparql including skos:Concept query", () => {
+    it("should generate queries", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/schema-to-sparql.js", "-i", join(assetsDir, "scripts16", "data-enriched-schema.json"), "-o", join(outDir, "generated-queries.rq"), "-s", join(outDir, "generated-queries")], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts16", "generated-queries.rq"), join(outDir, "generated-queries.rq"));
+      await compareDirectories(join(assetsDir, "scripts16", "generated-queries"), join(outDir, "generated-queries"));
+    });
+  })
+
 });

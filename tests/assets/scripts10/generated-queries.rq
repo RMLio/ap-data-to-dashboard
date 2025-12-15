@@ -25,6 +25,12 @@ SELECT DISTINCT ?Licentie_url ?type_url WHERE {
 
 
 
+# Join CreatiefWerk → taal → SkosConcept
+SELECT DISTINCT ?CreatiefWerk_url ?SkosConcept_url WHERE {
+  ?CreatiefWerk_url a <https://schema.org/CreativeWork> .
+  ?SkosConcept_url a <http://www.w3.org/2004/02/skos/core#Concept> .
+  ?CreatiefWerk_url <https://schema.org/inLanguage> ?SkosConcept_url .
+}
 
 
 # Join CreatiefWerk → licentie → Licentie
@@ -36,4 +42,10 @@ SELECT DISTINCT ?CreatiefWerk_url ?Licentie_url WHERE {
 
 
 
+# Join Licentie → type → SkosConcept
+SELECT DISTINCT ?Licentie_url ?SkosConcept_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?SkosConcept_url a <http://www.w3.org/2004/02/skos/core#Concept> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?SkosConcept_url .
+}
 
