@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
+const { skosConceptSheet }  = require("./defaultVoc")
 
 const program = new Command();
 program
@@ -15,54 +16,7 @@ const inputFile = options.input;
 const outputFile = options.outfile;
 const splitDir = options.splitdir;
 
-// skos:Concepts are summarized in one query with optional default properties
-const skosConceptSheet = {
-  "sheetLabel": "SkosConcept",
-  "sheetClass": "http://www.w3.org/2004/02/skos/core#Concept",
-  "columns": {
-    "prefLabel": {
-      "columnLabel": "prefLabel",
-      "columnProperty": "http://www.w3.org/2004/02/skos/core#prefLabel",
-      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-      "valueClass": null,
-      "valueMinCount": null,
-      "valueMaxCount": null
-    },
-    "definition": {
-      "columnLabel": "definition",
-      "columnProperty": "http://www.w3.org/2004/02/skos/core#definition",
-      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-      "valueClass": null,
-      "valueMinCount": null,
-      "valueMaxCount": null
-    },
-    "altLabel": {
-      "columnLabel": "altLabel",
-      "columnProperty": "http://www.w3.org/2004/02/skos/core#altLabel",
-      "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
-      "valueClass": null,
-      "valueMinCount": null,
-      "valueMaxCount": null
-    },
-    "parentCode": {
-      "columnLabel": "parentCode",
-      "columnProperty": "http://www.w3.org/2004/02/skos/core#broader",
-      "valueDatatype": null,
-      "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
-      "valueMinCount": null,
-      "valueMaxCount": null
-    },
-    "relatedCode": {
-      "columnLabel": "relatedCode",
-      "columnProperty": "http://www.w3.org/2004/02/skos/core#related",
-      "valueDatatype": null,
-      "valueClass": "http://www.w3.org/2004/02/skos/core#Concept",
-      "valueMinCount": null,
-      "valueMaxCount": null
-    }
-  }
-}
-
+// A summarizing query for skos:Concept with optional default properties is added if at least one sheet with sheetClass skos:Concept appears in the data
 let includesSkosConceptSheet = false;
 
 if (!fs.existsSync(path.dirname(outputFile))) {

@@ -14,6 +14,7 @@ const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
 const { safeLabel } = require("./util");
+const defaultVoc = require("./defaultVoc")
 
 const program = new Command();
 
@@ -179,30 +180,15 @@ async function generateTemplates(store) {
   // Add a _customVoc sheet
   const customVocSheet = wb.addWorksheet("_customVoc");
   // No min and max count for the custom voc
-  const headers = [
-    "sheetLabel",
-    "sheetClass",
-    "columnLabel",
-    "columnProperty",
-    "valueDatatype",
-    "valueClass"
-  ];
-  customVocSheet.addRow(headers);
-  customVocSheet.addRow([null, null, "parentCode", "skos:broader", null, "skos:Concept"]);
-  customVocSheet.addRow([null, null, "relatedCode", "skos:related", null, "skos:Concept"]);
-  customVocSheet.addRow([null, null, "prefLabel", "skos:prefLabel", "rdf:langString", null]);
-  customVocSheet.addRow([null, null, "altLabel", "skos:altLabel", "rdf:langString", null]);
-  customVocSheet.addRow([null, null, "definition", "skos:definition", "rdf:langString", null]);
-  customVocSheet.addRow([null, null, "name", "dcterms:title", "rdf:langString", null]);
-  customVocSheet.addRow([null, null, "label", "rdfs:label", "rdf:langString", null]);
+  for (const row of defaultVoc.customVocSheet) {
+    customVocSheet.addRow(row);
+  }
 
   // Add a _prefixes sheet
   const prefixSheet = wb.addWorksheet("_prefixes");
-  prefixSheet.addRow(["prefix", "uri"]);
-  prefixSheet.addRow(["rdf", "http://www.w3.org/1999/02/22-rdf-syntax-ns#"]);
-  prefixSheet.addRow(["rdfs", "http://www.w3.org/2000/01/rdf-schema#"]);
-  prefixSheet.addRow(["xsd", "http://www.w3.org/2001/XMLSchema#"]);
-  prefixSheet.addRow(["skos", "http://www.w3.org/2004/02/skos/core#"]);
+  for (const row of defaultVoc.prefixesSheet) {
+    prefixSheet.addRow(row);
+  }
 
   //Format the the sheets
   wb.eachSheet(sheet => {
