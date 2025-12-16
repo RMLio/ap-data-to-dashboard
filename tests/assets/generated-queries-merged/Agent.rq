@@ -1,7 +1,0 @@
-# Agent 
-SELECT DISTINCT ?Agent_url ?naam ?kent ?leeftijd WHERE {
-  ?Agent_url a <http://missing.example.com/Agent> .
-  OPTIONAL { ?Agent_url <http://missing.example.com/naam> ?naam . }
-  OPTIONAL { ?Agent_url <http://missing.example.com/kent> ?kent . }
-  OPTIONAL { ?Agent_url <http://missing.example.com/leeftijd> ?leeftijd . }
-}

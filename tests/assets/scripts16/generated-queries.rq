@@ -1,0 +1,27 @@
+# SPARQL queries generated from data-enriched-schema.json
+
+# Licentie 
+SELECT DISTINCT ?Licentie_url ?type_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?type_url . 
+}
+
+# SkosConcept 
+SELECT DISTINCT ?SkosConcept_url ?prefLabel ?definition ?altLabel ?parentCode_url ?relatedCode_url WHERE {
+  ?SkosConcept_url a <http://www.w3.org/2004/02/skos/core#Concept> .
+  OPTIONAL { ?SkosConcept_url <http://www.w3.org/2004/02/skos/core#prefLabel> ?prefLabel . }
+  OPTIONAL { ?SkosConcept_url <http://www.w3.org/2004/02/skos/core#definition> ?definition . }
+  OPTIONAL { ?SkosConcept_url <http://www.w3.org/2004/02/skos/core#altLabel> ?altLabel . }
+  OPTIONAL { ?SkosConcept_url <http://www.w3.org/2004/02/skos/core#broader> ?parentCode_url . }
+  OPTIONAL { ?SkosConcept_url <http://www.w3.org/2004/02/skos/core#related> ?relatedCode_url . }
+}
+
+# Example cross-mapping queries
+
+# Join Licentie → type → LicentieType
+SELECT DISTINCT ?Licentie_url ?LicentieType_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?LicentieType_url a <http://www.w3.org/2004/02/skos/core#Concept> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?LicentieType_url .
+}
+

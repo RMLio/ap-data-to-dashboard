@@ -1,22 +1,22 @@
 # AP data to dashboard
 
-- [Purpose](#purpose)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Usage](#usage)
-  - [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
-    - [Output](#output)
-    - [Required SHACL structure](#required-shacl-structure)
-  - [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
-  - [Optionally include additional data](#optionally-include-additional-data)
-  - [Process the input data](#process-the-input-data)
-  - [Customize your Miravi dashboard](#customize-your-miravi-dashboard)
-  - [To do by you](#to-do-by-you)
-- [Development](#development)
-  - [Work locally](#work-locally)
-  - [Testing](#testing)
-- [Design Choices and Known Limitations](#design-choices-and-known-limitations)
-- [Markdown linter](#markdown-linter)
+* [Purpose](#purpose)
+* [Prerequisites](#prerequisites)
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Generate the template files from a SHACL shape](#generate-the-template-files-from-a-shacl-shape)
+    * [Output](#output)
+    * [Required SHACL structure](#required-shacl-structure)
+  * [Produce input data using the template Excel workbook](#produce-input-data-using-the-template-excel-workbook)
+  * [Optionally include additional data](#optionally-include-additional-data)
+  * [Process the input data](#process-the-input-data)
+  * [Customize your Miravi dashboard](#customize-your-miravi-dashboard)
+  * [To do by you](#to-do-by-you)
+* [Development](#development)
+  * [Work locally](#work-locally)
+  * [Testing](#testing)
+* [Design Choices and Known Limitations](#design-choices-and-known-limitations)
+* [Markdown linter](#markdown-linter)
 
 ## Purpose
 
@@ -142,6 +142,8 @@ Several actors can add their own input data in the `in`-folder.
 Note: When using a SHACL shape from an OSLO application profile as input,
 the diagram of that application profile visualizes the links between the sheets and mentions the expected datatype.
 
+Note: Our tool ignores without header or with header starting with _. You can use those columns to added remarks.
+
 ### Optionally include additional data
 
 If you want to include additional data, not defined in the SHACL template, you can add extra sheets and/or columns.
@@ -197,7 +199,35 @@ ex:agent2 a foaf:Agent;
 ex:agent3 a foaf:Agent.   
 ```
 
-Our tool ignores the additionals sheets and columns when you select strict mode.
+You may specify prefixes in the sheet labeled `_prefixes`, enabling the use of compact URIs in the sheet `_customVoc`.
+
+**Example**: the `_customVoc` sheet with compact URIs.
+
+| sheetLabel | sheetClass | columnLabel | columnProperty | valueDatatype | valueClass |
+|------------|------------|-------------|----------------|---------------|------------|
+| Agent      | foaf:Agent | age         | foaf:age       | xsd:integer   |            |
+| Agent      | foaf:Agent | knows       | foaf:knows     |               | foaf:Agent |
+
+**Example**: the `_prefixes` sheet in the same data file.
+
+| prefix | uri                                 |
+|--------|-------------------------------------|
+| foaf   | <http://xmlns.com/foaf/0.1/>        |
+| xsd    | <http://www.w3.org/2001/XMLSchema#> |
+
+If you leave `sheetLabel` and `sheetClass` empty,
+the tool applies remaining specifications to any additional column with the corresponding column label as header.  
+
+**Example**: `_customVoc` sheet with column specifications that are reusable in any sheet.
+
+| sheetLabel | sheetClass | columnLabel | columnProperty | valueDatatype | valueClass |
+|------------|------------|-------------|----------------|---------------|------------|
+|            |            | age         | foaf:age       | xsd:integer   |            |
+|            |            | knows       | foaf:knows     |               | foaf:Agent |
+
+The sheet labeled `_customVoc` in the generated template includes seven such column specifications by default.  
+
+Our tool ignores the additional sheets and columns when you select strict mode.
 
 ### Process the input data
 

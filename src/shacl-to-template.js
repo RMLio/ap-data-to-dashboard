@@ -13,7 +13,8 @@ const { DataFactory } = N3;
 const { namedNode } = DataFactory;
 const ExcelJS = require("exceljs"); // Excel file handling with formatting
 const { Command } = require("commander");
-const { safeLabel } = require("./util")
+const { safeLabel } = require("./util");
+const defaultVoc = require("./defaultVoc")
 
 const program = new Command();
 
@@ -179,15 +180,15 @@ async function generateTemplates(store) {
   // Add a _customVoc sheet
   const customVocSheet = wb.addWorksheet("_customVoc");
   // No min and max count for the custom voc
-  const headers = [
-    "sheetLabel",
-    "sheetClass",
-    "columnLabel",
-    "columnProperty",
-    "valueDatatype",
-    "valueClass"
-  ];
-  customVocSheet.addRow(headers);
+  for (const row of defaultVoc.customVocSheet) {
+    customVocSheet.addRow(row);
+  }
+
+  // Add a _prefixes sheet
+  const prefixSheet = wb.addWorksheet("_prefixes");
+  for (const row of defaultVoc.prefixesSheet) {
+    prefixSheet.addRow(row);
+  }
 
   //Format the the sheets
   wb.eachSheet(sheet => {
@@ -241,7 +242,7 @@ async function generateTemplates(store) {
     actor = index + 1
     const prefix = "a" + actor
     wb.eachSheet(sheet => {
-      if (!(sheet.name == "_customVoc")) {
+      if (!(sheet.name == "_customVoc") && !(sheet.name == "_prefixes")) {
         const columnNames = sheet.getRow(1);
         for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
           const dummyRow = [];
@@ -295,9 +296,11 @@ async function generateTemplates(store) {
     }
     // remove added lines before making next dummy data file
     wb.eachSheet(sheet => {
-      // Remove all rows except the header row (row 1) 
-      for (let i = 0; i < 6; i++) {
-        sheet.spliceRows(2, 1);
+      if (!(sheet.name == "_customVoc") && !(sheet.name == "_prefixes")) {
+        // Remove all rows except the header row (row 1) 
+        for (let i = 0; i < 6; i++) {
+          sheet.spliceRows(2, 1);
+        }
       }
     });
   }

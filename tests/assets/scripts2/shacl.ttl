@@ -1,0 +1,153 @@
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix dc11: <http://purl.org/dc/elements/1.1/> .
+@prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema: <http://schema.org/> .
+@prefix schemas: <https://schema.org/> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#CreatiefwerkShape> a shacl:NodeShape;
+  rdfs:label "CreatiefWerk"@nl;
+  <http://purl.org/vocab/vann/usageNote> "Je kan ook DCTerms en DCAT gebruiken, zie <a href=\"https://www.w3.org/TR/vocab-dcat-3/#dcat-sdo\">W3C DCAT specificatie sectie over de alignering tussen DCAT en Schema.org<a/>."@nl;
+  rdfs:comment "Een intellectueel of artistiek resultaat dat voorkomt uit originele inspanning of verbeelding."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "auteursrechtJaar"@nl;
+    rdfs:comment "Het jaar waarin het geclaimde auteursrecht voor het CreatiefWerk voor het eerst werd geclaimd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteursrechtjaar>;
+    shacl:datatype xsd:date;
+    shacl:description "Het jaar waarin het geclaimde auteursrecht voor het CreatiefWerk voor het eerst werd geclaimd."@nl;
+    shacl:maxCount "1";
+    shacl:name "auteursrechtJaar"@nl;
+    shacl:path schemas:copyrightYear
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "versie"@nl;
+    rdfs:comment "De versie van het CreatiefWerk."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Versie>;
+    shacl:datatype rdf:langString;
+    shacl:description "De versie van het CreatiefWerk."@nl;
+    shacl:maxCount "1";
+    shacl:name "versie"@nl;
+    shacl:path schemas:version
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "publicatiedatum"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Dit kan bijvoorbeeld de datum zijn waarop een CreatiefWerk werd uitgezonden of een Certification werd uitgegeven."@nl;
+    rdfs:comment "Datum van eerste publicatie of uitzending."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Publicatiedatum>;
+    shacl:datatype xsd:dateTime;
+    shacl:description "Datum van eerste publicatie of uitzending."@nl;
+    shacl:maxCount "1";
+    shacl:name "publicatiedatum"@nl;
+    shacl:path schemas:datePublished
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "auteur"@nl;
+    rdfs:comment "De naam van de auteur van het Creatief Werk."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteur>;
+    shacl:class dc:Agent;
+    shacl:description "De naam van de auteur van het Creatief Werk."@nl;
+    shacl:name "auteur"@nl;
+    shacl:path schemas:author
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "auteursrechtHouder"@nl;
+    rdfs:comment "De partij die het wettelijke auteursrecht op het CreatiefWerk bezit."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Auteursrechthouder>;
+    shacl:class dc:Agent;
+    shacl:description "De partij die het wettelijke auteursrecht op het CreatiefWerk bezit."@nl;
+    shacl:name "auteursrechtHouder"@nl;
+    shacl:path schemas:copyrightHolder
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "taal"@nl;
+    rdfs:comment "De taal waarin het CreatiefWerk ontwikkeld werd."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Taal>;
+    shacl:class skos:Concept;
+    shacl:description "De taal waarin het CreatiefWerk ontwikkeld werd."@nl;
+    shacl:name "taal"@nl;
+    shacl:path schemas:inLanguage
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "vereisteTijd";
+    rdfs:comment "De tijd die nodig is om het Leermiddel te begrijpen."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Vereistetijd>;
+    shacl:class <http://www.w3.org/2006/time#Duration>;
+    shacl:description "De tijd die nodig is om het Leermiddel te begrijpen."@nl;
+    shacl:maxCount "1";
+    shacl:minCount "1";
+    shacl:name "vereisteTijd";
+    shacl:path schemas:timeRequired
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "licentie"@nl;
+    rdfs:comment "De licentie die rust op het gebruik van de Interactieve Resource."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Licentie>;
+    shacl:class dc:LicenseDocument;
+    shacl:description "De licentie die rust op het gebruik van de Interactieve Resource."@nl;
+    shacl:name "licentie"@nl;
+    shacl:path schemas:license
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "producent"@nl;
+    rdfs:comment "De Agent die het CreatiefWerk geproduceert heeft."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Producent>;
+    shacl:class dc:Agent;
+    shacl:description "De Agent die het CreatiefWerk geproduceert heeft."@nl;
+    shacl:minCount "1";
+    shacl:name "producent"@nl;
+    shacl:path schemas:author
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "uitgever"@nl;
+    rdfs:comment "De Agent die het CreatiefWerk uitgeeft."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Creatiefwerk.Uitgever>;
+    shacl:class dc:Agent;
+    shacl:description "De Agent die het CreatiefWerk uitgeeft."@nl;
+    shacl:name "uitgever"@nl;
+    shacl:path schemas:publisher
+  ];
+  shacl:targetClass schemas:CreativeWork .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TijdsduurShape> a shacl:NodeShape;
+  rdfs:label "Tijdsduur"@nl;
+  rdfs:comment "Een maat voor de tijd die nodig is om een specifieke taak of activiteit te voltooien, doorgaans uitgedrukt in eenheden zoals seconden, minuten of uren."@nl;
+  shacl:closed false;
+  shacl:targetClass <http://www.w3.org/2006/time#Duration> .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#AgentShape> a shacl:NodeShape;
+  rdfs:label "Agent"@nl;
+  rdfs:comment "Iemand die of iets dat kan handelen of een effect kan teweeg brengen."@nl;
+  shacl:closed false;
+  shacl:targetClass dc:Agent .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#LicentieShape> a shacl:NodeShape;
+  rdfs:label "Licentie"@nl;
+  rdfs:comment "Een formele toestemming of recht om iets te gebruiken, te reproduceren, of te verspreiden volgens bepaalde voorwaarden."@nl;
+  shacl:closed false;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "type"@nl;
+    <http://purl.org/vocab/vann/usageNote> "Voorbeelden zijn Creative Commons BY, Creative Commons BY-NC, publieke domein, gesloten licentie."@nl;
+    rdfs:comment "Een classificatie die aangeeft onder welke juridische voorwaarden een leermiddel mag worden gebruikt, gedeeld of aangepast."@nl;
+    rdfs:seeAlso <https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#Licentie.Type>;
+    shacl:class skos:Concept;
+    shacl:description "Een classificatie die aangeeft onder welke juridische voorwaarden een leermiddel mag worden gebruikt, gedeeld of aangepast."@nl;
+    shacl:minCount "1";
+    shacl:name "type"@nl;
+    shacl:path dc:type
+  ];
+  shacl:targetClass dc:LicenseDocument .
+
+<https://data.vlaanderen.be/doc/applicatieprofiel/leermiddelen/kandidaatstandaard/2025-08-01#TaalShape> a shacl:NodeShape;
+  rdfs:label "Taal";
+  <http://purl.org/vocab/vann/usageNote> "Zie het EU vocabularium voor een lijst van alle talen: <a href=\"https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/language\">https://op.europa.eu/en/web/eu-vocabularies/dataset/-/resource?uri=http://publications.europa.eu/resource/dataset/language</a>."@nl;
+  shacl:closed false;
+  shacl:targetClass skos:Concept .

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Added
+
+- Ignoring columns without header or with header starting with _ in the input data.
+- Enabling prefixes in the custom voc.
+- Adding default properties.
+
 ## [1.1.0] - 2025-11-25
 
 ### Added

@@ -1,0 +1,6 @@
+# Join Licentie → type → LicentieType
+SELECT DISTINCT ?Licentie_url ?LicentieType_url WHERE {
+  ?Licentie_url a <http://purl.org/dc/terms/LicenseDocument> .
+  ?LicentieType_url a <http://www.w3.org/2004/02/skos/core#Concept> .
+  ?Licentie_url <http://purl.org/dc/terms/type> ?LicentieType_url .
+}

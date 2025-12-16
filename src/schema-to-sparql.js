@@ -1,6 +1,7 @@
 const fs = require("fs");
 const { Command } = require("commander");
 const path = require("path");
+const { skosConceptSheet }  = require("./defaultVoc")
 
 const program = new Command();
 program
@@ -15,6 +16,9 @@ const inputFile = options.input;
 const outputFile = options.outfile;
 const splitDir = options.splitdir;
 
+// A summarizing query for skos:Concept with optional default properties is added if at least one sheet with sheetClass skos:Concept appears in the data
+let includesSkosConceptSheet = false;
+
 if (!fs.existsSync(path.dirname(outputFile))) {
   fs.mkdirSync(path.dirname(outputFile), { recursive: true });
 }
@@ -22,16 +26,16 @@ if (!fs.existsSync(splitDir)) {
   fs.mkdirSync(splitDir, { recursive: true });
 }
 
-function convertLabeltoVariable(label, isIri){
-  if (isIri){
+function convertLabeltoVariable(label, isIri) {
+  if (isIri) {
     label = label + "_url";
   };
   // "id" is reserved for internal use in Miravi
-  if (label === "id"){
+  if (label === "id") {
     label = "ID";
   }
-  return "?" + label ;
-} 
+  return "?" + label;
+}
 
 function toValidFilename(str, maxLength = 255) {
   // Replace invalid characters with underscores
@@ -65,11 +69,11 @@ function sheetToSelect(sheetLabel, sheet) {
   const sVar = `${convertLabeltoVariable(sheetLabel, true)}`;
   vars.push(sVar);
   triples.push(`${sVar} a <${sheet.sheetClass}> .`);
-  
-  for (const column of Object.values(sheet.columns)){
+
+  for (const column of Object.values(sheet.columns)) {
     const oVar = convertLabeltoVariable(column.columnLabel, column.valueClass);
-    if (column.valueMinCount >= 1){
-      triples.push(`${sVar} <${column.columnProperty}> ${oVar} . `); 
+    if (column.valueMinCount >= 1) {
+      triples.push(`${sVar} <${column.columnProperty}> ${oVar} . `);
     } else {
       triples.push(`OPTIONAL { ${sVar} <${column.columnProperty}> ${oVar} . }`);
     }
@@ -133,13 +137,31 @@ for (const sheet of Object.values(schema)) {
   if (sheet.columns.length === 0) {
     console.log(`⚠️  ${sheet.sheetLabel} has no columns, skipping query generation.`);
   }
-  //skip if sheet class is skos:Concept
+  // if skos:Concept, add custom properties to skosConceptSheet 
   else if (sheet.sheetClass === "http://www.w3.org/2004/02/skos/core#Concept") {
-    console.log(`⚠️  ${sheet.sheetLabel} is skos:Concept, skipping query generation.`);
+    includesSkosConceptSheet = true;
+    for (const column of Object.values(sheet.columns)) {
+      if (!(column.columnLabel in skosConceptSheet)) {
+        const columnDict = {
+          "columnLabel": column.columnLabel,
+          "columnProperty": column.columnProperty,
+          "valueDatatype": column.valueDatatype,
+          "valueClass": column.valueClass,
+          "valueMinCount": null,
+          "valueMaxCount": null
+        }
+        skosConceptSheet.columns[column.columnLabel] = columnDict;
+      }
+    }
   }
   else {
     output += sheetToSelect(sheet.sheetLabel, sheet) + "\n";
   }
+}
+
+if (includesSkosConceptSheet) {
+  output += sheetToSelect("SkosConcept", skosConceptSheet);
+  output += "\n";
 }
 
 output += "# Example cross-mapping queries\n\n";

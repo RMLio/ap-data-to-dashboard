@@ -25,14 +25,28 @@ const schema = JSON.parse(fs.readFileSync(path.resolve(process.cwd(), schemaFile
 // Load Excel file
 const workBook = XLSX.readFile(inputFile);
 
+// Process _prefixes sheet if it exists
+const prefixesDict = {}
+if (workBook.SheetNames.includes(sheetName = "_prefixes")) {
+    const prefixesSheet = workBook.Sheets["_prefixes"];
+    const prefixes = XLSX.utils.sheet_to_json(prefixesSheet, { defval: null });
+
+    for (const row of prefixes) {
+        if ("prefix" in row) {
+            prefixesDict[row.prefix] = row.uri
+        }
+    }
+}
+
 // Process _customVoc sheet if it exists
+const defaultProperties = {};
 if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
     const customVocSheet = workBook.Sheets["_customVoc"];
-    const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: "" });
+    const customVoc = XLSX.utils.sheet_to_json(customVocSheet, { defval: null });
 
     // shaclVoc has priority over customVoc
     for (const row of customVoc) {
-        if ("sheetLabel" in row) {
+        if (row.sheetLabel) {
             const sheetLabel = safeLabel(safeGet(row, "sheetLabel"));
 
             if (!(sheetLabel in schema)) {
@@ -42,28 +56,49 @@ if (workBook.SheetNames.includes(sheetName = "_customVoc")) {
                     "columns": {}
                 };
             }
-            if (sheetLabel) {
-                const sheetClass = safeGet(row, "sheetClass")
-                safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
+            let sheetClass = safeGet(row, "sheetClass")
+            sheetClass = expandCompactUri(sheetClass, prefixesDict);
+            safeAdd(schema[sheetLabel], "sheetClass", sheetClass);
+            if (row.columnLabel) {
                 const columnLabel = safeLabel(row.columnLabel);
-                if (columnLabel) {
-                    const sheetColumns = schema[sheetLabel]["columns"];
-                    if (columnLabel && !(columnLabel in sheetColumns)) {
-                        sheetColumns[columnLabel] = {
-                            columnLabel: columnLabel,
-                        };
-                    }
-                    safeAdd(sheetColumns[columnLabel], "columnProperty", safeGet(row, "columnProperty"));
-                    safeAdd(sheetColumns[columnLabel], "valueDatatype", safeGet(row, "valueDatatype"));
-                    safeAdd(sheetColumns[columnLabel], "valueClass", safeGet(row, "valueClass"));
-                    sheetColumns[columnLabel]["valueMinCount"] = null
-                    sheetColumns[columnLabel]["valueMaxCount"] = null
+                const sheetColumns = schema[sheetLabel]["columns"];
+                if (columnLabel && !(columnLabel in sheetColumns)) {
+                    sheetColumns[columnLabel] = {
+                        columnLabel: columnLabel,
+                    };
                 }
+                let columnProperty = safeGet(row, "columnProperty");
+                columnProperty = expandCompactUri(columnProperty, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "columnProperty", columnProperty);
+                let valueDatatype = safeGet(row, "valueDatatype");
+                valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "valueDatatype", valueDatatype);
+                let valueClass = safeGet(row, "valueClass");
+                valueClass = expandCompactUri(valueClass, prefixesDict)
+                safeAdd(sheetColumns[columnLabel], "valueClass", valueClass);
+                sheetColumns[columnLabel]["valueMinCount"] = null
+                sheetColumns[columnLabel]["valueMaxCount"] = null
             }
+        }
+        // default custom properties, not linked to any sheet
+        else if (row.columnLabel) {
+            const columnLabel = safeLabel(row.columnLabel);
+            defaultProperties[columnLabel] = { "columnLabel": columnLabel };
+            let columnProperty = safeGet(row, "columnProperty");
+            columnProperty = expandCompactUri(columnProperty, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "columnProperty", columnProperty);
+            let valueDatatype = safeGet(row, "valueDatatype");
+            valueDatatype = expandCompactUri(valueDatatype, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "valueDatatype", valueDatatype);
+            let valueClass = safeGet(row, "valueClass");
+            valueClass = expandCompactUri(valueClass, prefixesDict)
+            safeAdd(defaultProperties[columnLabel], "valueClass", valueClass);
+            defaultProperties[columnLabel]["valueMinCount"] = null
+            defaultProperties[columnLabel]["valueMaxCount"] = null
         }
     }
 }
-// Iterate sheets and add missing voc (shape voc and custom voc have priority)
+// Iterate sheets and add default and missing voc (shape voc and custom voc have priority)
 workBook.SheetNames.forEach((sheetName) => {
     if (sheetName.startsWith("_")) {
         console.log(`ℹ️ Sheet "${sheetName}" is ignored when adding missing voc (starts with '_')`);
@@ -82,14 +117,21 @@ workBook.SheetNames.forEach((sheetName) => {
         const headers = data[0];
         const sheetColumns = schema[sheetLabel]["columns"];
         for (const header of headers) {
-            const columnLabel = safeLabel(header);
-            if (columnLabel !== "CODE" && !(columnLabel in sheetColumns)) {
-                sheetColumns[columnLabel] = {
-                    "columnLabel": columnLabel,
-                    "columnProperty": missingEx + columnLabel,
-                    "valueDatatype": null,
-                    "valueMinCount": null,
-                    "valueMaxCount": null,
+            if (header && !header.startsWith("_")) {
+                const columnLabel = safeLabel(header);
+                if (columnLabel !== "CODE" && !(columnLabel in sheetColumns)) {
+                    if (columnLabel in defaultProperties) {
+                        sheetColumns[columnLabel] = defaultProperties[columnLabel];
+                    } else {
+                        sheetColumns[columnLabel] = {
+                            "columnLabel": columnLabel,
+                            "columnProperty": missingEx + columnLabel,
+                            "valueDatatype": null,
+                            "valueClass": null,
+                            "valueMinCount": null,
+                            "valueMaxCount": null,
+                        }
+                    }
                 }
             }
         }
@@ -103,6 +145,7 @@ for (const sheetLabel in schema) {
     iriToLabelMap[sheetClass] = sheetLabel;
     for (const sheet in schema) {
         for (const column in schema[sheet]["columns"]) {
+            // excluded because skos:Concept has typically multiple labels in OSLO
             if (column.valueClass !== "http://www.w3.org/2004/02/skos/core#Concept") {
                 const valueClass = schema[sheet]["columns"][column]["valueClass"]
                 schema[sheet]["columns"][column]["valueForeignKeySheet"] = iriToLabelMap[valueClass]
@@ -144,3 +187,21 @@ function safeAdd(dict, key, value) {
 function safeGet(dict, key) {
     return key in dict ? dict[key] : null;
 }
+
+function expandCompactUri(inputUri, prefixesDict) {
+    if (!inputUri) {
+        return null;
+    }
+    const idx = inputUri.indexOf(":");
+    if (idx === -1) {
+        return inputUri; // No colon → not a compact URI
+    }
+    const prefix = inputUri.slice(0, idx); // may be empty
+    const local = inputUri.slice(idx + 1);
+    const base = prefixesDict[prefix];
+    if (!base) {
+        return inputUri;
+    }
+    return base + local;
+}
+
