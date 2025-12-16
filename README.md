@@ -142,7 +142,7 @@ Several actors can add their own input data in the `in`-folder.
 Note: When using a SHACL shape from an OSLO application profile as input,
 the diagram of that application profile visualizes the links between the sheets and mentions the expected datatype.
 
-Note: Columns without header or with header starting with _ will be ignored. You can use those columns to added remarks. 
+Note: Our tool ignores without header or with header starting with _. You can use those columns to added remarks.
 
 ### Optionally include additional data
 
@@ -215,7 +215,7 @@ You may specify prefixes in the sheet labeled `_prefixes`, enabling the use of c
 | foaf   | <http://xmlns.com/foaf/0.1/>        |
 | xsd    | <http://www.w3.org/2001/XMLSchema#> |
 
-If you don't specify the sheet (i.e., leave `sheetLabel` and `sheetClass` empty),
+If you leave `sheetLabel` and `sheetClass` empty,
 the tool applies remaining specifications to any additional column with the corresponding column label as header.  
 
 **Example**: `_customVoc` sheet with column specifications that are reusable in any sheet.
