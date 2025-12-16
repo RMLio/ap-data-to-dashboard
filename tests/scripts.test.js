@@ -9,11 +9,9 @@ const outDir = join("tests", "out");
 
 describe("Testing js scripts", () => {
 
-  this.hookTimeout = 20000;
-
   beforeEach(() => {
     emptyDirSync(outDir);
-  });
+  }, 20000);
 
   describe("1. shacl-to-template template JSON", () => {
     it("should generate template schema JSON", async () => {
@@ -24,7 +22,7 @@ describe("Testing js scripts", () => {
         });
       });
       await compareFiles(join(assetsDir, "scripts1", "template.schema.json"), join(outDir, "template.schema.json"));
-    });
+    }, 20000);
   });
 
   describe("2. shacl-to-template template XSLX", () => {
@@ -38,7 +36,7 @@ describe("Testing js scripts", () => {
       await compareFiles(join(assetsDir, "scripts2", "template.xlsx"), join(outDir, "template.xlsx"));
     });
   });
-  
+
   describe("3. dataxlsx-to-datajson", () => {
     it("should generate data JSON", async () => {
       await new Promise((resolve, reject) => {
