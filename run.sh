@@ -88,6 +88,10 @@ fi
 if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
   for input in "$in_dir"/*.xlsx; do
     base=$(basename "$input")
+    if [[ "${base:0:1}" == "~" ]]; then
+      echo "ℹ️  Skipping temporary file: $base"
+      continue
+    fi
     echo "Processing file: $base"
     fileName="${base%.xlsx}"        # removes extension → file.xlsx → file
 
