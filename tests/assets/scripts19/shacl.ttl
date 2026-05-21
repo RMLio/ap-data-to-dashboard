@@ -1,0 +1,25 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix shacl: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <http://example.org#> .
+
+# NodeShape without rdfs:label - should use "Person" from targetClass
+<http://example.org#PersonShape> a shacl:NodeShape;
+  shacl:targetClass ex:Person;
+  shacl:property [
+    a shacl:PropertyShape;
+    rdfs:label "Name"@en;
+    shacl:path ex:name;
+    shacl:datatype xsd:string
+  ], [
+    a shacl:PropertyShape;
+    # PropertyShape without rdfs:label - should use "age" from path
+    shacl:path ex:age;
+    shacl:datatype xsd:integer
+  ], [
+    a shacl:PropertyShape;
+    rdfs:label "Email"@en;
+    shacl:path ex:email;
+    shacl:datatype xsd:string
+  ] .

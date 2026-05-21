@@ -248,4 +248,16 @@ describe("Testing js scripts", () => {
     });
   });
 
+  describe("19. shacl-to-template with missing rdfs:labels", () => {
+    it("should generate template schema JSON using class/property names when rdfs:label is missing", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts19", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts19", "template.schema.json"), join(outDir, "template.schema.json"));
+    }, 20000);
+  });
+
 });
