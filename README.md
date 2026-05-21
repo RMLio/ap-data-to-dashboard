@@ -99,14 +99,15 @@ The input SHACL file must include:
 
 Per `shacl:NodeShape`:
 
-- `rdfs:label` – used as the worksheet name
 - `shacl:targetClass`
 - `shacl:property`
+- `rdfs:label` – used as the worksheet name (optional; if missing, the last segment after `#` or `/`
+  from `shacl:targetClass` is used)
 
 Per `shacl:PropertyShape`:
 
-- `rdfs:label` – used as column headers
 - `shacl:path`
+- `rdfs:label` – used as column headers (optional; if missing, the last segment after `#` or `/` from `shacl:path` is used)
 
 Additionally, the script processes the following properties of a `PropertyShape` and adds them to the `_schema` sheet:
 

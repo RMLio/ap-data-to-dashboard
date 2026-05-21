@@ -90,15 +90,16 @@ async function generateTemplates(store) {
     // Only create a worksheet the domain has properties  (otherwise too many sheets with only code column)  
     const properties = store.getObjects(nodeShape, namedNode("http://www.w3.org/ns/shacl#property"))
     if (properties.length != 0) {
-      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
-      if (sheetLabel == null) {
-        console.error(`❌ Missing rdfs:label for ${nodeShape.value}, skipping sheet creation`);
-        continue;
-      }
       let sheetClass = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/ns/shacl#targetClass"));
       if (sheetClass == null) {
         console.error(`❌ Missing shacl:targetClass for ${nodeShape.value}, skipping sheet creation`);
         continue;
+      }
+      let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+      if (sheetLabel == null) {
+        // Fall back to the last segment after # or / of sheetClass if rdfs:label is missing
+        sheetLabel = sheetClass.split(/[\/#]/).pop();
+        console.warn(`⚠️  Missing rdfs:label for ${nodeShape.value}, using class name: ${sheetLabel}`);
       }
       sheetLabel = safeLabel(sheetLabel);
       iriToLabelMap[sheetClass] = sheetLabel;
@@ -113,17 +114,19 @@ async function generateTemplates(store) {
       requiredData[sheetLabel] = [1]
       let countColumns = 2;
       for (const property of properties) {
-        // Get the label of each property to use as column headers
-        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
-        if (columnLabel == null) {
-          console.error(`❌ Missing rdfs:label for property ${property.value} of ${nodeShape.value}, skipping column creation`);
-          continue;
-        }
         let columnProperty = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#path"));
         if (columnProperty == null) {
           console.error(`❌ Missing shacl:path for property ${property.value} of ${nodeShape.value}, skipping column creation`);
           continue;
         }
+        // Get the label of each property to use as column headers
+        let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
+        if (columnLabel == null) {
+          // Fall back to the last segment after # or / of columnProperty if rdfs:label is missing
+          columnLabel = columnProperty.split(/[\/#]/).pop();
+          console.warn(`⚠️  Missing rdfs:label for property ${property.value} of ${nodeShape.value}, using property name: ${columnLabel}`);
+        }
+
         columnLabel = safeLabel(columnLabel);
         let valueClass = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#class"));
         let valueDatatype = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#datatype"));
