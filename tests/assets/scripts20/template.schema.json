@@ -1,0 +1,24 @@
+{
+  "Person": {
+    "sheetLabel": "Person",
+    "sheetClass": "http://example.org#Human",
+    "columns": {
+      "ageFromName": {
+        "columnLabel": "ageFromName",
+        "columnProperty": "http://example.org#age",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#integer",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      },
+      "email": {
+        "columnLabel": "email",
+        "columnProperty": "http://example.org#email",
+        "valueClass": null,
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
+        "valueMinCount": null,
+        "valueMaxCount": null
+      }
+    }
+  }
+}

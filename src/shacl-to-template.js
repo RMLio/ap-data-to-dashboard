@@ -97,9 +97,16 @@ async function generateTemplates(store) {
       }
       let sheetLabel = getObjectValueIfExists(store, nodeShape, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
       if (sheetLabel == null) {
-        // Fall back to the last segment after # or / of sheetClass if rdfs:label is missing
-        sheetLabel = sheetClass.split(/[\/#]/).pop();
-        console.warn(`⚠️  Missing rdfs:label for ${nodeShape.value}, using class name: ${sheetLabel}`);
+        // Fall back to the local name from NodeShape IRI when it ends with "Shape" (in line with the older Oslo SHACL style)
+        const nodeShapeLabelMatch = nodeShape.value.match(/(?:^|[\/#])([^\/#]+)Shape$/);
+        if (nodeShapeLabelMatch) {
+          sheetLabel = nodeShapeLabelMatch[1];
+          console.warn(`⚠️  Missing rdfs:label for ${nodeShape.value}, using shape name: ${sheetLabel}`);
+        } else {
+          // Final fallback: use the last segment after # or / of sheetClass
+          sheetLabel = sheetClass.split(/[\/#]/).pop();
+          console.warn(`⚠️  Missing rdfs:label for ${nodeShape.value}, using class name: ${sheetLabel}`);
+        }
       }
       sheetLabel = safeLabel(sheetLabel);
       iriToLabelMap[sheetClass] = sheetLabel;
@@ -122,9 +129,15 @@ async function generateTemplates(store) {
         // Get the label of each property to use as column headers
         let columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/2000/01/rdf-schema#label"));
         if (columnLabel == null) {
-          // Fall back to the last segment after # or / of columnProperty if rdfs:label is missing
-          columnLabel = columnProperty.split(/[\/#]/).pop();
-          console.warn(`⚠️  Missing rdfs:label for property ${property.value} of ${nodeShape.value}, using property name: ${columnLabel}`);
+          // Fall back to shacl:name if rdfs:label is missing (in line with the older Oslo SHACL style)
+          columnLabel = getObjectValueIfExists(store, property, namedNode("http://www.w3.org/ns/shacl#name"));
+          if (columnLabel == null) {
+            // Fall back to the last segment after # or / of columnProperty if rdfs:label and shacl:name are missing
+            columnLabel = columnProperty.split(/[\/#]/).pop();
+            console.warn(`⚠️  Missing rdfs:label and shacl:name for property ${property.value} of ${nodeShape.value}, using property name: ${columnLabel}`);
+          } else {
+            console.warn(`⚠️  Missing rdfs:label for property ${property.value} of ${nodeShape.value}, using shacl:name: ${columnLabel}`);
+          }
         }
 
         columnLabel = safeLabel(columnLabel);
@@ -245,6 +258,7 @@ async function generateTemplates(store) {
     actor = index + 1
     const prefix = "a" + actor
     wb.eachSheet(sheet => {
+      console.log(`Generating dummy data for sheet ${sheet.name} in file ${dummyFile}`);
       if (!(sheet.name == "_customVoc") && !(sheet.name == "_prefixes")) {
         const columnNames = sheet.getRow(1);
         for (let i = 1; i <= 5; i++) { // Add 5 rows of dummy data
@@ -253,6 +267,7 @@ async function generateTemplates(store) {
           dummyRow.push(`${prefix}/code/${sheet.name}_${i}`);
           // Add values for the other columns
           for (let j = 2; j <= columnNames.cellCount; j++) {
+            console.log(`Generating dummy data for column ${columnNames.getCell(j).value} in sheet ${sheet.name} in file ${dummyFile}`);
             const columnName = columnNames.getCell(j).value
             const columnDetails = schema[sheet.name]["columns"][columnName]
             const addArray = columnDetails["valueMaxCount"] != 1 && i == 5;
