@@ -102,12 +102,14 @@ Per `shacl:NodeShape`:
 - `shacl:targetClass`
 - `shacl:property`
 - `rdfs:label` – used as the worksheet name (optional; if missing, the last segment after `#` or `/`
-  from `shacl:targetClass` is used)
+  and before `Shape` from the `shacl:NodeShape` IRI is used when that pattern matches; otherwise,
+  the last segment after `#` or `/` from `shacl:targetClass` is used)
 
 Per `shacl:PropertyShape`:
 
 - `shacl:path`
-- `rdfs:label` – used as column headers (optional; if missing, the last segment after `#` or `/` from `shacl:path` is used)
+- `rdfs:label` – used as column headers (optional; if missing, `shacl:name` is used,
+  and if that is also missing, the last segment after `#` or `/` from `shacl:path` is used)
 
 Additionally, the script processes the following properties of a `PropertyShape` and adds them to the `_schema` sheet:
 

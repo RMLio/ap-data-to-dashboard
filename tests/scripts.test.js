@@ -260,4 +260,16 @@ describe("Testing js scripts", () => {
     }, 20000);
   });
 
+  describe("20. shacl-to-template with NodeShape and PropertyShape fallbacks (old Oslo SHACL style)", () => {
+    it("should generate template schema JSON using NodeShape IRI fallback and shacl:name for property labels", async () => {
+      await new Promise((resolve, reject) => {
+        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts20", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
+          if (error) reject(error);
+          else resolve();
+        });
+      });
+      await compareFiles(join(assetsDir, "scripts20", "template.schema.json"), join(outDir, "template.schema.json"));
+    }, 20000);
+  });
+
 });
