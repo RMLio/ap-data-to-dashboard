@@ -272,8 +272,8 @@ describe("Testing js scripts", () => {
     }, 20000);
   });
 
-  describe("21. shacl-to-template with NodeShape and PropertyShape fallbacks (old Oslo SHACL style)", () => {
-    it("should generate template schema JSON using NodeShape IRI fallback and shacl:name for property labels", async () => {
+  describe("21. shacl-to-template with language literal defined as sh:class and sh:datatype", () => {
+    it("should convert both sh:class and sh:datatype rdf:langString to valueDatatype langString", async () => {
       await new Promise((resolve, reject) => {
         execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts21", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
           if (error) reject(error);
@@ -281,18 +281,6 @@ describe("Testing js scripts", () => {
         });
       });
       await compareFiles(join(assetsDir, "scripts21", "template.schema.json"), join(outDir, "template.schema.json"));
-    }, 20000);
-  });
-
-  describe("22. shacl-to-template with language literal defined as sh:class and sh:datatype", () => {
-    it("should convert both sh:class and sh:datatype rdf:langString to valueDatatype langString", async () => {
-      await new Promise((resolve, reject) => {
-        execFile("node", ["./src/shacl-to-template.js", "-i", join(assetsDir, "scripts22", "shacl.ttl"), "-o", outDir, "-d", 2], (error) => {
-          if (error) reject(error);
-          else resolve();
-        });
-      });
-      await compareFiles(join(assetsDir, "scripts22", "template.schema.json"), join(outDir, "template.schema.json"));
     }, 20000);
   });
 });
