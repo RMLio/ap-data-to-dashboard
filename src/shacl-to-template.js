@@ -156,6 +156,13 @@ async function generateTemplates(store) {
           "valueMaxCount": valueMaxCount
         }
 
+        // Normalize language literals: some OSLO SHACL files use sh:class rdf:langString
+        // while others use sh:datatype rdf:langString.
+        if (valueClass && valueClass === "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString") {
+          schema[sheetLabel]["columns"][columnLabel]["valueClass"] = null;
+          schema[sheetLabel]["columns"][columnLabel]["valueDatatype"] = "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString";
+        }
+
         // Collect required fields
         if (valueMinCount !== null && parseInt(valueMinCount) >= 1) {
           requiredData[sheetLabel].push(countColumns);
