@@ -1,23 +1,23 @@
 {
-  "TestEntity": {
-    "sheetLabel": "TestEntity",
-    "sheetClass": "https://schema.org/Thing",
+  "Person": {
+    "sheetLabel": "Person",
+    "sheetClass": "http://example.org#Human",
     "columns": {
-      "title": {
-        "columnLabel": "title",
-        "columnProperty": "https://schema.org/name",
+      "ageFromName": {
+        "columnLabel": "ageFromName",
+        "columnProperty": "http://example.org#age",
         "valueClass": null,
-        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#integer",
         "valueMinCount": null,
-        "valueMaxCount": "1"
+        "valueMaxCount": null
       },
-      "description": {
-        "columnLabel": "description",
-        "columnProperty": "https://schema.org/description",
+      "email": {
+        "columnLabel": "email",
+        "columnProperty": "http://example.org#email",
         "valueClass": null,
-        "valueDatatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#langString",
+        "valueDatatype": "http://www.w3.org/2001/XMLSchema#string",
         "valueMinCount": null,
-        "valueMaxCount": "1"
+        "valueMaxCount": null
       }
     }
   }
