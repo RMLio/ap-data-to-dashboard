@@ -69,7 +69,7 @@ rdf_dir="${out_dir}/serve-me"
 miravi_main_dir="${prefix}node_modules/miravi/main"
 miravi_initial_config_dir="miravi-initial-config"
 
-rm -rf $out_dir
+rm -rf "$out_dir"
 
 noInputFiles=false
 inputs=("$in_dir"/*.xlsx)
@@ -96,11 +96,11 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     fileName="${base%.xlsx}"        # removes extension → file.xlsx → file
 
     echo "ℹ️  Processing file: $input"
-    node ./src/dataxlsx-to-datajson.js -i $input -o $out_dir -d $delimiter
+    node ./src/dataxlsx-to-datajson.js -i "$input" -o "$out_dir" -d "$delimiter"
 
     if [[ "$strict" == false ]]; then
       echo "ℹ️  Enhancing schema with custom vocabulary from file: $input"
-      node ./src/dataxlsx-to-enriched-schema.js -i $input -o $out_dir -s $template_schema_json
+      node ./src/dataxlsx-to-enriched-schema.js -i "$input" -o "$out_dir" -s "$template_schema_json"
       echo "ℹ️  Generating file: $out_dir/$fileName.mapping.yml"
       node ./src/schema-to-yarrrml.js -i "$out_dir/$fileName-enriched-schema.json" -o "$out_dir/$fileName.mapping.yml" -s "$out_dir/$fileName.json"
      else
@@ -116,8 +116,8 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
     echo '@base <http://example.com/> .' | cat - "$out_dir/$fileName.mapping.rml.ttl" > "temp" && mv "temp" "$out_dir/$fileName.mapping.rml.ttl"
 
     echo "ℹ️  Generating file: $rdf_dir/$fileName.ttl"
-    mkdir -p $rdf_dir
-    java -jar ./rmlmapper-7.3.3-r374-all.jar -m $out_dir/$fileName.mapping.rml.ttl -o $rdf_dir/$fileName.ttl -s turtle
+    mkdir -p "$rdf_dir"
+    java -jar ./rmlmapper-7.3.3-r374-all.jar -m "$out_dir/$fileName.mapping.rml.ttl" -o "$rdf_dir/$fileName.ttl" -s turtle
   done
 
   if [[ "$strict" == false ]]; then
@@ -133,8 +133,8 @@ if [[ "$noInputFiles" == false && "$noSchemaFile" == false ]]; then
   
 else
   echo "ℹ️  Generating (empty) file $rdf_dir/empty.ttl."
-  mkdir -p $rdf_dir
-  echo "" > $rdf_dir/empty.ttl
+  mkdir -p "$rdf_dir"
+  echo "" > "$rdf_dir/empty.ttl"
   echo "ℹ️  Generating (empty) combined queries file $queries_combined_file and (no) split queries in $queries_split_dir"
   mkdir -p "$queries_dir"
   echo "" > "$queries_combined_file"
@@ -146,8 +146,8 @@ node ./src/prepare-miravi-config.js -i "$miravi_initial_config_dir" -s "$queries
 
 if [[ "$buildMiravi" == true ]]; then
   echo "ℹ️  Building Miravi in $miravi_main_dir into $miravi_main_dir/dist; see $miravi_main_dir/build.log for details..."
-  (cd $miravi_main_dir && npm run build > build.log 2>&1)
+  (cd "$miravi_main_dir" && npm run build > build.log 2>&1)
 else
   echo "ℹ️  Skipping Miravi build; deleting previous Miravi build..."
-  rm -rf $miravi_main_dir/dist
+  rm -rf "$miravi_main_dir/dist"
 fi
